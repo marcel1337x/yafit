@@ -8,4 +8,8 @@
     <UseWPF>true</UseWPF>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\YAFIT.UI\YAFIT.UI.csproj" />
+  </ItemGroup>
+
 </Project>
