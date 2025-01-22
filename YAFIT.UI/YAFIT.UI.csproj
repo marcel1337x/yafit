@@ -11,6 +11,7 @@
     <Folder Include="Resources\Images\" />
     <Folder Include="ViewModels\" />
     <Folder Include="Views\" />
+    <ProjectReference Include="..\YAFIT.Databases\YAFIT.Databases.csproj" />
   </ItemGroup>
 
 </Project>
