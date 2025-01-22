@@ -13,6 +13,7 @@
     <Folder Include="ViewModels\" />
     <Folder Include="Views\" />
     <ProjectReference Include="..\YAFIT.Databases\YAFIT.Databases.csproj" />
+    <ProjectReference Include="..\YAFIT.Data\YAFIT.Data.csproj" />
   </ItemGroup>
 
 </Project>
