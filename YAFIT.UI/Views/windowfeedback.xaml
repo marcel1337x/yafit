@@ -1,0 +1,85 @@
+﻿<Window x:Class="YAFIT.UI.Views.windowfeedback"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:YAFIT.UI.Views"
+        mc:Ignorable="d"
+        Title="Unterrichtsbeurteilung durch Schülerinnen und Schüler I" Height="800" Width="800">
+    <Grid>
+        
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            
+            
+            
+            
+        </Grid.RowDefinitions>
+        <Label Content="Unterrichtsbeurteilung durch Schülerinnen und Schüler I"/>
+        <DataGrid Grid.Row="1" ItemsSource="{ Binding FeedbackRows1}" CanUserAddRows="False" AutoGenerateColumns="False">
+            <DataGrid.Columns>
+                <DataGridTextColumn Width="auto" Header="Verhalten des Lehrers" Binding="{ Binding Text}" />
+                <DataGridCheckBoxColumn Width="*" Header="trifft völlig zu" Binding="{ Binding Text}"/>
+                <DataGridCheckBoxColumn Width="*" Header="trifft eher zu" Binding="{ Binding Text}"/>
+                <DataGridCheckBoxColumn Width="*" Header="trifft eher nicht zu" Binding="{ Binding Text}"/>
+                <DataGridCheckBoxColumn Width="*" Header="trifft überhaupt nicht zu" Binding="{ Binding Text}"/>
+            </DataGrid.Columns>
+
+        </DataGrid>
+
+        <DataGrid  Grid.Row="2" ItemsSource="{ Binding FeedbackRows}" CanUserAddRows="False" AutoGenerateColumns="False">
+            <DataGrid.Columns>
+                <DataGridTextColumn Width="auto" Header="Bewerten sie folgende Aussagen" Binding="{ Binding Text}" />
+                <DataGridCheckBoxColumn Width="*" Header="trifft völlig zu" Binding="{ Binding Text}"/>
+                <DataGridCheckBoxColumn Width="*" Header="trifft eher zu" Binding="{ Binding Text}"/>
+                <DataGridCheckBoxColumn Width="*" Header="trifft eher nicht zu" Binding="{ Binding Text}"/>
+                <DataGridCheckBoxColumn Width="*" Header="trifft überhaupt nicht zu" Binding="{ Binding Text}"/>
+            </DataGrid.Columns>
+
+        </DataGrid>
+        <DataGrid Grid.Row="3" ItemsSource="{ Binding FeedbackRows1}" CanUserAddRows="False" AutoGenerateColumns="False">
+            <DataGrid.Columns>
+                <DataGridTextColumn Width="auto" Header="Wie ist der Unterricht?" Binding="{ Binding Text}" />
+                <DataGridCheckBoxColumn Width="*" Header="trifft völlig zu" Binding="{ Binding Text}"/>
+                <DataGridCheckBoxColumn Width="*" Header="trifft eher zu" Binding="{ Binding Text}"/>
+                <DataGridCheckBoxColumn Width="*" Header="trifft eher nicht zu" Binding="{ Binding Text}"/>
+                <DataGridCheckBoxColumn Width="*" Header="trifft überhaupt nicht zu" Binding="{ Binding Text}"/>
+            </DataGrid.Columns>
+
+        </DataGrid>
+        <DataGrid Grid.Row="4" ItemsSource="{ Binding FeedbackRows1}" CanUserAddRows="False" AutoGenerateColumns="False">
+            <DataGrid.Columns>
+                <DataGridTextColumn Width="auto" Header="Bewerten Sie folgende Behauptungen:" Binding="{ Binding Text}" />
+                <DataGridCheckBoxColumn Width="*" Header="trifft völlig zu" Binding="{ Binding Text}"/>
+                <DataGridCheckBoxColumn Width="*" Header="trifft eher zu" Binding="{ Binding Text}"/>
+                <DataGridCheckBoxColumn Width="*" Header="trifft eher nicht zu" Binding="{ Binding Text}"/>
+                <DataGridCheckBoxColumn Width="*" Header="trifft überhaupt nicht zu" Binding="{ Binding Text}"/>
+            </DataGrid.Columns>
+
+        </DataGrid>
+        <StackPanel Orientation="Vertical" Grid.Row="5">
+            <Label Content="Das hat mir besonders gut gefallen:"/>
+            <TextBox TextWrapping="Wrap" Text="" Width="auto"/>
+        </StackPanel>
+        <StackPanel Orientation="Vertical" Grid.Row="6">
+            <Label  Content="Das hat mir nicht gefallen:"/>
+            <TextBox  TextWrapping="Wrap" Text="" Width="auto"/>
+        </StackPanel>
+        <StackPanel Orientation="Vertical" Grid.Row="7">
+            <Label  Content="Verbesserungsvorschläge:"/>
+            <TextBox  TextWrapping="Wrap" Text="" Width="auto" />
+        </StackPanel>
+        
+        
+
+    </Grid>
+
+
+</Window>
