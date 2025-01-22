@@ -31,17 +31,18 @@ namespace YAFIT.UI.ViewModels
         private void DoAccountLogin()
         {
             WindowMain? windowMain = _view as WindowMain;
+            Debug.WriteLine(LoginUname);
+            Debug.WriteLine(windowMain.PWBox.Password);
             Authentication auth = new Authentication(LoginUname, windowMain.PWBox.Password);
             if (auth.doLogin())
             {
                 MessageBox.Show("Login");
+                // rufe lenas auswahlmenü auf
             }
             else
             {
                 MessageBox.Show("Login Fehlerhaft");
             }
-            Debug.WriteLine(LoginUname);
-            Debug.WriteLine(windowMain.PWBox.Password);
         }
     }
 }
