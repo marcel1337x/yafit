@@ -2,6 +2,7 @@
 using System.Windows;
 using System.Windows.Input;
 using System.Windows.Xps;
+using YAFIT.Common;
 using YAFIT.Data;
 using YAFIT.UI.Resources;
 using YAFIT.UI.Views;
@@ -35,7 +36,6 @@ namespace YAFIT.UI.ViewModels
             SelectionView selec = new SelectionView();
             SelectionViewModel model = new SelectionViewModel(selec);
             ShowChildView(selec, model,true);
-            Console.WriteLine("lololo");
             if (model.IsFeedbackFormular1Selected)
             {
                 Console.WriteLine("Formular 1 Ausgewählt");
@@ -58,7 +58,14 @@ namespace YAFIT.UI.ViewModels
                 //@TODO Nachricht
                 return;
             }
-            MessageBox.Show("ZEIGE RESULTATE");
+            if (feedbackForm.Form == FormType.First)
+            {
+                WindowNavigation.OpenWindowFeedback1();
+            }
+            else
+            {
+                MessageBox.Show("Nicht implementiert.");
+            }
             //@TODO Open Window
         }
 
