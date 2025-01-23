@@ -11,9 +11,9 @@ namespace YAFIT.Common
     {
         [Description("Unbekannt")]
         Unknown = 0,
-        [Description("Todo Name")]
+        [Description("Erstes Feedback")]
         First = 1,
         [Description("Kreisfeedback")]
-        Second = 1
+        Second = 2
     }
 }

@@ -1,7 +1,5 @@
-﻿using System.Diagnostics;
-using System.Windows;
+﻿using System.Windows;
 using System.Windows.Input;
-using System.Windows.Xps;
 using YAFIT.Common;
 using YAFIT.Data;
 using YAFIT.UI.Resources;

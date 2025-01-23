@@ -44,6 +44,9 @@ public class SelectionViewModel : BaseViewModel
     
     private void DoGenKey()
     {
-        CloseView();
+        if (_isFeedbackFormular1Selected || _isFeedbackFormular2Selected)
+        {
+            CloseView();
+        }
     }
 }
