@@ -9,8 +9,7 @@
     <Grid>
         <Label Content="Wählen Sie einen Feedbackbogen aus" HorizontalAlignment="Left" Margin="80,31,0,0" VerticalAlignment="Top"/>
         <Image Source="../Resources/Images/SS_Feedbackformular1.png"  HorizontalAlignment="Left" Height="120" Margin="133,121,0,0" VerticalAlignment="Top" Width="120"/>
-        <Image Source="../Resources/Images/SS_Feedbackformular2.png" HorizontalAlignment="Left" Height="120" Margin="347,121,0,0" VerticalAlignment="Top" Width="120"/>
-        
+        <Image Source="../Resources/Images/SS_Feedbackformular2.png" HorizontalAlignment="Left" Height="120" Margin="347,121,0,0" VerticalAlignment="Top" Width="120"/>    
         <RadioButton Content="FeedbackFormular1" Name="FeedbackFormular1" GroupName="feedbackauswahl" HorizontalAlignment="Left" Margin="123,252,0,0" VerticalAlignment="Top"/>
         <RadioButton Content="FeedbackFormular2" Name="FeedbackFormular2" GroupName="feedbackauswahl" HorizontalAlignment="Center" Margin="0,256,0,0" VerticalAlignment="Top"/>
         <Button Content="Schlüssel generieren" Command="{Binding OnGenKey}" HorizontalAlignment="Left" Margin="585,351,0,0" VerticalAlignment="Top"/>
