@@ -1,8 +1,5 @@
 ﻿using System.Diagnostics;
-using System.Security;
-using System.Security.Authentication;
 using System.Windows;
-using System.Windows.Controls;
 using System.Windows.Input;
 using YAFIT.Databases.Classes;
 using YAFIT.UI.Resources;
@@ -19,7 +16,7 @@ namespace YAFIT.UI.ViewModels
         public string LoginUname { get { return _userName; }  set { SetProperty("LoginUname", ref _userName, value); } }
 
         public WindowMainModel(Window window) : base(window) {
-            WindowCaption = "Yet Another Feeback Information Tool - YAFIT";
+            WindowCaption = "YAFIT - Yet Another Feeback Information Tool";
             OnFeedbackCodeEnter = new RelayCommand(DoFeedbackCodeEnter);
             OnAccountLogin = new RelayCommand(DoAccountLogin);
         }
@@ -35,6 +32,7 @@ namespace YAFIT.UI.ViewModels
             if (auth.doLogin())
             {
                 MessageBox.Show("Login");
+                WindowNavigation.OpenWindowSelection();
             }
             else
             {

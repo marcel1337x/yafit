@@ -16,5 +16,14 @@ namespace YAFIT.UI
             main.DataContext = model;
             main.Show();
         }
+        
+        public static void OpenWindowSelection()
+        {
+            //Start Window
+            SelectionView selec = new SelectionView();
+            SelectionViewModel model = new SelectionViewModel(selec);
+            selec.DataContext = model;
+            selec.Show();
+        }
     }
 }
