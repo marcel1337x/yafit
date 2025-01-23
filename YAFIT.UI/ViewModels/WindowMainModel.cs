@@ -31,8 +31,7 @@ namespace YAFIT.UI.ViewModels
             Authentication auth = new Authentication(LoginUname, windowMain.PWBox.Password);
             if (auth.doLogin())
             {
-                MessageBox.Show("Login");
-                WindowNavigation.OpenWindowSelection();
+                WindowNavigation.OpenSelectionList();
             }
             else
             {

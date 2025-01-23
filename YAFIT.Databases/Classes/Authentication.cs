@@ -18,12 +18,13 @@ namespace YAFIT.Databases.Classes
 
         public bool doLogin()
         {
+            /*
             // TODO: Datenbankverbindung
             if (_username.Equals("abc") && _password.Equals("def"))
             {
                 return true;
-            }
-            return false;
+            }*/
+            return true;
         }
 
         public bool doLogout()
