@@ -12,6 +12,12 @@ namespace YAFIT.UI.ViewModels
 
         public ICommand OnFeedbackCodeEnter { get; private set; }
         public ICommand OnAccountLogin { get; private set; }
+        public ICommand OnAccountRegister { get; private set; }
+
+
+        //@TODO Entfernen nach 1 Sprint
+        private List<Authentication> authentications = new List<Authentication>();
+
         private string _userName = "";
         public string LoginUname { get { return _userName; }  set { SetProperty("LoginUname", ref _userName, value); } }
 
@@ -19,19 +25,32 @@ namespace YAFIT.UI.ViewModels
             WindowCaption = "YAFIT - Yet Another Feeback Information Tool";
             OnFeedbackCodeEnter = new RelayCommand(DoFeedbackCodeEnter);
             OnAccountLogin = new RelayCommand(DoAccountLogin);
+            OnAccountRegister = new RelayCommand(DoAccountRegister);
         }
 
         private void DoFeedbackCodeEnter()
         {
             MessageBox.Show("Feedback");
         }
+
+        private void DoAccountRegister()
+        {
+            //@TODO Datenbank anbinden & besser machen
+            WindowMain? windowMain = _view as WindowMain;
+            Authentication auth = new Authentication(LoginUname, windowMain.PWBox.Password);
+
+            authentications.Add(auth);
+
+            MessageBox.Show("Account "+LoginUname+" registriert!");
+            DoAccountLogin();
+        }
         private void DoAccountLogin()
         {
             WindowMain? windowMain = _view as WindowMain;
             Authentication auth = new Authentication(LoginUname, windowMain.PWBox.Password);
+            
             if (auth.doLogin())
             {
-                MessageBox.Show("Login");
                 WindowNavigation.OpenWindowSelection();
             }
             else
