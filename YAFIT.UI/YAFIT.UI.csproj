@@ -8,10 +8,19 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Resources\Images\" />
+	<Content Include="Resources\Images\*.*">
+		<CopyToOutputDirectory>Always</CopyToOutputDirectory>
+	</Content>
+	<Content Remove="Resources\Images\SS_Feedbackformular1.png" />
+	<Content Remove="Resources\Images\SS_Feedbackformular2.png" />
     <ProjectReference Include="..\YAFIT.Common\YAFIT.Common.csproj" />
     <ProjectReference Include="..\YAFIT.Databases\YAFIT.Databases.csproj" />
     <ProjectReference Include="..\YAFIT.Data\YAFIT.Data.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="Resources\Images\SS_Feedbackformular1.png" />
+    <Resource Include="Resources\Images\SS_Feedbackformular2.png" />
   </ItemGroup>
 
 </Project>
