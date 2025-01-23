@@ -35,6 +35,8 @@
                 <Label Content="Passwort"/>
                 <PasswordBox Margin="0,0,0,5" x:Name="PWBox"/>
                 <Button Content="Einloggen" Command="{Binding OnAccountLogin}"/>
+                <Label Content="oder" HorizontalAlignment="Center" />
+                <Button Content="Registrieren" Command="{Binding OnAccountRegister}"/>
             </StackPanel>
         </Border>
     </Grid>
