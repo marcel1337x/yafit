@@ -6,4 +6,8 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\YAFIT.Common\YAFIT.Common.csproj" />
+  </ItemGroup>
+
 </Project>
