@@ -12,7 +12,7 @@ namespace YAFIT
     {
         private void Application_Startup(object sender, StartupEventArgs e)
         {
-            WindowNavigation.OpenSelectionList();
+            WindowNavigation.OpenWindowMain();
         }
 
         private void Application_Exit(object sender, ExitEventArgs e)
