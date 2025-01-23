@@ -52,6 +52,6 @@
                 </StackPanel>
             </Grid>
         </Border>
-        <Button Width="120" Grid.Row="1" Content="Logout" HorizontalAlignment="Right" Margin="5"/>
+        <Button Width="120" Command="{Binding OnButtonLogout}" Grid.Row="1" Content="Logout" HorizontalAlignment="Right" Margin="5"/>
     </Grid>
 </Window>

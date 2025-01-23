@@ -26,14 +26,5 @@ namespace YAFIT.UI.Views
             InitializeComponent();
         }
 
-        private void RadioButtonChecked(object sender, RoutedEventArgs e)
-        {
-            var radioButton = sender as RadioButton;
-            if (radioButton != null)
-            {
-                currentFormular = radioButton.Content.ToString();
-            }
-        }
-
     }
 }

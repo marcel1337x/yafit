@@ -51,7 +51,7 @@ namespace YAFIT.UI.ViewModels
             
             if (auth.doLogin())
             {
-                WindowNavigation.OpenWindowSelection();
+                WindowNavigation.OpenSelectionList();
             }
             else
             {
