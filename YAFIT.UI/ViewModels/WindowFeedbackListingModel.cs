@@ -4,6 +4,7 @@ using System.Windows.Input;
 using System.Windows.Xps;
 using YAFIT.Data;
 using YAFIT.UI.Resources;
+using YAFIT.UI.Views;
 
 namespace YAFIT.UI.ViewModels
 {
@@ -12,6 +13,7 @@ namespace YAFIT.UI.ViewModels
         public ICommand OnButtonDelete { get; private set; }
         public ICommand OnButtonSelectOpen { get; private set; }
         public ICommand OnButtonNew { get; private set; }
+        public ICommand OnButtonLogout { get; private set; }
 
         public List<FeedbackForm> FeedbackForms { get { return _feedbackForms; } set { SetProperty("FeedbackForms", ref _feedbackForms, value); } }
         public int SelectedIndex { get { return _selectedIndex; } set { SetProperty("SelectedIndex", ref _selectedIndex, value); } }
@@ -23,15 +25,27 @@ namespace YAFIT.UI.ViewModels
             OnButtonDelete = new RelayCommand(DoButtonDelete);
             OnButtonSelectOpen = new RelayCommand(DoButtonSelectOpen);
             OnButtonNew = new RelayCommand(DoButtonNew);
-
+            OnButtonLogout = new RelayCommand(DoButtonLogout);
             OnLoad();
         }
 
 
         private void DoButtonNew()
         {
-            //@TODO OPEN AUSWAHL FENSTER
-            FeedbackForms.Add(new FeedbackForm { Form = Common.FormType.First,ID = Guid.NewGuid(), TimeStamp = DateTime.Now });
+            SelectionView selec = new SelectionView();
+            SelectionViewModel model = new SelectionViewModel(selec);
+            ShowChildView(selec, model,true);
+            Console.WriteLine("lololo");
+            if (model.IsFeedbackFormular1Selected)
+            {
+                Console.WriteLine("Formular 1 Ausgewählt");
+                FeedbackForms.Add(new FeedbackForm { Form = Common.FormType.First,ID = Guid.NewGuid(), TimeStamp = DateTime.Now });
+            }else if (model.IsFeedbackFormular2Selected)
+            {
+                Console.WriteLine("Formular 2 Ausgewählt");
+                FeedbackForms.Add(new FeedbackForm { Form = Common.FormType.Second,ID = Guid.NewGuid(), TimeStamp = DateTime.Now });
+            }
+            
             FeedbackForms = [.. FeedbackForms];
             //@TODO ADD TO DATABASE
         }
@@ -66,6 +80,11 @@ namespace YAFIT.UI.ViewModels
         private void OnLoad()
             //@TODO Load from database
         {
+        }
+
+        private void DoButtonLogout()
+        {
+            CloseView();
         }
 
         private FeedbackForm? GetSelectedFeedbackForm()
