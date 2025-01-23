@@ -8,11 +8,10 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="ViewModels\" />
     <Folder Include="Resources\Images\" />
-    <Folder Include="ViewModels\" />
-    <Folder Include="Views\" />
+    <ProjectReference Include="..\YAFIT.Common\YAFIT.Common.csproj" />
     <ProjectReference Include="..\YAFIT.Databases\YAFIT.Databases.csproj" />
+    <ProjectReference Include="..\YAFIT.Data\YAFIT.Data.csproj" />
   </ItemGroup>
 
 </Project>

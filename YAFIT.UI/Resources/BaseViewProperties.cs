@@ -3,7 +3,7 @@ using System.Runtime.CompilerServices;
 
 namespace YAFIT.UI.Resources
 {
-    public abstract class BaseViewProperties : INotifyPropertyChanged
+    public class BaseViewProperties : INotifyPropertyChanged
     {
         public event PropertyChangedEventHandler? PropertyChanged;
 

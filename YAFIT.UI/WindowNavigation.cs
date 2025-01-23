@@ -16,5 +16,14 @@ namespace YAFIT.UI
             main.DataContext = model;
             main.Show();
         }
+        public static void OpenSelectionList()
+        {
+
+            //Start Window
+            WindowFeedbackListing main = new Views.WindowFeedbackListing();
+            WindowFeedbackListingModel model = new WindowFeedbackListingModel(main);
+            main.DataContext = model;
+            main.Show();
+        }
     }
 }
