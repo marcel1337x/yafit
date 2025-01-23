@@ -5,14 +5,56 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:YAFIT.UI.Views"
         mc:Ignorable="d"
+        SizeToContent="WidthAndHeight"
+        ResizeMode="NoResize"
         Title="{Binding WindowCaption}">
     <Grid>
-        <Label Content="Wählen Sie einen Feedbackbogen aus" HorizontalAlignment="Left" Margin="80,31,0,0" VerticalAlignment="Top"/>
-        <Image Source="../Resources/Images/SS_Feedbackformular1.png"  HorizontalAlignment="Left" Height="120" Margin="133,121,0,0" VerticalAlignment="Top" Width="120"/>
-        <Image Source="../Resources/Images/SS_Feedbackformular2.png" HorizontalAlignment="Left" Height="120" Margin="347,121,0,0" VerticalAlignment="Top" Width="120"/>    
-        <RadioButton Content="FeedbackFormular1" Name="FeedbackFormular1" GroupName="feedbackauswahl" IsChecked="{Binding IsFeedbackFormular1Selected, Mode=TwoWay}" HorizontalAlignment="Left" Margin="123,252,0,0" VerticalAlignment="Top"/>
-        <RadioButton Content="FeedbackFormular2" Name="FeedbackFormular2" GroupName="feedbackauswahl" IsChecked="{Binding IsFeedbackFormular2Selected, Mode=TwoWay}" HorizontalAlignment="Center" Margin="0,256,0,0" VerticalAlignment="Top"/>
-        <Button Content="Schlüssel generieren" Command="{Binding OnGenKey}" HorizontalAlignment="Left" Margin="585,351,0,0" VerticalAlignment="Top"/>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+        <Border Margin="5,5,5,0"
+                Background="AliceBlue" CornerRadius="2"
+                BorderThickness="1"
+                BorderBrush="DarkCyan">
+            <Label Content="Wählen Sie einen Feedbackbogen aus"/>
+        </Border>
+        <Grid Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <Border Margin="5"
+                    Background="AliceBlue" CornerRadius="2"
+                    BorderThickness="1"
+                    BorderBrush="DarkCyan"
+                    Grid.Column="0">
+                <StackPanel Orientation="Vertical" Margin="5">
+                    <Image Source="../Resources/Images/SS_Feedbackformular1.png"  HorizontalAlignment="Left" Height="240" Width="120"/>
+                    <RadioButton Content="FeedbackFormular1" Name="FeedbackFormular1" GroupName="feedbackauswahl" IsChecked="{Binding IsFeedbackFormular1Selected, Mode=TwoWay}"/>
+                </StackPanel>
+            </Border>
+            <Border Margin="5"
+                    Background="AliceBlue" CornerRadius="2"
+                    BorderThickness="1"
+                    BorderBrush="DarkCyan"
+                    Grid.Column="1">
+                <StackPanel Orientation="Vertical" Margin="5">
+                    <Image Source="../Resources/Images/SS_Feedbackformular2.png" HorizontalAlignment="Left" Height="240" Width="120"/>
+                    <RadioButton Content="FeedbackFormular2" Name="FeedbackFormular2" GroupName="feedbackauswahl" IsChecked="{Binding IsFeedbackFormular2Selected, Mode=TwoWay}"/>
+
+                </StackPanel>
+            </Border>
+        </Grid>
+
+
+        <Button Grid.Row="2" 
+                Content="Auswahl bestätigen" 
+                Command="{Binding OnGenKey}" 
+                HorizontalAlignment="Right" 
+                Margin="5"/>
 
     </Grid>
 </Window>
