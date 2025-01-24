@@ -43,5 +43,13 @@ namespace YAFIT.UI
             selec.DataContext = model;
             selec.Show();
         }
+        public static void OpenWindowFeedback2()
+        {
+            //Start Window
+            WindowFeedback2 selec = new WindowFeedback2();
+            CheckboxViewDartBoardView model = new CheckboxViewDartBoardView(selec);
+            selec.DataContext = model;
+            selec.Show();
+        }
     }
 }

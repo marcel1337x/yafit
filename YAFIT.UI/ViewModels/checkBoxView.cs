@@ -12,6 +12,17 @@ namespace YAFIT.UI.ViewModels
 {
     internal class checkBoxView : BaseViewModel
     {
+        public List<FeedbackRow> FeedbackRows { get => _feedbackRows; set => _feedbackRows = value; }
+        private List<FeedbackRow> _feedbackRows = new List<FeedbackRow>();
+
+
+        public List<FeedbackRow> FeedbackRows1 { get => _feedbackRows1; set => _feedbackRows1 = value; }
+        private List<FeedbackRow> _feedbackRows1 = new List<FeedbackRow>();
+        public List<FeedbackRow> FeedbackRows2 { get => _feedbackRows2; set => _feedbackRows2 = value; }
+        private List<FeedbackRow> _feedbackRows2 = new List<FeedbackRow>();
+
+        public List<FeedbackRow2Text> FeedbackRows3 { get => _feedbackRows3; set => _feedbackRows3 = value; }
+        private List<FeedbackRow2Text> _feedbackRows3 = new List<FeedbackRow2Text>();
         public checkBoxView(Window window) : base(window)
         {
             
@@ -42,16 +53,6 @@ namespace YAFIT.UI.ViewModels
             FeedbackRows2.Add(new FeedbackRow2Text { Text = "", Text2 = "... tatkräftig, aktiv", CheckBox1 = false, CheckBox2 = false, CheckBox3 = false, CheckBox4 = false });
             FeedbackRows2.Add(new FeedbackRow2Text { Text = "", Text2 = "... aufgeschlossen ", CheckBox1 = false, CheckBox2 = false, CheckBox3 = false, CheckBox4 = false });
         }
-        public List<FeedbackRow> FeedbackRows { get => _feedbackRows; set => _feedbackRows=value; }
-        private List<FeedbackRow> _feedbackRows = new List<FeedbackRow>();
-
         
-        public List<FeedbackRow> FeedbackRows1 { get => _feedbackRows1; set => _feedbackRows1 = value; }
-        private List<FeedbackRow> _feedbackRows1 = new List<FeedbackRow>();
-        public List<FeedbackRow> FeedbackRows2 { get => _feedbackRows2; set => _feedbackRows2 = value; }
-        private List<FeedbackRow> _feedbackRows2 = new List<FeedbackRow>();
-
-        public List<FeedbackRow2Text> FeedbackRows3 { get => _feedbackRows3; set => _feedbackRows3 = value; }
-        private List<FeedbackRow2Text> _feedbackRows3 = new List<FeedbackRow2Text>();
     }
 }
