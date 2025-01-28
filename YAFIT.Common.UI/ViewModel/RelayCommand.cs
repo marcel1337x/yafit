@@ -1,7 +1,8 @@
 ﻿using System.Windows.Input;
 
-namespace YAFIT.UI.Resources
+namespace YAFIT.Common.UI.ViewModel
 {
+
     public class RelayCommand(Action action2execute, Func<bool>? canExecute = null) : ICommand
     {
         public event EventHandler? CanExecuteChanged;

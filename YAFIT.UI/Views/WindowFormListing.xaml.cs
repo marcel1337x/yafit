@@ -5,9 +5,9 @@ namespace YAFIT.UI.Views
     /// <summary>
     /// Interaktionslogik für WindowFeedbackListing.xaml
     /// </summary>
-    public partial class WindowFeedbackListing : Window
+    public partial class WindowFormListing : Window
     {
-        public WindowFeedbackListing()
+        public WindowFormListing()
         {
             InitializeComponent();
         }

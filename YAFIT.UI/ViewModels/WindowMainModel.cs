@@ -1,8 +1,8 @@
 ﻿using System.Diagnostics;
 using System.Windows;
 using System.Windows.Input;
+using YAFIT.Common.UI.ViewModel;
 using YAFIT.Databases.Classes;
-using YAFIT.UI.Resources;
 using YAFIT.UI.Views;
 
 namespace YAFIT.UI.ViewModels

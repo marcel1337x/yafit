@@ -1,15 +1,16 @@
 ﻿using System.ComponentModel;
-using System.Runtime.CompilerServices;
+using System.Diagnostics;
 
-namespace YAFIT.UI.Resources
+namespace YAFIT.Common.UI.ViewModel
 {
     public class BaseViewProperties : INotifyPropertyChanged
     {
         public event PropertyChangedEventHandler? PropertyChanged;
 
-        public virtual void OnPropertyChanged([CallerMemberName] string caller = null)
+        public virtual void OnPropertyChanged(string propertyName)
         {
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(caller));
+            VerifyPropertyName(propertyName);
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
 
         protected bool SetProperty<T>(string propertyName, ref T backingField, T value)
@@ -33,5 +34,14 @@ namespace YAFIT.UI.Resources
             return hasChanged;
         }
 
+        [Conditional("DEBUG")]
+        [DebuggerStepThrough]
+        private void VerifyPropertyName(string propertyName)
+        {
+            if (TypeDescriptor.GetProperties(this)[propertyName] == null)
+            {
+                throw new ArgumentException("BaseViewProperties.VerifyPropertyName Property not found", propertyName);
+            }
+        }
     }
 }

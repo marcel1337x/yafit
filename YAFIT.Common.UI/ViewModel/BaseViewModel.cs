@@ -2,7 +2,7 @@
 using System.Windows;
 using System.Windows.Input;
 
-namespace YAFIT.UI.Resources
+namespace YAFIT.Common.UI.ViewModel
 {
     public abstract class BaseViewModel : BaseViewProperties, IDisposable
     {

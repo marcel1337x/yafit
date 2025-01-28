@@ -1,6 +1,4 @@
-﻿using System.Configuration;
-using System.Data;
-using System.Windows;
+﻿using System.Windows;
 using YAFIT.UI;
 
 namespace YAFIT
@@ -12,7 +10,7 @@ namespace YAFIT
     {
         private void Application_Startup(object sender, StartupEventArgs e)
         {
-            WindowNavigation.OpenWindowMain();
+            WindowNavigation.OpenForm1();
         }
 
         private void Application_Exit(object sender, ExitEventArgs e)

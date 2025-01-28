@@ -13,14 +13,21 @@
 	</Content>
 	<Content Remove="Resources\Images\SS_Feedbackformular1.png" />
 	<Content Remove="Resources\Images\SS_Feedbackformular2.png" />
+	<ProjectReference Include="..\YAFIT.Common.UI\YAFIT.Common.UI.csproj" />
     <ProjectReference Include="..\YAFIT.Common\YAFIT.Common.csproj" />
     <ProjectReference Include="..\YAFIT.Databases\YAFIT.Databases.csproj" />
-    <ProjectReference Include="..\YAFIT.Data\YAFIT.Data.csproj" />
+    <ProjectReference Include="..\YAFIT.Interfaces\YAFIT.Interfaces.csproj" />
   </ItemGroup>
 
   <ItemGroup>
     <Resource Include="Resources\Images\SS_Feedbackformular1.png" />
     <Resource Include="Resources\Images\SS_Feedbackformular2.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Update="Resources\UserControls\FormEntryTextCheckboxDouble.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
   </ItemGroup>
 
 </Project>
