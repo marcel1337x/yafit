@@ -1,7 +1,9 @@
-﻿using YAFIT.UI.ViewModels;
+﻿using System.Diagnostics;
+using System.Windows;
+using YAFIT.Common.UI.ViewModel;
+using YAFIT.UI.ViewModels;
 using YAFIT.UI.ViewModels.Forms;
 using YAFIT.UI.Views;
-using YAFIT.UI.Views.Forms;
 using YAFIT.UI.Views.Forms.Formular1;
 
 namespace YAFIT.UI
@@ -9,11 +11,43 @@ namespace YAFIT.UI
     public class WindowNavigation
     {
 
-
-        public static void OpenWindow<TView, TModel>()
+        /// <summary>
+        /// Generic Typen Variante um ein Fenster zu öffnen
+        /// </summary>
+        /// <typeparam name="TView">Das View / Window</typeparam>
+        /// <typeparam name="TModel">Die Model Klasse als Datenkontext</typeparam>
+        /// <exception cref="Exception">Wirft einen Fehler aus, wenn das Fenster oder Model nicht erstellt werden konnte.</exception>
+        public static void OpenWindow<TView, TModel>() where TView : Window where TModel : BaseViewModel
         {
-
+            TView? window = (TView?)Activator.CreateInstance(typeof(TView));
+            TModel? model = (TModel?)Activator.CreateInstance(typeof(TModel), window);
+            if (window is null || model is null)
+            {
+                throw new Exception($"Window or Model is null! [Window: {window is null}, Model: {model is null}]");
+            }
+            window.DataContext = model;
+            window.Show();
         }
+        /// <summary>
+        /// Generic Typen Variante um ein Fenster zu öffnen
+        /// </summary>
+        /// <typeparam name="TView">Das View / Window</typeparam>
+        /// <typeparam name="TModel">Die Model Klasse als Datenkontext</typeparam>
+        /// <param name="modelResult">Gibt die erstellte Modelklasse zurück</param>
+        /// <exception cref="Exception">Wirft einen Fehler aus, wenn das Fenster oder Model nicht erstellt werden konnte.</exception>
+        public static void OpenWindow<TView, TModel>(out TModel modelResult) where TView : Window where TModel : BaseViewModel
+        {
+            TView? window = (TView?)Activator.CreateInstance(typeof(TView));
+            TModel? model = (TModel?)Activator.CreateInstance(typeof(TModel), window);
+            if (window is null || model is null)
+            {
+                throw new Exception($"Window or Model is null! [Window: {window is null}, Model: {model is null}]");
+            }
+            window.DataContext = model;
+            window.Show();
+            modelResult = model;
+        }
+
         public static void OpenWindowMain()
         {
 
@@ -35,6 +69,7 @@ namespace YAFIT.UI
         }
         public static void OpenForm1()
         {
+
             //using (var session = SessionManager.Get().OpenStatelessSession())
             //{
             //    TestEntity test = new TestEntity();
@@ -45,12 +80,14 @@ namespace YAFIT.UI
             //    test.Email = "323";
             //    session.Update(test);
             //}
+            
+            OpenWindow<Formular1_1, WindowFormFormular1Model1>();
 
             //Start Window
-            Formular1_1 window = new Formular1_1();
-            WindowFormFormular1Model1 model = new WindowFormFormular1Model1(window);
-            window.DataContext = model;
-            window.Show();
+            //Formular1_1 window = new Formular1_1();
+            //WindowFormFormular1Model1 model = new WindowFormFormular1Model1(window);
+            //window.DataContext = model;
+            //window.Show();
         }
         public static void OpenWindowSelection()
         {
@@ -59,15 +96,6 @@ namespace YAFIT.UI
             SelectionViewModel model = new SelectionViewModel(window);
             window.DataContext = model;
             window.Show();
-        }
-
-        public static void OpenDebug()
-        {
-            //Start Window
-            Debug selec = new Debug();
-            //SelectionViewModel model = new SelectionViewModel(window);
-            //window.DataContext = model;
-            selec.Show();
         }
 
         public static void OpenWindowFeedback1()

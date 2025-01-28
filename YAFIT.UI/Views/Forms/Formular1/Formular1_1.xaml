@@ -128,7 +128,29 @@
                 </Grid>
             </TabItem>
             <TabItem Header="Seite 2">
+                <Grid Margin="5">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+                    <Label Content="Das hat mir besonders gut gefallen:"/>
+                    <TextBox TextWrapping="Wrap" AcceptsReturn="True" Text="{Binding TextBoxQuestions[0], Mode=OneWayToSource}" 
+                             HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto"
+                             Grid.Row="1"/>
+                    <Label Content="Das hat mir nicht gefallen:" Grid.Row="2"/>
+                    <TextBox TextWrapping="Wrap" AcceptsReturn="True" Text="{Binding TextBoxQuestions[1], Mode=OneWayToSource}" 
+                             HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto"
+                             Grid.Row="3"/>
+                    <Label Content="Verbesserungsvorschläge:" Grid.Row="4"/>
+                    <TextBox TextWrapping="Wrap" AcceptsReturn="True" Text="{Binding TextBoxQuestions[2], Mode=OneWayToSource}" 
+                             HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto"
+                             Grid.Row="5"/>
 
+                </Grid>
             </TabItem>
         </TabControl>
         <Button Grid.Row="2" 

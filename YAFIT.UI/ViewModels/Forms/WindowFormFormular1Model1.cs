@@ -14,6 +14,12 @@ namespace YAFIT.UI.ViewModels.Forms
 
         public ICommand OnSendResult { get; private set; }
 
+        public string[] TextBoxQuestions
+        {
+            get { return _textBoxQuestions; }
+            set { SetProperty(nameof(TextBoxQuestions), ref _textBoxQuestions, value); }
+        }
+
         public WindowFormFormular1Model1(Window window) : base(window)
         {
             OnLoad();
@@ -44,12 +50,13 @@ namespace YAFIT.UI.ViewModels.Forms
             StackPanel group3 = formular.EntryGroup3;
             StackPanel group4 = formular.EntryGroup4;
 
-            byte[] results = GetGroupResultOf<FormEntryTextCheckboxDouble>(group1)
-                .Concat(GetGroupResultOf<FormEntryTextCheckboxSingle>(group2))
-                .Concat(GetGroupResultOf<FormEntryTextCheckboxSingle>(group3))
-                .Concat(GetGroupResultOf<FormEntryTextCheckboxSingle>(group4))
-                .ToArray();
-            return results;
+            return
+            [
+                .. GetGroupResultOf<FormEntryTextCheckboxDouble>(group1),
+                .. GetGroupResultOf<FormEntryTextCheckboxSingle>(group2),
+                .. GetGroupResultOf<FormEntryTextCheckboxSingle>(group3),
+                .. GetGroupResultOf<FormEntryTextCheckboxSingle>(group4),
+            ];
         }
 
         #region onload
@@ -60,7 +67,7 @@ namespace YAFIT.UI.ViewModels.Forms
             {
                 return;
             }
-            
+
             //Fragen Gruppe 1
             {
                 StackPanel stackPanel = formular.EntryGroup1;
@@ -120,18 +127,18 @@ namespace YAFIT.UI.ViewModels.Forms
 
         #endregion
 
-        private static byte[] GetGroupResultOf<T>(StackPanel stackPanel) 
+        private static byte[] GetGroupResultOf<T>(StackPanel stackPanel)
         {
             byte[] results = new byte[stackPanel.Children.Count];
-            for(int i = 0; i < results.Length; i++)
+            for (int i = 0; i < results.Length; i++)
             {
-                if(stackPanel.Children[i] is T formEntryTextCheckBox == false)
+                if (stackPanel.Children[i] is T formEntryTextCheckBox == false)
                 {
                     results[i] = 0x00; // 0 = null / nicht ausgewählt
                     continue;
                 }
                 MethodInfo? methodInfo = formEntryTextCheckBox.GetType().GetMethod("GetSelection");
-                if(methodInfo == null)
+                if (methodInfo == null)
                 {
                     results[i] = 0x00;
                     continue;
@@ -142,6 +149,7 @@ namespace YAFIT.UI.ViewModels.Forms
             return results;
         }
 
+        private string[] _textBoxQuestions = ["", "", ""];
 
         private static readonly string[][] _presetGroup1 = [
             ["Sie/Er ist...", "...ungeduldig"],
