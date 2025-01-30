@@ -5,7 +5,7 @@ using YAFIT.Common.UI.ViewModel;
 
 namespace YAFIT.UI.ViewModels;
 
-public class SelectionViewModel : BaseViewModel
+public class ModelFormsSelection : BaseViewModel
 {
 
     public bool[] SelectionButton
@@ -16,7 +16,7 @@ public class SelectionViewModel : BaseViewModel
     
     public ICommand OnGenKey { get; private set; }
     
-    public SelectionViewModel(Window window) : base(window)
+    public ModelFormsSelection(Window window) : base(window)
     {
         WindowCaption = "YAFIT - Feedbackauswahl";
         OnGenKey = new RelayCommand(DoGenKey);

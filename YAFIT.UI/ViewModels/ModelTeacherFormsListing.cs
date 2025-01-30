@@ -8,7 +8,7 @@ using YAFIT.UI.Views;
 
 namespace YAFIT.UI.ViewModels
 {
-    public class WindowFormListingModel : BaseViewModel
+    public class ModelTeacherFormsListing : BaseViewModel
     {
         public ICommand OnButtonDelete { get; private set; }
         public ICommand OnButtonSelectOpen { get; private set; }
@@ -18,7 +18,7 @@ namespace YAFIT.UI.ViewModels
         public ObservableCollection<IForm> FeedbackForms { get { return _feedbackForms; } set { SetProperty("FeedbackForms", ref _feedbackForms, value); } }
         public int SelectedIndex { get { return _selectedIndex; } set { SetProperty("SelectedIndex", ref _selectedIndex, value); } }
 
-        public WindowFormListingModel(Window window) : base(window)
+        public ModelTeacherFormsListing(Window window) : base(window)
         {
             WindowCaption = "Feedback Listen";
 

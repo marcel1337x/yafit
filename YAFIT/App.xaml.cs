@@ -1,5 +1,7 @@
 ﻿using System.Windows;
 using YAFIT.UI;
+using YAFIT.UI.ViewModels;
+using YAFIT.UI.Views;
 
 namespace YAFIT
 {
@@ -10,7 +12,7 @@ namespace YAFIT
     {
         private void Application_Startup(object sender, StartupEventArgs e)
         {
-            WindowNavigation.OpenForm1();
+            WindowNavigation.OpenWindow<WindowMain, WindowMainModel>();
         }
 
         private void Application_Exit(object sender, ExitEventArgs e)

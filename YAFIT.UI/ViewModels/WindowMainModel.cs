@@ -48,10 +48,10 @@ namespace YAFIT.UI.ViewModels
         {
             WindowMain? windowMain = _view as WindowMain;
             Authentication auth = new Authentication(LoginUname, windowMain.PWBox.Password);
-            
+
             if (auth.doLogin())
             {
-                WindowNavigation.OpenSelectionList();
+                //@TODO Differenzieren zwischen Admin und Lehrer
             }
             else
             {

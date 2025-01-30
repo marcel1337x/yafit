@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -13,18 +12,16 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 
-namespace YAFIT.UI.Views
+namespace YAFIT.UI.Views.Forms.Formular2
 {
     /// <summary>
-    /// Interaktionslogik für SelectionView.xaml
+    /// Interaktionslogik für Formular2_2.xaml
     /// </summary>
-    public partial class SelectionView : Window
+    public partial class Formular2_2 : Window
     {
-        private String currentFormular = "";
-        public SelectionView()
+        public Formular2_2()
         {
             InitializeComponent();
         }
-
     }
 }
