@@ -4,6 +4,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:YAFIT.UI.Views"
+        xmlns:controls="clr-namespace:YAFIT.Common.UI.Controls;assembly=YAFIT.Common.UI"
         mc:Ignorable="d"
         MinHeight="196" MinWidth="480"
         SizeToContent="WidthAndHeight"

@@ -26,6 +26,12 @@ namespace YAFIT.UI.ViewModels
             OnFeedbackCodeEnter = new RelayCommand(DoFeedbackCodeEnter);
             OnAccountLogin = new RelayCommand(DoAccountLogin);
             OnAccountRegister = new RelayCommand(DoAccountRegister);
+
+            WindowMain? windowMain = _view as WindowMain;
+            if (windowMain != null)
+            {
+                windowMain.PWBox.KeyDown += OnPasswordEnterEvent;
+            }
         }
 
         private void DoFeedbackCodeEnter()
@@ -33,13 +39,21 @@ namespace YAFIT.UI.ViewModels
             MessageBox.Show("Feedback");
         }
 
+        private void OnPasswordEnterEvent(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Enter)
+            {
+                DoAccountLogin();
+            }
+        }
+
         private void DoAccountRegister()
         {
             //@TODO Datenbank anbinden & besser machen
             WindowMain? windowMain = _view as WindowMain;
-            Authentication auth = new Authentication(LoginUname, windowMain.PWBox.Password);
+            //Authentication auth = new Authentication(LoginUname, windowMain.PWBox.Password);
 
-            authentications.Add(auth);
+            //authentications.Add(auth);
 
             MessageBox.Show("Account "+LoginUname+" registriert!");
             DoAccountLogin();
@@ -47,18 +61,19 @@ namespace YAFIT.UI.ViewModels
         private void DoAccountLogin()
         {
             WindowMain? windowMain = _view as WindowMain;
-            Authentication auth = new Authentication(LoginUname, windowMain.PWBox.Password);
+            //Authentication auth = new Authentication(LoginUname, windowMain.PWBox.Password);
 
-            if (auth.doLogin())
-            {
+            //if (auth.doLogin())
+            //{
+
                 //@TODO Differenzieren zwischen Admin und Lehrer
-            }
-            else
-            {
-                MessageBox.Show("Login Fehlerhaft");
-            }
+            //}
+            //else
+            //{
+            //    MessageBox.Show("Login Fehlerhaft");
+            //}
             Debug.WriteLine(LoginUname);
-            Debug.WriteLine(windowMain.PWBox.Password);
+            //Debug.WriteLine(windowMain.PWBox.Password);
         }
     }
 }

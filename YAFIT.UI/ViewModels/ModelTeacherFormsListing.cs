@@ -33,9 +33,10 @@ namespace YAFIT.UI.ViewModels
 
         private void DoButtonNew()
         {
-            SelectionView selec = new SelectionView();
-            SelectionViewModel model = new SelectionViewModel(selec);
-            ShowChildView(selec, model, true);
+            ViewFormsSelection viewFormsSelection = new ViewFormsSelection();
+            ModelFormsSelection modelFormsSelection = new ModelFormsSelection(viewFormsSelection);
+            
+            ShowChildView(viewFormsSelection, modelFormsSelection, true);
 
             //@TODO DATABASE IMPLEMENTATION
             //FeedbackForms.Add(new IForm { Form = FeedbackFormType.First, ID = Guid.NewGuid(), TimeStamp = DateTime.Now });
@@ -53,7 +54,7 @@ namespace YAFIT.UI.ViewModels
             }
             if (feedbackForm.FormType == FeedbackFormType.First)
             {
-                WindowNavigation.OpenWindowFeedback1();
+                //WindowNavigation.OpenWindowFeedback1();
             }
             else
             {
