@@ -4,7 +4,7 @@ using System.Globalization;
 using System.Reflection;
 using System.Windows;
 using System.Windows.Data;
-using YAFIT.Common;
+using YAFIT.Common.Enums;
 using static System.Reflection.Metadata.BlobBuilder;
 
 namespace YAFIT.UI.Converter

@@ -4,7 +4,6 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:YAFIT.UI.Views"
-        xmlns:controls="clr-namespace:YAFIT.Common.UI.Controls;assembly=YAFIT.Common.UI"
         mc:Ignorable="d"
         MinHeight="196" MinWidth="480"
         SizeToContent="WidthAndHeight"
@@ -23,7 +22,7 @@
                 BorderBrush="DarkCyan">
             <StackPanel Orientation="Vertical"
                         Margin="5">
-                <Label Content="Feedback Code"/>
+                <Label Content="Feedback Code:" Margin="-5"/>
                 <TextBox Text="" Margin="0,0,0,5"/>
                 <Button Content="Eingabe" Command="{Binding OnFeedbackCodeEnter}"/>
             </StackPanel>
@@ -32,9 +31,9 @@
                 BorderThickness="1"
                 BorderBrush="DarkCyan">
             <StackPanel Orientation="Vertical" Margin="5">
-                <Label Content="Benutzername"/>
+                <Label Content="Benutzername:" Margin="-5"/>
                 <TextBox Text="{Binding LoginUname, Mode=OneWayToSource}"/>
-                <Label Content="Passwort"/>
+                <Label Content="Passwort:" Margin="-5"/>
                 <PasswordBox Margin="0,0,0,5" x:Name="PWBox"/>
                 <Button Content="Einloggen" Command="{Binding OnAccountLogin}"/>
                 <Label Content="oder" HorizontalAlignment="Center" />

@@ -9,24 +9,51 @@ using YAFIT.UI.Views.Forms.Formular1;
 
 namespace YAFIT.UI.ViewModels.Forms
 {
+    /// <summary>
+    /// ViewModel für das 1. Formular
+    /// </summary>
     internal class WindowFormFormular1Model1 : BaseViewModel
     {
-
+        #region commands
+        /// <summary>
+        /// Eine Eigenschaft, die den Befehl zum Senden des Ergebnisses enthält
+        /// </summary>
         public ICommand OnSendResult { get; private set; }
 
+        #endregion
+
+        #region properties
+        /// <summary>
+        /// Eine Eigenschaft, die die Antworten für die Textboxen enthält
+        /// </summary>
         public string[] TextBoxQuestions
         {
             get { return _textBoxQuestions; }
             set { SetProperty(nameof(TextBoxQuestions), ref _textBoxQuestions, value); }
         }
+        #endregion
 
+        #region constructor
+
+        /// <summary>
+        /// Erstellt ein neues ViewModel für das Hauptfenster
+        /// </summary>
+        /// <param name="window">Das dazugehörige View</param>
         public WindowFormFormular1Model1(Window window) : base(window)
         {
             OnLoad();
             OnSendResult = new RelayCommand(DoSendResult);
         }
 
+        #endregion
 
+        #region private methods
+
+        #region send result
+
+        /// <summary>
+        /// Sendet das Ergebnis
+        /// </summary>
         private void DoSendResult()
         {
             if (_view is Formular1_1 formular == false)
@@ -37,8 +64,14 @@ namespace YAFIT.UI.ViewModels.Forms
             Debug.WriteLine(string.Join("\n", results));
             CloseView();
         }
+        #endregion
 
+        #region get button results
 
+        /// <summary>
+        /// Gibt das Ergebnis der Knöpfe als Byte-Array zurück
+        /// </summary>
+        /// <returns>Gibt ein Byte[] zurück</returns>
         private byte[] GetButtonsResults()
         {
             if (_view is Formular1_1 formular == false)
@@ -58,9 +91,13 @@ namespace YAFIT.UI.ViewModels.Forms
                 .. GetGroupResultOf<FormEntryTextCheckboxSingle>(group4),
             ];
         }
+        #endregion
 
         #region onload
 
+        /// <summary>
+        /// Wird aufgerufen, wenn das Fenster geladen wird
+        /// </summary>
         private void OnLoad()
         {
             if (_view is Formular1_1 formular == false)
@@ -127,6 +164,14 @@ namespace YAFIT.UI.ViewModels.Forms
 
         #endregion
 
+        #region button group result 
+        /// <summary>
+        /// Eine Hilfsmethode die das Ergebnis einer Gruppe
+        /// aus den Klassen (FormEntryTextCheckboxSingle, FormEntryTextCheckboxDouble) zurückgibt
+        /// </summary>
+        /// <typeparam name="T">Generische Klassentyp</typeparam>
+        /// <param name="stackPanel">Das Stackpanel</param>
+        /// <returns>Gibt einen Byte[] zurück</returns>
         private static byte[] GetGroupResultOf<T>(StackPanel stackPanel)
         {
             byte[] results = new byte[stackPanel.Children.Count];
@@ -148,8 +193,14 @@ namespace YAFIT.UI.ViewModels.Forms
             }
             return results;
         }
+        #endregion
 
-        private string[] _textBoxQuestions = ["", "", ""];
+        #endregion
+
+        #region member variables
+
+        private string[] _textBoxQuestions = [string.Empty, string.Empty, string.Empty];
+
 
         private static readonly string[][] _presetGroup1 = [
             ["Sie/Er ist...", "...ungeduldig"],
@@ -183,5 +234,8 @@ namespace YAFIT.UI.ViewModels.Forms
             "Der Schwierigkeitsgrad der Leistungsnachweise entspricht dem der Unterrichtsinhalte.",
             "Die Bewertungen sind nachvollziehbar und verständlich."
         ];
+
+
+        #endregion
     }
 }

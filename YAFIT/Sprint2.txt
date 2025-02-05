@@ -1,6 +1,14 @@
 ﻿Sprint 2:
 ==================================================
 Übersicht (eine art Dashboard):
+- Auswahlfenster der Formulare:
+  > Einen eigenen FormularCode einstellbar machen: (möglichkeiten) 
+    - Selber durch eine Textbox
+	- Zufallsgenerierte kombination aus Zahlen/Buchstaben (UNIQUE ID)
+	- Eine Auflistung von Wörtern welches zufällig ausgewählt wird
+  > *Einen Zeitstempel mit "VON" & "BIS":*
+    - Begrenzung der Abgabe von den Feedback resultaten
+  > Auswahl der Klassen, Jahrgangsstufen, Abteilung, Fach, etc...
 - Lehrer:
   > Erstellen/*Editieren*/Löschen/Ansicht von Feedback Bögen:
     > Erstellen: (UI & Funktionalität)
@@ -37,8 +45,7 @@ Datenbank:
    > Schuljahr (Heutiges)
    > AbteilungId
    > FachId
-   > VoteAmount (Maximale Anzahl an Feedbacks)
- 
+
  - Klassen:
    > Id
    > Name
@@ -52,6 +59,10 @@ Datenbank:
    > Name
 
  - Fach:
+   > Id
+   > Name
+
+ - Rollen:
    > Id
    > Name
 
@@ -124,11 +135,13 @@ MVP:
   - Lehrer:
     > Erstellen von Feedback Bögen
 	  > Überprüfung von doppelten FeedbackCodes (nur einer soll existent sein)
+	> Textfeld für das Eingeben der FeedbackCodes
     > Ansicht von Feedback Bögen
   - Admin:
     > Hinzufügen von Lehrern
     > Löschen von Lehrern
   - Schüler
-    > Abgabe von Feedback Bögen
+    > Öffnen eines Feedbackbogen
+    > Abgabe von Feedbackbögen
   - Datenbank:
     > Umsetzung & Implementierung der Datenbank
