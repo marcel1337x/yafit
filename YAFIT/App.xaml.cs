@@ -2,6 +2,7 @@
 using YAFIT.UI;
 using YAFIT.UI.ViewModels;
 using YAFIT.UI.Views;
+using YAFIT.UI.Views.Forms.Formular1;
 
 namespace YAFIT
 {
@@ -18,7 +19,10 @@ namespace YAFIT
         /// <param name="e">StartupEventArgs</param>
         private void Application_Startup(object sender, StartupEventArgs e)
         {
-            WindowNavigation.OpenWindow<WindowMain, WindowMainModel>();
+            //WindowNavigation.OpenWindow<WindowMain, WindowMainModel>();
+            //WindowNavigation.OpenWindow<ViewTeacherFormListing, ModelTeacherFormsListing>();
+            //WindowNavigation.OpenWindow<ViewFormsSelection, ModelFormsSelection>();
+            WindowNavigation.OpenFormular1();
         }
 
         /// <summary>

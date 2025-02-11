@@ -1,5 +1,9 @@
 ﻿using System.Windows;
 using YAFIT.Common.UI.ViewModel;
+using YAFIT.UI.ViewModels.Forms;
+using YAFIT.UI.ViewModels;
+using YAFIT.UI.Views.Forms.Formular1;
+using YAFIT.UI.Views;
 
 namespace YAFIT.UI
 {
@@ -27,7 +31,7 @@ namespace YAFIT.UI
 
         public static void OpenLoginWindow()
         {
-            OpenWindow<Views.WindowMain, ViewModels.WindowMainModel>();
+            OpenWindow<WindowMain, WindowMainModel>();
         }
 
         public static void OpenTeacherWindow()
@@ -37,6 +41,12 @@ namespace YAFIT.UI
         public static void OpenAdminWindow()
         {
 
+        }
+
+        public static void OpenFormular1()
+        {
+
+            OpenWindow<Formular1_1, WindowFormFormular1Model1>();
         }
     }
 }

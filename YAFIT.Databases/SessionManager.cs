@@ -13,10 +13,8 @@ namespace YAFIT.Databases
             InitializeSessionFactory();
         }
 
-        public static SessionManager Get()
-        {
-            return _instance ??= new SessionManager();
-        }
+        public static SessionManager Instance => _instance ??= new SessionManager();
+        
 
         public IStatelessSession OpenStatelessSession()
         {

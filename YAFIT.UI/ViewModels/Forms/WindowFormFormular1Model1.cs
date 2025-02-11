@@ -4,7 +4,7 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
 using YAFIT.Common.UI.ViewModel;
-using YAFIT.UI.Resources.UserControls;
+using YAFIT.UI.UserControls;
 using YAFIT.UI.Views.Forms.Formular1;
 
 namespace YAFIT.UI.ViewModels.Forms

@@ -1,9 +1,9 @@
-﻿<UserControl x:Class="YAFIT.UI.Resources.UserControls.FormEntryTextCheckboxSingle"
+﻿<UserControl x:Class="YAFIT.UI.UserControls.FormEntryTextCheckboxSingle"
       xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-      xmlns:local="clr-namespace:YAFIT.UI.Resources.UserControls"
+      xmlns:local="clr-namespace:YAFIT.UI.UserControls"
       mc:Ignorable="d" 
       d:DesignHeight="40" d:DesignWidth="150">
     <Border BorderBrush="Black" BorderThickness="1,1,1,1" Background="White">

@@ -32,7 +32,7 @@
                     BorderBrush="DarkCyan"
                     Grid.Column="0">
                 <StackPanel Orientation="Vertical" Margin="5">
-                    <Image Source="../Resources/Images/SS_Feedbackformular1.png" Height="240" Width="120"/>
+                    <Image Source="pack://application:,,,/YAFIT.Resources;component/Images/SS_Feedbackformular1.png" Height="240" Width="120"/>
                     <RadioButton Content="FeedbackFormular1" Name="FeedbackFormular1" GroupName="feedbackauswahl" IsChecked="{Binding SelectionButton[0], Mode=TwoWay}"/>
                 </StackPanel>
             </Border>
@@ -42,7 +42,7 @@
                     BorderBrush="DarkCyan"
                     Grid.Column="1">
                 <StackPanel Orientation="Vertical" Margin="5">
-                    <Image Source="../Resources/Images/SS_Feedbackformular2.png" Height="240" Width="120"/>
+                    <Image Source="pack://application:,,,/YAFIT.Resources;component/Images/SS_Feedbackformular2.png" Height="240" Width="120"/>
                     <RadioButton Content="FeedbackFormular2" Name="FeedbackFormular2" GroupName="feedbackauswahl" IsChecked="{Binding SelectionButton[1], Mode=TwoWay}"/>
                 </StackPanel>
             </Border>

@@ -1,9 +1,6 @@
-﻿using System.Diagnostics;
-using System.Windows.Controls;
-using System.Windows.Media;
-using System.Windows.Shapes;
+﻿using System.Windows.Controls;
 
-namespace YAFIT.UI.Resources.UserControls
+namespace YAFIT.UI.UserControls
 {
     /// <summary>
     /// Interaktionslogik für CircleFeedback.xaml
