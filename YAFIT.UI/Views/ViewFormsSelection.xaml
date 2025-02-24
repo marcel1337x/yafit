@@ -1,0 +1,59 @@
+﻿<Window x:Class="YAFIT.UI.Views.ViewFormsSelection"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:YAFIT.UI.Views"
+        mc:Ignorable="d"
+        SizeToContent="WidthAndHeight"
+        ResizeMode="NoResize"
+        Title="{Binding WindowCaption}">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+        <Border Margin="5,5,5,0"
+                Background="AliceBlue" CornerRadius="2"
+                BorderThickness="1"
+                BorderBrush="DarkCyan">
+            <Label Content="Wählen Sie einen Feedbackbogen aus"/>
+        </Border>
+        <Grid Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <Border Margin="5"
+                    Background="AliceBlue" CornerRadius="2"
+                    BorderThickness="1"
+                    BorderBrush="DarkCyan"
+                    Grid.Column="0">
+                <StackPanel Orientation="Vertical" Margin="5">
+                    <Image Source="pack://application:,,,/YAFIT.Resources;component/Images/SS_Feedbackformular1.png" Height="240" Width="120"/>
+                    <RadioButton Content="FeedbackFormular1" Name="FeedbackFormular1" GroupName="feedbackauswahl" IsChecked="{Binding SelectionButton[0], Mode=TwoWay}"/>
+                </StackPanel>
+            </Border>
+            <Border Margin="5"
+                    Background="AliceBlue" CornerRadius="2"
+                    BorderThickness="1"
+                    BorderBrush="DarkCyan"
+                    Grid.Column="1">
+                <StackPanel Orientation="Vertical" Margin="5">
+                    <Image Source="pack://application:,,,/YAFIT.Resources;component/Images/SS_Feedbackformular2.png" Height="240" Width="120"/>
+                    <RadioButton Content="FeedbackFormular2" Name="FeedbackFormular2" GroupName="feedbackauswahl" IsChecked="{Binding SelectionButton[1], Mode=TwoWay}"/>
+                </StackPanel>
+            </Border>
+        </Grid>
+
+
+        <Button Grid.Row="2" 
+                Content="Auswahl bestätigen" 
+                Command="{Binding OnGenKey}" 
+                HorizontalAlignment="Right" 
+                Margin="5"/>
+
+    </Grid>
+</Window>

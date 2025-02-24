@@ -7,7 +7,12 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="FluentFramework" Version="2.2.1" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\YAFIT.Common\YAFIT.Common.csproj" />
+    <ProjectReference Include="..\YAFIT.Interfaces\YAFIT.Interfaces.csproj" />
   </ItemGroup>
 
 </Project>

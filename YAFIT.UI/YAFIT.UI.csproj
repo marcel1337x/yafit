@@ -8,10 +8,17 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Resources\Images\" />
+	<ProjectReference Include="..\YAFIT.Common.UI\YAFIT.Common.UI.csproj" />
     <ProjectReference Include="..\YAFIT.Common\YAFIT.Common.csproj" />
     <ProjectReference Include="..\YAFIT.Databases\YAFIT.Databases.csproj" />
-    <ProjectReference Include="..\YAFIT.Data\YAFIT.Data.csproj" />
+    <ProjectReference Include="..\YAFIT.Interfaces\YAFIT.Interfaces.csproj" />
+    <ProjectReference Include="..\YAFIT.Resources\YAFIT.Resources.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Update="UserControls\FormEntryTextCheckboxDouble.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
   </ItemGroup>
 
 </Project>

@@ -1,9 +1,11 @@
 ﻿using System.ComponentModel;
+using System.Diagnostics;
 using System.Globalization;
 using System.Reflection;
 using System.Windows;
 using System.Windows.Data;
-using YAFIT.Common;
+using YAFIT.Common.Enums;
+using static System.Reflection.Metadata.BlobBuilder;
 
 namespace YAFIT.UI.Converter
 {
@@ -11,9 +13,14 @@ namespace YAFIT.UI.Converter
     {
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            if(value is FormType formType)
+            if (value is FeedbackFormType formType)
             {
-                return formType.GetType().GetCustomAttribute<DescriptionAttribute>()?.Description??DEFAULT_VALUE;
+                FieldInfo? field = formType.GetType().GetField(formType.ToString());
+                if (field != null)
+                {
+                    DescriptionAttribute? attribute = Attribute.GetCustomAttribute(field, typeof(DescriptionAttribute)) as DescriptionAttribute;
+                    return attribute?.Description ?? DEFAULT_VALUE;
+                }
             }
             return DEFAULT_VALUE;
         }
