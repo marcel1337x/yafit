@@ -105,7 +105,7 @@ namespace YAFIT.UI.ViewModels
             }
             if (feedbackForm.FormType == FeedbackFormType.First)
             {
-                //WindowNavigation.OpenWindowFeedback1();
+                WindowNavigation.OpenFormular1();
             }
             else
             {

@@ -3,7 +3,9 @@ using System.Security;
 using System.Windows;
 using System.Windows.Input;
 using YAFIT.Common.UI.ViewModel;
+using YAFIT.Databases;
 using YAFIT.Databases.Classes;
+using YAFIT.Databases.Entities;
 using YAFIT.UI.Views;
 
 namespace YAFIT.UI.ViewModels
@@ -74,6 +76,11 @@ namespace YAFIT.UI.ViewModels
             {
                 windowMain.PWBox.KeyDown += OnPasswordEnterEvent;
             }
+
+            using (var session = SessionManager.Instance.OpenStatelessSession())
+            {
+                session.Get<TestEntity>(1);
+            }
         }
 
         #endregion
@@ -130,7 +137,7 @@ namespace YAFIT.UI.ViewModels
         /// </summary>
         private void DoAccountLogin()
         {
-            WindowMain? windowMain = _view as WindowMain;
+            WindowNavigation.OpenTeacherWindow();
             //Authentication auth = new Authentication(LoginUname, windowMain.PWBox.Password);
 
             //if (auth.doLogin())

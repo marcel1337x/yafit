@@ -34,7 +34,7 @@ namespace YAFIT.Databases
                 /* MYSQL  */ .Database(MySQLConfiguration.Standard.ConnectionString(cs => cs.Database("test")
                             .Server("localhost")
                             .Username("root")
-                            //.Password("pass123")//@TODO HASH PASSWORD
+                            .Password("root")//@TODO HASH PASSWORD
                             ))
                 //Caching wenn nötig
                 .Cache(c => c.UseQueryCache()

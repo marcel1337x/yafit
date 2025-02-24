@@ -36,11 +36,22 @@ namespace YAFIT.UI
 
         public static void OpenTeacherWindow()
         {
-
+            ViewTeacherFormListing window = new ViewTeacherFormListing();
+            ModelTeacherFormsListing selection = new ModelTeacherFormsListing(window);
+            window.DataContext = selection;
+            window.Show();
         }
         public static void OpenAdminWindow()
         {
 
+        }
+
+        public static void OpenSelectionWindow()
+        {
+            ViewFormsSelection window = new ViewFormsSelection();
+            ModelFormsSelection selection = new ModelFormsSelection(window);
+            window.DataContext = selection;
+            window.Show();
         }
 
         public static void OpenFormular1()

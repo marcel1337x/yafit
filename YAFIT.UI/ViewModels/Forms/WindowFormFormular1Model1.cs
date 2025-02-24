@@ -23,6 +23,9 @@ namespace YAFIT.UI.ViewModels.Forms
         #endregion
 
         #region properties
+
+        private Formular1 form = new Formular1();
+        
         /// <summary>
         /// Eine Eigenschaft, die die Antworten für die Textboxen enthält
         /// </summary>
@@ -60,6 +63,7 @@ namespace YAFIT.UI.ViewModels.Forms
             {
                 return;
             }
+            form.SetValue(, value: 5);
             byte[] results = GetButtonsResults();
             Debug.WriteLine(string.Join("\n", results));
             CloseView();
