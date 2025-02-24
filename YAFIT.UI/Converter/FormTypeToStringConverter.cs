@@ -4,7 +4,7 @@ using System.Globalization;
 using System.Reflection;
 using System.Windows;
 using System.Windows.Data;
-using YAFIT.Common;
+using YAFIT.Common.Enums;
 using static System.Reflection.Metadata.BlobBuilder;
 
 namespace YAFIT.UI.Converter
@@ -13,7 +13,7 @@ namespace YAFIT.UI.Converter
     {
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            if (value is FormType formType)
+            if (value is FeedbackFormType formType)
             {
                 FieldInfo? field = formType.GetType().GetField(formType.ToString());
                 if (field != null)

@@ -3,13 +3,14 @@
 namespace YAFIT.UI.Views
 {
     /// <summary>
-    /// Interaktionslogik für WindowFeedbackListing.xaml
+    /// Interaktionslogik für SelectionView.xaml
     /// </summary>
-    public partial class WindowFeedbackListing : Window
+    public partial class ViewFormsSelection : Window
     {
-        public WindowFeedbackListing()
+        public ViewFormsSelection()
         {
             InitializeComponent();
         }
+
     }
 }

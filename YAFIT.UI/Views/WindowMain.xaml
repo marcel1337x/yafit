@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:YAFIT.UI.Views"
         mc:Ignorable="d"
-        MinHeight="176" MinWidth="480"
+        MinHeight="196" MinWidth="480"
         SizeToContent="WidthAndHeight"
         Title="{Binding WindowCaption}">
     <Grid Margin="5">
@@ -16,12 +16,13 @@
         </Grid.ColumnDefinitions>
 
         <Border Grid.Column="2" 
-                Background="AliceBlue" CornerRadius="2"
+                Background="AliceBlue" 
+                CornerRadius="2"
                 BorderThickness="1"
                 BorderBrush="DarkCyan">
             <StackPanel Orientation="Vertical"
                         Margin="5">
-                <Label Content="Feedback Code"/>
+                <Label Content="Feedback Code:" Margin="-5"/>
                 <TextBox Text="" Margin="0,0,0,5"/>
                 <Button Content="Eingabe" Command="{Binding OnFeedbackCodeEnter}"/>
             </StackPanel>
@@ -30,9 +31,9 @@
                 BorderThickness="1"
                 BorderBrush="DarkCyan">
             <StackPanel Orientation="Vertical" Margin="5">
-                <Label Content="Benutzername"/>
+                <Label Content="Benutzername:" Margin="-5"/>
                 <TextBox Text="{Binding LoginUname, Mode=OneWayToSource}"/>
-                <Label Content="Passwort"/>
+                <Label Content="Passwort:" Margin="-5"/>
                 <PasswordBox Margin="0,0,0,5" x:Name="PWBox"/>
                 <Button Content="Einloggen" Command="{Binding OnAccountLogin}"/>
                 <Label Content="oder" HorizontalAlignment="Center" />
