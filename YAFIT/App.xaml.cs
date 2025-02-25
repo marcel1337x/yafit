@@ -22,7 +22,7 @@ namespace YAFIT
             //WindowNavigation.OpenWindow<WindowMain, WindowMainModel>();
             //WindowNavigation.OpenWindow<ViewTeacherFormListing, ModelTeacherFormsListing>();
             //WindowNavigation.OpenWindow<ViewFormsSelection, ModelFormsSelection>();
-            WindowNavigation.OpenFormular1();
+            WindowNavigation.OpenLoginWindow();
         }
 
         /// <summary>

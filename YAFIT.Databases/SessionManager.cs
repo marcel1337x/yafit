@@ -31,10 +31,11 @@ namespace YAFIT.Databases
                 /* SQLite */ //.Database(SQLiteConfiguration.Standard.ConnectionString("Data Source=:memory:;Version=3;New=True;"))
                 /* SQLite */ //.Database(SQLiteConfiguration.Standard.UsingFile("nameDerDatenBank.db"))
                 
-                /* MYSQL  */ .Database(MySQLConfiguration.Standard.ConnectionString(cs => cs.Database("test")
-                            .Server("localhost")
+                /* MYSQL  */ .Database(MySQLConfiguration.Standard.ConnectionString(cs => cs.Database("yafit")
+                            .Server("10.0.126.13")
+                            /* 2001:1640:18e:8000:be24:11ff:fe39:102a */
                             .Username("root")
-                            .Password("root")//@TODO HASH PASSWORD
+                            .Password("yafit")//@TODO HASH PASSWORD
                             ))
                 //Caching wenn nötig
                 .Cache(c => c.UseQueryCache()
