@@ -2,6 +2,7 @@
 using FluentNHibernate.Cfg.Db;
 using NHibernate;
 using System.Reflection;
+using System.Runtime.InteropServices.Marshalling;
 
 namespace YAFIT.Databases
 {
@@ -11,6 +12,19 @@ namespace YAFIT.Databases
         private SessionManager()
         {
             InitializeSessionFactory();
+        }
+
+        public static bool Connect()
+        {
+            try
+            {
+                return Instance.Ping();
+            }
+            catch(Exception e)
+            {
+                //@TODO: Exception 
+            }
+            return false;
         }
 
         public static SessionManager Instance => _instance ??= new SessionManager();
@@ -51,6 +65,11 @@ namespace YAFIT.Databases
         private void BuildSchema(NHibernate.Cfg.Configuration config)
         {
             new NHibernate.Tool.hbm2ddl.SchemaExport(config).Create(false, true);
+        }
+
+        private bool Ping()
+        {
+            return true;
         }
 
 

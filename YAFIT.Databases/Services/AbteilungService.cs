@@ -3,9 +3,9 @@ using YAFIT.Databases.Entities;
 
 namespace YAFIT.Databases.Services;
 
-public class Formular1Service : SessionService<Formular1Entity>
+public class AbteilungService : SessionService<AbteilungEntity>
 {
-    protected override bool Insert(IStatelessSession session, params Formular1Entity[] entities)
+    protected override bool Insert(IStatelessSession session, params AbteilungEntity[] entities)
     {
         foreach (var entity in entities)
         {
@@ -14,7 +14,7 @@ public class Formular1Service : SessionService<Formular1Entity>
         return true;
     }
 
-    protected override bool Update(IStatelessSession session, params Formular1Entity[] entities)
+    protected override bool Update(IStatelessSession session, params AbteilungEntity[] entities)
     {
         foreach (var entity in entities)
         {
@@ -23,7 +23,7 @@ public class Formular1Service : SessionService<Formular1Entity>
         return true;
     }
 
-    protected override bool Delete(IStatelessSession session, params Formular1Entity[] entities)
+    protected override bool Delete(IStatelessSession session, params AbteilungEntity[] entities)
     {
         foreach (var entity in entities)
         {

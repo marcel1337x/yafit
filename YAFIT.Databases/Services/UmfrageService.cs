@@ -1,44 +1,34 @@
-﻿using YAFIT.Databases.Entities;
+﻿using NHibernate;
+using YAFIT.Databases.Entities;
 
 namespace YAFIT.Databases.Services;
 
-public class UmfrageService
+public class UmfrageService : SessionService<UmfrageEntity>
 {
-    public UmfrageEntity getUmfrage(int id)
+    protected override bool Insert(IStatelessSession session, params UmfrageEntity[] entities)
     {
-        using (var session = SessionManager.Instance.OpenStatelessSession())
+        foreach (var entity in entities)
         {
-            return session.Get<UmfrageEntity>(id);
+            session.Insert(entity);
         }
+        return true;
     }
 
-    public List<UmfrageEntity> getUmfragenByUser(UserEntity user)
+    protected override bool Update(IStatelessSession session, params UmfrageEntity[] entities)
     {
-        using (var session = SessionManager.Instance.OpenStatelessSession())
+        foreach (var entity in entities)
         {
-            return session.Query<UmfrageEntity>().Where(entity => entity.User == user).ToList();
+            session.Update(entity);
         }
+        return true;
     }
 
-    public bool CreateUmfrage(UmfrageEntity umfrage)
+    protected override bool Delete(IStatelessSession session, params UmfrageEntity[] entities)
     {
-        using (var session = SessionManager.Instance.OpenStatelessSession())
+        foreach (var entity in entities)
         {
-            return session.Insert(umfrage) != null;
+            session.Delete(entity);
         }
-    }
-
-    public bool DeleteById(int id)
-    {
-        using (var session = SessionManager.Instance.OpenStatelessSession())
-        {
-            var umfrage = session.Get<UmfrageEntity>(id);
-            if (umfrage == null)
-            {
-                return false;
-            }
-            session.Delete(umfrage);
-            return true;
-        }
+        return true;
     }
 }

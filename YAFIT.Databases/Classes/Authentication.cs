@@ -23,8 +23,11 @@ namespace YAFIT.Databases.Classes
         public UserEntity DoLogin()
         {
             UserService userService = new UserService();
-            _user = userService.getUserByName(_username);
-            
+            UserEntity? user = userService.GetEntity(x => x.Name == _username);
+            if(user == null)
+            {
+                throw new Exception("Eintrag mit Namen " + _username + " existiert nicht!");
+            }
             return _user;
         }
 

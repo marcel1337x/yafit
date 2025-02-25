@@ -1,14 +1,34 @@
-﻿using YAFIT.Databases.Entities;
+﻿using NHibernate;
+using YAFIT.Databases.Entities;
 
 namespace YAFIT.Databases.Services;
 
-public class FachService
+public class FachService : SessionService<FachService>
 {
-    public FachEntity getFachByID(int id)
+    protected override bool Insert(IStatelessSession session, params FachService[] entities)
     {
-        using (var session = SessionManager.Instance.OpenStatelessSession())
+        foreach (var entity in entities)
         {
-            return session.Get<FachEntity>(id);
+            session.Insert(entity);
         }
+        return true;
+    }
+
+    protected override bool Update(IStatelessSession session, params FachService[] entities)
+    {
+        foreach (var entity in entities)
+        {
+            session.Update(entity);
+        }
+        return true;
+    }
+
+    protected override bool Delete(IStatelessSession session, params FachService[] entities)
+    {
+        foreach (var entity in entities)
+        {
+            session.Delete(entity);
+        }
+        return true;
     }
 }

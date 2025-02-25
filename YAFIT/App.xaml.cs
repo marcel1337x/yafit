@@ -1,4 +1,5 @@
 ﻿using System.Windows;
+using YAFIT.Databases;
 using YAFIT.UI;
 using YAFIT.UI.ViewModels;
 using YAFIT.UI.Views;
@@ -19,10 +20,10 @@ namespace YAFIT
         /// <param name="e">StartupEventArgs</param>
         private void Application_Startup(object sender, StartupEventArgs e)
         {
-            WindowNavigation.OpenWindow<WindowMain, WindowMainModel>();
-            //WindowNavigation.OpenWindow<ViewTeacherFormListing, ModelTeacherFormsListing>();
-            //WindowNavigation.OpenWindow<ViewFormsSelection, ModelFormsSelection>();
-            WindowNavigation.OpenLoginWindow();
+            if (SessionManager.Connect() == true)
+            {
+                WindowNavigation.OpenLoginWindow();
+            }
         }
 
         /// <summary>
