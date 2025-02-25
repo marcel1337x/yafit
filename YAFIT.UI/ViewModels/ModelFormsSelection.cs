@@ -19,6 +19,13 @@ namespace YAFIT.UI.ViewModels
         #endregion
 
         #region properties
+
+        public string CustomCode
+        {
+            get { return _customCode; }
+            set { SetProperty("CustomCode", ref _customCode, value); }
+        }
+
         /// <summary>
         /// Gibt an, welcher Button ausgewählt ist anhand des Indices
         /// </summary>
@@ -67,7 +74,27 @@ namespace YAFIT.UI.ViewModels
         /// </summary>
         private void DoGenKey()
         {
+            if(string.IsNullOrEmpty(_customCode) == true)
+            {
+                CustomCode = _random.Next(10_000_000, 99_999_999).ToString().PadLeft(8, '0'); 
+            }
+            if(ValidateCode() == false)
+            {
+                MessageBox.Show("Code existiert bereits!");
+                return;
+            }
+
             CloseView();
+        }
+
+        private bool ValidateCode()
+        {
+            if(string.IsNullOrEmpty(_customCode) == true)
+            {
+                return false;
+            }
+            //@TODO Database Search for CustomCode/
+            return true;
         }
 
         #endregion
@@ -76,6 +103,8 @@ namespace YAFIT.UI.ViewModels
 
         private bool[] _selectedButton = [true, false];
 
+        private string _customCode = string.Empty;
+        private readonly Random _random = new Random();
         #endregion
     }
 }

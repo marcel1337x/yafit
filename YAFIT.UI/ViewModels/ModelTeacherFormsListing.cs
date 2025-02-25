@@ -103,13 +103,14 @@ namespace YAFIT.UI.ViewModels
                 //@TODO Nachricht
                 return;
             }
-            if (feedbackForm.FormType == FeedbackFormType.First)
+            switch (feedbackForm.FormType)
             {
-                WindowNavigation.OpenFormular1();
-            }
-            else
-            {
-                MessageBox.Show("Nicht implementiert.");
+                case FeedbackFormType.First:
+                    WindowNavigation.OpenFormular1();
+                    break;
+                case FeedbackFormType.Second:
+                    WindowNavigation.OpenFormular2();
+                    break;
             }
             //@TODO Open Window
         }
