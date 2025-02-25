@@ -1,22 +1,34 @@
-﻿using YAFIT.Databases.Entities;
+﻿using NHibernate;
+using YAFIT.Databases.Entities;
 
 namespace YAFIT.Databases.Services;
 
-public class RegisterService
+public class RegisterService : SessionService<RegisterEntity>
 {
-    public bool createCode(string code)
+    protected override bool Insert(IStatelessSession session, params RegisterEntity[] entities)
     {
-        using (var session = SessionManager.Instance.OpenStatelessSession())
+        foreach(var entity in entities)
         {
-            RegisterEntity entity = new RegisterEntity();
-            entity.Code = code;
-            if (session.Query<RegisterEntity>().Where(x => x.Code == code).Count() == 0)
-            {
-                session.Insert(entity);
-                return true;
-            }
-
-            return false;
+            session.Insert(entity);
         }
+        return true;
+    }
+
+    protected override bool Update(IStatelessSession session, params RegisterEntity[] entities)
+    {
+        foreach(var entity in entities)
+        {
+            session.Update(entity);
+        }
+        return true;
+    }
+
+    protected override bool Delete(IStatelessSession session, params RegisterEntity[] entities)
+    {
+        foreach (var entity in entities)
+        {
+            session.Delete(entity);
+        }
+        return true;
     }
 }
