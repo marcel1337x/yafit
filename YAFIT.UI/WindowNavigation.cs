@@ -36,7 +36,10 @@ namespace YAFIT.UI
 
         public static void OpenTeacherWindow()
         {
-
+            ViewTeacherFormListing view = new ViewTeacherFormListing();
+            ModelTeacherFormsListing model = new ModelTeacherFormsListing(view);
+            view.DataContext = model;
+            view.Show();
         }
         public static void OpenAdminWindow()
         {
@@ -45,8 +48,12 @@ namespace YAFIT.UI
 
         public static void OpenFormular1()
         {
-
             OpenWindow<Formular1_1, WindowFormFormular1Model1>();
+        }
+
+        public static void OpenFormular2()
+        {
+            OpenWindow<WindowFeedback2, CheckboxViewDartBoardView>();
         }
         public static void OpenWindowFeedback2()
         {
