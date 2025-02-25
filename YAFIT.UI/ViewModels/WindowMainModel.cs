@@ -4,7 +4,9 @@ using System.Text.RegularExpressions;
 using System.Windows;
 using System.Windows.Input;
 using YAFIT.Common.UI.ViewModel;
+using YAFIT.Databases;
 using YAFIT.Databases.Classes;
+using YAFIT.Databases.Entities;
 using YAFIT.UI.ViewModels.Forms;
 using YAFIT.UI.Views;
 using YAFIT.UI.Views.Forms.Formular1;
@@ -87,6 +89,9 @@ namespace YAFIT.UI.ViewModels
             {
                 windowMain.PWBox.KeyDown += OnPasswordEnterEvent;
             }
+
+            using (var session = SessionManager.Instance.OpenStatelessSession());
+
         }
 
         #endregion

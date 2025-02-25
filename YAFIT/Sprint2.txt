@@ -35,6 +35,22 @@ Datenbank:
   > Rolle (string oder als int darstellen??) 
   > Name
   > Passwort (gehashed)
+  
+ - Formular1:
+   > 
+  
+ - Formular2Umfrage:
+   > ForumlarCode (primaryKey, foreignKey)
+   > ForumlarId (primaryKey, foreignKey)
+  
+ - Umfrage:
+   > FormularCode (primaryKey)
+   > LehrerID
+   > KlassenID
+   > JahrgangsstufenID
+   > Schuljahr (Heutiges)
+   > AbteilungId
+   > FachId
 
  - Formular:
    > Id

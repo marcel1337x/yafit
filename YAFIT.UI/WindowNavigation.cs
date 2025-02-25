@@ -46,6 +46,14 @@ namespace YAFIT.UI
 
         }
 
+        public static void OpenSelectionWindow()
+        {
+            ViewFormsSelection window = new ViewFormsSelection();
+            ModelFormsSelection selection = new ModelFormsSelection(window);
+            window.DataContext = selection;
+            window.Show();
+        }
+
         public static void OpenFormular1()
         {
             OpenWindow<Formular1_1, WindowFormFormular1Model1>();
