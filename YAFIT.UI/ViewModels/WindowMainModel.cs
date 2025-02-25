@@ -1,10 +1,14 @@
 ﻿using System.Diagnostics;
 using System.Security;
+using System.Text.RegularExpressions;
 using System.Windows;
 using System.Windows.Input;
 using YAFIT.Common.UI.ViewModel;
 using YAFIT.Databases.Classes;
+using YAFIT.UI.ViewModels.Forms;
 using YAFIT.UI.Views;
+using YAFIT.UI.Views.Forms.Formular1;
+using static System.Net.Mime.MediaTypeNames;
 
 namespace YAFIT.UI.ViewModels
 {
@@ -56,6 +60,15 @@ namespace YAFIT.UI.ViewModels
             }
         }
 
+        /// <summary>
+        /// Der Schlüssel, der eingegeben wurde
+        /// </summary>
+        public string FormularKey
+        {
+            get { return _formularKey; }
+            set { SetProperty("FormularKey", ref _formularKey, value); }
+        }
+
         #endregion
 
         #region constructor
@@ -102,7 +115,27 @@ namespace YAFIT.UI.ViewModels
         /// </summary>
         private void DoFeedbackCodeEnter()
         {
-            MessageBox.Show("Feedback");
+            Regex _regex = new Regex("[^0-9]");
+            if (!_regex.IsMatch(_formularKey)==false)
+            {
+                MessageBox.Show("Die Eingabe kann nur aus Zahlen bestehen!");
+            }
+            else
+            {
+                //soll später eine Serviceklasse aufrufen und darüber die Formular und Schlüssel holen
+                if (_formularKey.Equals("11111111"))
+                {
+                    WindowNavigation.OpenWindow<Formular1_1, WindowFormFormular1Model1>();
+                    WindowMain? windowMain = _view as WindowMain;
+                    windowMain.Close();
+                }
+                else
+                {
+                    MessageBox.Show("Der eingegebene Schlüssel existiert nicht!");
+                }
+            }
+            
+            
         }
 
         #endregion
@@ -167,6 +200,7 @@ namespace YAFIT.UI.ViewModels
         //@TODO Entfernen nach 1 Sprint
         private List<Authentication> authentications = new List<Authentication>();
         private string _userName = string.Empty;
+        private string _formularKey = string.Empty;
 
         #endregion
     }
