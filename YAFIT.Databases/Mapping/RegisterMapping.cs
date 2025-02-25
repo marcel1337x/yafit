@@ -7,7 +7,7 @@ public class RegisterMapping : ClassMap<RegisterEntity>
 {
     public RegisterMapping()
     {
-        Id(x => x.Id);
-        Map(x => x.Code);
+        Id(x => x.Id).GeneratedBy.Increment();
+        Map(x => x.Code).Not.Nullable().Unique();
     }
 }
