@@ -7,6 +7,7 @@ using YAFIT.Common.UI.ViewModel;
 using YAFIT.Databases;
 using YAFIT.Databases.Classes;
 using YAFIT.Databases.Entities;
+using YAFIT.Databases.Services;
 using YAFIT.UI.ViewModels.Forms;
 using YAFIT.UI.Views;
 using YAFIT.UI.Views.Forms.Formular1;
@@ -165,6 +166,15 @@ namespace YAFIT.UI.ViewModels
         /// </summary>
         private void DoAccountLogin()
         {
+            UserService userService = new UserService();
+            UserEntity? user = userService.GetEntity(x => x.Name == _userName);
+            if (user == null)
+            {
+                MessageBox.Show("Eintrag mit Namen " + _userName + " existiert nicht!");
+                return;
+            }
+
+
             WindowNavigation.OpenTeacherWindow();
             //WindowMain? windowMain = _view as WindowMain;
             //Authentication auth = new Authentication(LoginUname, windowMain.PWBox.Password);
