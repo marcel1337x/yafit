@@ -3,6 +3,7 @@ using System.Windows;
 using System.Windows.Input;
 using YAFIT.Common.Enums;
 using YAFIT.Common.UI.ViewModel;
+using YAFIT.Data.Forms;
 using YAFIT.Interfaces.Forms;
 using YAFIT.UI.Views;
 
@@ -84,8 +85,7 @@ namespace YAFIT.UI.ViewModels
             
             ShowChildView(viewFormsSelection, modelFormsSelection, true);
 
-            //@TODO DATABASE IMPLEMENTATION
-            //FeedbackForms.Add(new IForm { Form = FeedbackFormType.First, ID = Guid.NewGuid(), TimeStamp = DateTime.Now });
+            FeedbackForms.Add(new Form { FormType = FeedbackFormType.First, ID = Guid.NewGuid(), TimeStamp = DateTime.Now });
 
             OnPropertyChanged(nameof(FeedbackForms));
         }
@@ -103,13 +103,14 @@ namespace YAFIT.UI.ViewModels
                 //@TODO Nachricht
                 return;
             }
-            if (feedbackForm.FormType == FeedbackFormType.First)
+            switch (feedbackForm.FormType)
             {
-                //WindowNavigation.OpenWindowFeedback1();
-            }
-            else
-            {
-                MessageBox.Show("Nicht implementiert.");
+                case FeedbackFormType.First:
+                    WindowNavigation.OpenFormular1();
+                    break;
+                case FeedbackFormType.Second:
+                    WindowNavigation.OpenFormular2();
+                    break;
             }
             //@TODO Open Window
         }
