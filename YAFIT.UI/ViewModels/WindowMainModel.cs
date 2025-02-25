@@ -90,9 +90,6 @@ namespace YAFIT.UI.ViewModels
             {
                 windowMain.PWBox.KeyDown += OnPasswordEnterEvent;
             }
-
-            using (var session = SessionManager.Instance.OpenStatelessSession());
-
         }
 
         #endregion
@@ -169,6 +166,13 @@ namespace YAFIT.UI.ViewModels
         /// </summary>
         private void DoAccountLogin()
         {
+            /* UserService userService = new UserService();
+            UserEntity? user = userService.GetEntity(x => x.Name == _userName);
+            if (user == null)
+            {
+                MessageBox.Show("Eintrag mit Namen " + _userName + " existiert nicht!");
+                return;
+            }*/
             WindowMain? windowMain = _view as WindowMain;
             UserService userService = new UserService();
             UserEntity user = userService.getUserByName(_userName);

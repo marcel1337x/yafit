@@ -1,15 +1,35 @@
-﻿using YAFIT.Databases.Entities;
+﻿using NHibernate;
+using YAFIT.Databases.Entities;
 
 namespace YAFIT.Databases.Services;
 
-public class Formular1Service
+public class Formular1Service : SessionService<Formular1Entity>
 {
-    public Formular1Entity getFormular1Entity(int id)
+    protected override bool Insert(IStatelessSession session, params Formular1Entity[] entities)
     {
-        using (var session = SessionManager.Instance.OpenStatelessSession())
+        foreach (var entity in entities)
         {
-            return session.Get<Formular1Entity>(id);
+            session.Insert(entity);
         }
+        return true;
+    }
+
+    protected override bool Update(IStatelessSession session, params Formular1Entity[] entities)
+    {
+        foreach (var entity in entities)
+        {
+            session.Update(entity);
+        }
+        return true;
+    }
+
+    protected override bool Delete(IStatelessSession session, params Formular1Entity[] entities)
+    {
+        foreach (var entity in entities)
+        {
+            session.Delete(entity);
+        }
+        return true;
     }
 
     //TODO:

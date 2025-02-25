@@ -3,9 +3,9 @@ using YAFIT.Databases.Entities;
 
 namespace YAFIT.Databases.Services;
 
-public class UmfrageService : SessionService<UmfrageEntity>
+public class AbteilungService : SessionService<AbteilungEntity>
 {
-    protected override bool Insert(IStatelessSession session, params UmfrageEntity[] entities)
+    protected override bool Insert(IStatelessSession session, params AbteilungEntity[] entities)
     {
         foreach (var entity in entities)
         {
@@ -14,7 +14,7 @@ public class UmfrageService : SessionService<UmfrageEntity>
         return true;
     }
 
-    protected override bool Update(IStatelessSession session, params UmfrageEntity[] entities)
+    protected override bool Update(IStatelessSession session, params AbteilungEntity[] entities)
     {
         foreach (var entity in entities)
         {
@@ -23,7 +23,7 @@ public class UmfrageService : SessionService<UmfrageEntity>
         return true;
     }
 
-    protected override bool Delete(IStatelessSession session, params UmfrageEntity[] entities)
+    protected override bool Delete(IStatelessSession session, params AbteilungEntity[] entities)
     {
         foreach (var entity in entities)
         {
@@ -31,7 +31,4 @@ public class UmfrageService : SessionService<UmfrageEntity>
         }
         return true;
     }
-
-    //TODO:
-    //Mehtode, die eine Umfrage anhand des Schlüssels sucht 
 }
