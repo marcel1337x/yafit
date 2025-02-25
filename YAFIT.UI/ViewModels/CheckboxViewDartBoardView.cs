@@ -1,11 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
+﻿using System.Windows;
+using YAFIT.Common.UI.ViewModel;
 using YAFIT.Data;
-using YAFIT.UI.Resources;
 
 namespace YAFIT.UI.ViewModels
 {

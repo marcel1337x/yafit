@@ -130,7 +130,8 @@ namespace YAFIT.UI.ViewModels
         /// </summary>
         private void DoAccountLogin()
         {
-            WindowMain? windowMain = _view as WindowMain;
+            WindowNavigation.OpenTeacherWindow();
+            //WindowMain? windowMain = _view as WindowMain;
             //Authentication auth = new Authentication(LoginUname, windowMain.PWBox.Password);
 
             //if (auth.doLogin())
