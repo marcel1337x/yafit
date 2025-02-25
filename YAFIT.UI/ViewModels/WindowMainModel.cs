@@ -89,9 +89,6 @@ namespace YAFIT.UI.ViewModels
             {
                 windowMain.PWBox.KeyDown += OnPasswordEnterEvent;
             }
-
-            using (var session = SessionManager.Instance.OpenStatelessSession());
-
         }
 
         #endregion

@@ -1,71 +1,34 @@
-﻿using YAFIT.Databases.Entities;
+﻿using NHibernate;
+using YAFIT.Databases.Entities;
 
 namespace YAFIT.Databases.Services;
 
-public class UserService
+public class UserService : SessionService<UserEntity>
 {
-
-    public UserEntity getUserById(int id)
+    protected override bool Insert(IStatelessSession session, params UserEntity[] entities)
     {
-        using (var session = SessionManager.Instance.OpenStatelessSession())
+        foreach(var entity in entities)
         {
-            return session.Get<UserEntity>(id);
+            session.Insert(entity);
         }
+        return true;
     }
 
-    public UserEntity getUserByName(string name)
+    protected override bool Update(IStatelessSession session, params UserEntity[] entities)
     {
-        using (var session = SessionManager.Instance.OpenStatelessSession())
+        foreach(var entity in entities)
         {
-            return session.Get<UserEntity>(name);
+            session.Update(entity);
         }
+        return true;
     }
 
-    public bool save(UserEntity user)
+    protected override bool Delete(IStatelessSession session, params UserEntity[] entities)
     {
-        using (var session = SessionManager.Instance.OpenStatelessSession())
+        foreach (var entity in entities)
         {
-            if (existsById(user.Id))
-            {
-                return false;
-            }
-            session.Insert(user);
-            return true;
+            session.Delete(entity);
         }
-    }
-
-    public bool existsById(int id)
-    {
-        using (var session = SessionManager.Instance.OpenStatelessSession())
-        {
-            if (session.Get<UserEntity>(id) == null)
-            {
-                return false;
-            }
-
-            return true;
-        }
-    }
-
-    public bool deleteById(int id)
-    {
-        using (var session = SessionManager.Instance.OpenStatelessSession())
-        {
-            var user = session.Get<UserEntity>(id);
-            if (user == null)
-            {
-                return false;
-            }
-            session.Delete(user);
-            return true;
-        }
-    }
-
-    public List<UserEntity> getAllUsers()
-    {
-        using (var session = SessionManager.Instance.OpenStatelessSession())
-        {
-            return session.Query<UserEntity>().ToList();
-        }
+        return true;
     }
 }

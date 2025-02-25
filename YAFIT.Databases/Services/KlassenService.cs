@@ -1,14 +1,34 @@
-﻿using YAFIT.Databases.Entities;
+﻿using NHibernate;
+using YAFIT.Databases.Entities;
 
 namespace YAFIT.Databases.Services;
 
-public class KlassenService
+public class KlassenService : SessionService<KlassenEntity>
 {
-    public KlassenEntity getKlasseByID(int id)
+    protected override bool Insert(IStatelessSession session, params KlassenEntity[] entities)
     {
-        using (var session = SessionManager.Instance.OpenStatelessSession())
+        foreach (var entity in entities)
         {
-            return session.Get<KlassenEntity>(id);
+            session.Insert(entity);
         }
+        return true;
+    }
+
+    protected override bool Update(IStatelessSession session, params KlassenEntity[] entities)
+    {
+        foreach (var entity in entities)
+        {
+            session.Update(entity);
+        }
+        return true;
+    }
+
+    protected override bool Delete(IStatelessSession session, params KlassenEntity[] entities)
+    {
+        foreach (var entity in entities)
+        {
+            session.Delete(entity);
+        }
+        return true;
     }
 }
