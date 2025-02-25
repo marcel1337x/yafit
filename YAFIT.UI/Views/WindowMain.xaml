@@ -23,7 +23,7 @@
             <StackPanel Orientation="Vertical"
                         Margin="5">
                 <Label Content="Feedback Code:" Margin="-5"/>
-                <TextBox Text="" Margin="0,0,0,5"/>
+                <TextBox Text="{Binding FormularKey}" MaxLength="8" Margin="0,0,0,5"/>
                 <Button Content="Eingabe" Command="{Binding OnFeedbackCodeEnter}"/>
             </StackPanel>
         </Border>
