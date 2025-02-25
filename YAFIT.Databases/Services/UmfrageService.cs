@@ -41,4 +41,7 @@ public class UmfrageService
             return true;
         }
     }
+
+    //TODO:
+    //Mehtode, die eine Umfrage anhand des Schlüssels sucht 
 }

@@ -19,7 +19,7 @@ namespace YAFIT
         /// <param name="e">StartupEventArgs</param>
         private void Application_Startup(object sender, StartupEventArgs e)
         {
-            WindowNavigation.OpenWindow<WindowMain, WindowMainModel>();
+            //WindowNavigation.OpenWindow<WindowMain, WindowMainModel>();
             //WindowNavigation.OpenWindow<ViewTeacherFormListing, ModelTeacherFormsListing>();
             //WindowNavigation.OpenWindow<ViewFormsSelection, ModelFormsSelection>();
             WindowNavigation.OpenLoginWindow();

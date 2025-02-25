@@ -11,4 +11,7 @@ public class Formular1Service
             return session.Get<Formular1Entity>(id);
         }
     }
+
+    //TODO:
+    //Methode, die ein Formular anhand der UmfrageId holt
 }

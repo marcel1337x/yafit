@@ -7,6 +7,7 @@ using YAFIT.Common.UI.ViewModel;
 using YAFIT.Databases;
 using YAFIT.Databases.Classes;
 using YAFIT.Databases.Entities;
+using YAFIT.Databases.Services;
 using YAFIT.UI.ViewModels.Forms;
 using YAFIT.UI.Views;
 using YAFIT.UI.Views.Forms.Formular1;
@@ -168,8 +169,20 @@ namespace YAFIT.UI.ViewModels
         /// </summary>
         private void DoAccountLogin()
         {
-            WindowNavigation.OpenTeacherWindow();
-            //WindowMain? windowMain = _view as WindowMain;
+            WindowMain? windowMain = _view as WindowMain;
+            UserService userService = new UserService();
+            UserEntity user = userService.getUserByName(_userName);
+            if (user != null & user.password.Equals(windowMain.PWBox.Password))
+            {
+                MessageBox.Show("Login erfolgreich");
+                WindowNavigation.OpenTeacherWindow();
+            }
+            else
+            {
+                MessageBox.Show("Login Fehlerhaft");
+            }
+            
+            //
             //Authentication auth = new Authentication(LoginUname, windowMain.PWBox.Password);
 
             //if (auth.doLogin())
