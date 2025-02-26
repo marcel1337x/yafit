@@ -5,14 +5,11 @@ using System.Windows;
 using System.Windows.Input;
 using YAFIT.Common.Extensions;
 using YAFIT.Common.UI.ViewModel;
-using YAFIT.Databases;
 using YAFIT.Databases.Classes;
 using YAFIT.Databases.Entities;
-using YAFIT.Databases.Services;
-using YAFIT.UI.ViewModels.Forms;
+using YAFIT.UI.ViewModels.Forms.Formular1;
 using YAFIT.UI.Views;
 using YAFIT.UI.Views.Forms.Formular1;
-using static System.Net.Mime.MediaTypeNames;
 
 namespace YAFIT.UI.ViewModels
 {
