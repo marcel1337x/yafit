@@ -141,6 +141,9 @@ namespace YAFIT.UI.ViewModels
                 return;
             }
             //@TODO REMOVE FROM DATABASE
+            IList<UmfrageEntity> umfragen = UmfrageEntity.GetUmfrageService().GetAllByCriteria(x =>
+                x.Schluessel == feedbackForm.Code);
+            UmfrageEntity.GetUmfrageService().Delete(umfragen[0]);
             FeedbackForms.Remove(feedbackForm);
             SelectedIndex = -1;
             OnPropertyChanged(nameof(FeedbackForms));
@@ -165,10 +168,7 @@ namespace YAFIT.UI.ViewModels
         /// </summary>
         private void OnLoad()
         {
-            foreach (var form in FeedbackForms)
-            {
-                FeedbackForms.Remove(form);
-            }
+            FeedbackForms.Clear();
             IList<UmfrageEntity> umfragen = UmfrageEntity.GetUmfrageService().GetAllByCriteria(
                 x => x.User.Id == _user.Id);
             foreach (UmfrageEntity umfrage in umfragen)

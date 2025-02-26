@@ -66,7 +66,14 @@ namespace YAFIT.Databases
         }
         private void BuildSchema(NHibernate.Cfg.Configuration config)
         {
-            new NHibernate.Tool.hbm2ddl.SchemaExport(config).Create(false, true);
+            try
+            {
+                new NHibernate.Tool.hbm2ddl.SchemaValidator(config).Validate();
+            }
+            catch (Exception e)
+            {
+                new NHibernate.Tool.hbm2ddl.SchemaExport(config).Create(false, true);
+            }
         }
 
         private bool Ping()
