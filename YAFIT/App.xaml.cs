@@ -23,7 +23,7 @@ namespace YAFIT
         {
             if (SessionManager.Connect() == true)
             {
-                WindowNavigation.OpenWindow<Formular1Result,WindowFormFormular1ResultModel>();
+                WindowNavigation.OpenLoginWindow();
             }
         }
 
