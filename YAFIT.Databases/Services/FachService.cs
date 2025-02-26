@@ -3,9 +3,9 @@ using YAFIT.Databases.Entities;
 
 namespace YAFIT.Databases.Services;
 
-public class FachService : SessionService<FachService>
+public class FachService : SessionService<FachEntity>
 {
-    protected override bool Insert(IStatelessSession session, params FachService[] entities)
+    protected override bool Insert(IStatelessSession session, params FachEntity[] entities)
     {
         foreach (var entity in entities)
         {
@@ -14,7 +14,7 @@ public class FachService : SessionService<FachService>
         return true;
     }
 
-    protected override bool Update(IStatelessSession session, params FachService[] entities)
+    protected override bool Update(IStatelessSession session, params FachEntity[] entities)
     {
         foreach (var entity in entities)
         {
@@ -23,7 +23,7 @@ public class FachService : SessionService<FachService>
         return true;
     }
 
-    protected override bool Delete(IStatelessSession session, params FachService[] entities)
+    protected override bool Delete(IStatelessSession session, params FachEntity[] entities)
     {
         foreach (var entity in entities)
         {
