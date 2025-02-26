@@ -3,12 +3,13 @@ using System.Security;
 using System.Text.RegularExpressions;
 using System.Windows;
 using System.Windows.Input;
+using YAFIT.Common.Extensions;
 using YAFIT.Common.UI.ViewModel;
 using YAFIT.Databases;
 using YAFIT.Databases.Classes;
 using YAFIT.Databases.Entities;
 using YAFIT.Databases.Services;
-using YAFIT.UI.ViewModels.Forms.Formular1;
+using YAFIT.UI.ViewModels.Forms;
 using YAFIT.UI.Views;
 using YAFIT.UI.Views.Forms.Formular1;
 using static System.Net.Mime.MediaTypeNames;
@@ -166,30 +167,31 @@ namespace YAFIT.UI.ViewModels
         /// </summary>
         private void DoAccountLogin()
         {
-            UserService userService = new UserService();
-            UserEntity? user = userService.GetEntity(x => x.Name == _userName);
-            if (user == null)
+            UserEntity? user = UserEntity.GetUserService().GetEntity(x => x.Name == _userName);
+            if (user != null)
             {
-                MessageBox.Show("Eintrag mit Namen " + _userName + " existiert nicht!");
-                return;
+                if (user.password == (SecurePassword?.ConvertToPlainText() ?? ""))
+                {
+                    MessageBox.Show("Login erfolgreich");
+                    if (user.isAdmin == true)
+                    {
+                        MessageBox.Show("Benutzer hat Adminrechte");
+                    }
+                    else
+                    {
+                        WindowNavigation.OpenTeacherWindow();
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("Passworteingabe ist falsch!");
+                }
             }
-
-
-            WindowNavigation.OpenTeacherWindow();
-            //WindowMain? windowMain = _view as WindowMain;
-            //Authentication auth = new Authentication(LoginUname, windowMain.PWBox.Password);
-
-            //if (auth.doLogin())
-            //{
-
-            //@TODO Differenzieren zwischen Admin und Lehrer
-            //}
-            //else
-            //{
-            //    MessageBox.Show("Login Fehlerhaft");
-            //}
+            else
+            {
+                MessageBox.Show("Der Benutzer " + _userName + " konnte nicht gefunden werden!");
+            }
             Debug.WriteLine(LoginUname);
-            //Debug.WriteLine(windowMain.PWBox.Password);
         }
         #endregion
 

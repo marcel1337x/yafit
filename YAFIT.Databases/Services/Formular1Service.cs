@@ -31,4 +31,7 @@ public class Formular1Service : SessionService<Formular1Entity>
         }
         return true;
     }
+
+    //TODO:
+    //Methode, die ein Formular anhand der UmfrageId holt
 }
