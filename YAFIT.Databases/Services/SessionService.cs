@@ -11,10 +11,10 @@ namespace YAFIT.Databases.Services
             return session.CreateCriteria<T>().List<T>();
         }
 
-        public IList<T> GetAllByCriteria(params Expression<Func<T, object>>[] expressions)
+        public IList<T> GetAllByCriteria(Expression<Func<T, bool>> expression)
         {
             using var session = SessionManager.Instance.OpenStatelessSession();
-            return session.QueryOver<T>().Fetch(expressions).List<T>();
+            return session.QueryOver<T>().Where(expression).List<T>();
         }
 
         public T? GetEntity(Expression<Func<T, bool>> expression)
