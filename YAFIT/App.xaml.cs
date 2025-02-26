@@ -2,6 +2,7 @@
 using YAFIT.Databases;
 using YAFIT.UI;
 using YAFIT.UI.ViewModels;
+using YAFIT.UI.ViewModels.Forms.Formular1;
 using YAFIT.UI.Views;
 using YAFIT.UI.Views.Forms.Formular1;
 
@@ -22,7 +23,7 @@ namespace YAFIT
         {
             if (SessionManager.Connect() == true)
             {
-                WindowNavigation.OpenSelectionWindow();
+                WindowNavigation.OpenLoginWindow();
             }
         }
 

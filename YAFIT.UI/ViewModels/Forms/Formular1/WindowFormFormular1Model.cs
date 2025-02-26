@@ -1,7 +1,7 @@
 ﻿using System.Windows;
 using YAFIT.Common.UI.ViewModel;
 
-namespace YAFIT.UI.ViewModels.Forms
+namespace YAFIT.UI.ViewModels.Forms.Formular1
 {
     internal class WindowFormFormular1Model : BaseViewModel
     {
