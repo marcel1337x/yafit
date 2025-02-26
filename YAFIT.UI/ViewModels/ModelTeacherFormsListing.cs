@@ -4,6 +4,7 @@ using System.Windows.Input;
 using YAFIT.Common.Enums;
 using YAFIT.Common.UI.ViewModel;
 using YAFIT.Data.Forms;
+using YAFIT.Databases.Entities;
 using YAFIT.Interfaces.Forms;
 using YAFIT.UI.Views;
 
@@ -45,6 +46,8 @@ namespace YAFIT.UI.ViewModels
             get { return _feedbackForms; }
             set { SetProperty("FeedbackForms", ref _feedbackForms, value); }
         }
+        
+        private UserEntity _user;
 
         /// <summary>
         /// Gibt den Index des ausgewählten Formulars an aus dem Datagrid
@@ -58,7 +61,7 @@ namespace YAFIT.UI.ViewModels
         /// Erstellt ein neues ViewModel für das Hauptfenster
         /// </summary>
         /// <param name="window">Das dazugehörige View</param>
-        public ModelTeacherFormsListing(Window window) : base(window)
+        public ModelTeacherFormsListing(Window window, UserEntity user) : base(window)
         {
             WindowCaption = "Feedback Listen";
 
@@ -66,6 +69,7 @@ namespace YAFIT.UI.ViewModels
             OnButtonSelectOpen = new RelayCommand(DoButtonSelectOpen);
             OnButtonNew = new RelayCommand(DoButtonNew);
             OnButtonLogout = new RelayCommand(DoButtonLogout);
+            _user = user;
 
             OnLoad();
         }
@@ -85,8 +89,14 @@ namespace YAFIT.UI.ViewModels
             
             ShowChildView(viewFormsSelection, modelFormsSelection, true);
 
-            FeedbackForms.Add(new Form { FormType = FeedbackFormType.First, ID = Guid.NewGuid(), TimeStamp = DateTime.Now });
-
+            UmfrageEntity umfrage = new UmfrageEntity();
+            umfrage.User = _user;
+            umfrage.ErstelltDatum = DateTime.Now;
+            umfrage.Schluessel = modelFormsSelection.CustomCode;
+            
+            UmfrageEntity.GetUmfrageService().Insert(umfrage);
+            OnLoad();
+            
             OnPropertyChanged(nameof(FeedbackForms));
         }
         #endregion
@@ -131,6 +141,9 @@ namespace YAFIT.UI.ViewModels
                 return;
             }
             //@TODO REMOVE FROM DATABASE
+            IList<UmfrageEntity> umfragen = UmfrageEntity.GetUmfrageService().GetAllByCriteria(x =>
+                x.Schluessel == feedbackForm.Code);
+            UmfrageEntity.GetUmfrageService().Delete(umfragen[0]);
             FeedbackForms.Remove(feedbackForm);
             SelectedIndex = -1;
             OnPropertyChanged(nameof(FeedbackForms));
@@ -155,7 +168,13 @@ namespace YAFIT.UI.ViewModels
         /// </summary>
         private void OnLoad()
         {
-            //@TODO Load from database
+            FeedbackForms.Clear();
+            IList<UmfrageEntity> umfragen = UmfrageEntity.GetUmfrageService().GetAllByCriteria(
+                x => x.User.Id == _user.Id);
+            foreach (UmfrageEntity umfrage in umfragen)
+            {
+                FeedbackForms.Add(new Form {FormType = FeedbackFormType.First, Code = umfrage.Schluessel, TimeStamp = umfrage.ErstelltDatum});
+            }
         }
 
         #endregion

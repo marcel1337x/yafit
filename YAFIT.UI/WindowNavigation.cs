@@ -1,5 +1,7 @@
 ﻿using System.Windows;
 using YAFIT.Common.UI.ViewModel;
+using YAFIT.Databases.Entities;
+using YAFIT.UI.ViewModels.Forms;
 using YAFIT.UI.ViewModels;
 using YAFIT.UI.Views.Forms.Formular1;
 using YAFIT.UI.Views;
@@ -34,10 +36,10 @@ namespace YAFIT.UI
             OpenWindow<WindowMain, WindowMainModel>();
         }
 
-        public static void OpenTeacherWindow()
+        public static void OpenTeacherWindow(UserEntity user)
         {
             ViewTeacherFormListing view = new ViewTeacherFormListing();
-            ModelTeacherFormsListing model = new ModelTeacherFormsListing(view);
+            ModelTeacherFormsListing model = new ModelTeacherFormsListing(view, user);
             view.DataContext = model;
             view.Show();
         }
