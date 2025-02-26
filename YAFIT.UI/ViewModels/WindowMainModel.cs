@@ -169,14 +169,6 @@ namespace YAFIT.UI.ViewModels
         {
             UserService userService = new UserService();
             UserEntity? user = userService.GetEntity(x => x.Name == _userName);
-            if (user == null)
-            {
-                MessageBox.Show("Eintrag mit Namen " + _userName + " existiert nicht!");
-                return;
-            }*/
-   
-            UserService userService = new UserService();
-            UserEntity? user = userService.GetEntity(x => x.Name == _userName);
             if (user != null && user.password == (SecurePassword?.ConvertToPlainText()??""))
             {
                 MessageBox.Show("Login erfolgreich");
