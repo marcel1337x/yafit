@@ -3,6 +3,7 @@ using FluentNHibernate.Cfg.Db;
 using NHibernate;
 using System.Reflection;
 using System.Runtime.InteropServices.Marshalling;
+using YAFIT.Databases.Classes;
 
 namespace YAFIT.Databases
 {
@@ -69,6 +70,8 @@ namespace YAFIT.Databases
 
         private bool Ping()
         {
+            DebugSeedDB seeder = new DebugSeedDB();
+            seeder.CheckAndPutRootUser();
             return true;
         }
 
