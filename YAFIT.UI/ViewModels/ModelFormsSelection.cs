@@ -1,7 +1,12 @@
-﻿using System.Windows;
+﻿using System.Collections.ObjectModel;
+using System.ComponentModel;
+using System.Runtime.CompilerServices;
+using System.Windows;
 using System.Windows.Input;
 using YAFIT.Common.Enums;
 using YAFIT.Common.UI.ViewModel;
+using YAFIT.Databases.Entities;
+using YAFIT.Databases.Services;
 
 namespace YAFIT.UI.ViewModels
 {
@@ -45,6 +50,9 @@ namespace YAFIT.UI.ViewModels
         {
             WindowCaption = "YAFIT - Feedbackauswahl";
             OnGenKey = new RelayCommand(DoGenKey);
+            
+            klassen = KlassenEntity. .GetAll().Select(x => x.Name).ToList();
+            
         }
 
         #endregion
@@ -96,6 +104,17 @@ namespace YAFIT.UI.ViewModels
             //@TODO Database Search for CustomCode/
             return true;
         }
+        
+
+        public string AusgewähltesFach
+        {
+            get => ausgewähltesFach;
+            set
+            {
+                ausgewähltesFach = value;
+                OnPropertyChanged(AusgewähltesFach);
+            }
+        }
 
         #endregion
 
@@ -105,6 +124,11 @@ namespace YAFIT.UI.ViewModels
 
         private string _customCode = string.Empty;
         private readonly Random _random = new Random();
+        
+        public string[] OptionenKlasse { get; set; }
+        public List<KlassenEntity> klassen = new List<KlassenEntity>();
+        
+        private string ausgewähltesFach;
         #endregion
     }
 }
