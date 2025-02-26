@@ -22,7 +22,7 @@ namespace YAFIT
         {
             if (SessionManager.Connect() == true)
             {
-                WindowNavigation.OpenLoginWindow();
+                WindowNavigation.OpenSelectionWindow();
             }
         }
 
