@@ -1,4 +1,5 @@
-﻿using NHibernate;
+﻿using System.Diagnostics;
+using NHibernate;
 using System.Linq.Expressions;
 
 namespace YAFIT.Databases.Services

@@ -51,7 +51,8 @@ namespace YAFIT.Databases
                             /* 2001:1640:18e:8000:be24:11ff:fe39:102a */
                             .Username("root")
                             .Password("yafit")//@TODO HASH PASSWORD
-                            ))
+                            ).ShowSql()
+                )
                 //Caching wenn nötig
                 .Cache(c => c.UseQueryCache()
                     .UseSecondLevelCache()
