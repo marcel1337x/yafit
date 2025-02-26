@@ -3,6 +3,7 @@ using System.Security;
 using System.Text.RegularExpressions;
 using System.Windows;
 using System.Windows.Input;
+using YAFIT.Common.Extensions;
 using YAFIT.Common.UI.ViewModel;
 using YAFIT.Databases;
 using YAFIT.Databases.Classes;
@@ -166,17 +167,17 @@ namespace YAFIT.UI.ViewModels
         /// </summary>
         private void DoAccountLogin()
         {
-            /* UserService userService = new UserService();
+            UserService userService = new UserService();
             UserEntity? user = userService.GetEntity(x => x.Name == _userName);
             if (user == null)
             {
                 MessageBox.Show("Eintrag mit Namen " + _userName + " existiert nicht!");
                 return;
             }*/
-            WindowMain? windowMain = _view as WindowMain;
+   
             UserService userService = new UserService();
-            UserEntity user = userService.getUserByName(_userName);
-            if (user != null & user.password.Equals(windowMain.PWBox.Password))
+            UserEntity? user = userService.GetEntity(x => x.Name == _userName);
+            if (user != null && user.password == (SecurePassword?.ConvertToPlainText()??""))
             {
                 MessageBox.Show("Login erfolgreich");
                 WindowNavigation.OpenTeacherWindow();
