@@ -167,40 +167,31 @@ namespace YAFIT.UI.ViewModels
         /// </summary>
         private void DoAccountLogin()
         {
-            /* UserService userService = new UserService();
-            UserEntity? user = userService.GetEntity(x => x.Name == _userName);
-            if (user == null)
+            UserEntity? user = UserEntity.GetUserService().GetEntity(x => x.Name == _userName);
+            if (user != null)
             {
-                MessageBox.Show("Eintrag mit Namen " + _userName + " existiert nicht!");
-                return;
-            }*/
-   
-            UserService userService = new UserService();
-            UserEntity? user = userService.GetEntity(x => x.Name == _userName);
-            if (user != null && user.password == (SecurePassword?.ConvertToPlainText()??""))
-            {
-                MessageBox.Show("Login erfolgreich");
-                WindowNavigation.OpenTeacherWindow();
+                if (user.password == (SecurePassword?.ConvertToPlainText() ?? ""))
+                {
+                    MessageBox.Show("Login erfolgreich");
+                    if (user.isAdmin == true)
+                    {
+                        MessageBox.Show("Benutzer hat Adminrechte");
+                    }
+                    else
+                    {
+                        WindowNavigation.OpenTeacherWindow();
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("Passworteingabe ist falsch!");
+                }
             }
             else
             {
-                MessageBox.Show("Login Fehlerhaft");
+                MessageBox.Show("Der Benutzer " + _userName + " konnte nicht gefunden werden!");
             }
-            
-            //
-            //Authentication auth = new Authentication(LoginUname, windowMain.PWBox.Password);
-
-            //if (auth.doLogin())
-            //{
-
-            //@TODO Differenzieren zwischen Admin und Lehrer
-            //}
-            //else
-            //{
-            //    MessageBox.Show("Login Fehlerhaft");
-            //}
             Debug.WriteLine(LoginUname);
-            //Debug.WriteLine(windowMain.PWBox.Password);
         }
         #endregion
 
