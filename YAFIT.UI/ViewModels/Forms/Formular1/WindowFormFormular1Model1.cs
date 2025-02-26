@@ -4,11 +4,10 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
 using YAFIT.Common.UI.ViewModel;
-using YAFIT.Databases.Entities;
 using YAFIT.UI.UserControls;
 using YAFIT.UI.Views.Forms.Formular1;
 
-namespace YAFIT.UI.ViewModels.Forms
+namespace YAFIT.UI.ViewModels.Forms.Formular1
 {
     /// <summary>
     /// ViewModel für das 1. Formular
@@ -25,8 +24,6 @@ namespace YAFIT.UI.ViewModels.Forms
 
         #region properties
 
-        private Formular1Entity form = new Formular1Entity();
-        
         /// <summary>
         /// Eine Eigenschaft, die die Antworten für die Textboxen enthält
         /// </summary>

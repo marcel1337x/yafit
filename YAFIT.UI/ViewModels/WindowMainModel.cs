@@ -3,13 +3,12 @@ using System.Security;
 using System.Text.RegularExpressions;
 using System.Windows;
 using System.Windows.Input;
-using YAFIT.Common.Extensions;
 using YAFIT.Common.UI.ViewModel;
 using YAFIT.Databases;
 using YAFIT.Databases.Classes;
 using YAFIT.Databases.Entities;
 using YAFIT.Databases.Services;
-using YAFIT.UI.ViewModels.Forms;
+using YAFIT.UI.ViewModels.Forms.Formular1;
 using YAFIT.UI.Views;
 using YAFIT.UI.Views.Forms.Formular1;
 using static System.Net.Mime.MediaTypeNames;
@@ -167,27 +166,17 @@ namespace YAFIT.UI.ViewModels
         /// </summary>
         private void DoAccountLogin()
         {
-            /* UserService userService = new UserService();
+            UserService userService = new UserService();
             UserEntity? user = userService.GetEntity(x => x.Name == _userName);
             if (user == null)
             {
                 MessageBox.Show("Eintrag mit Namen " + _userName + " existiert nicht!");
                 return;
-            }*/
-   
-            UserService userService = new UserService();
-            UserEntity? user = userService.GetEntity(x => x.Name == _userName);
-            if (user != null && user.password == (SecurePassword?.ConvertToPlainText()??""))
-            {
-                MessageBox.Show("Login erfolgreich");
-                WindowNavigation.OpenTeacherWindow();
             }
-            else
-            {
-                MessageBox.Show("Login Fehlerhaft");
-            }
-            
-            //
+
+
+            WindowNavigation.OpenTeacherWindow();
+            //WindowMain? windowMain = _view as WindowMain;
             //Authentication auth = new Authentication(LoginUname, windowMain.PWBox.Password);
 
             //if (auth.doLogin())
