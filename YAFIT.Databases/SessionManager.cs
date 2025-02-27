@@ -80,6 +80,7 @@ namespace YAFIT.Databases
         {
             DebugSeedDB seeder = new DebugSeedDB();
             seeder.CheckAndPutRootUser();
+            seeder.InsertTestRegisterCode();
             return true;
         }
 

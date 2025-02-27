@@ -1,0 +1,36 @@
+﻿<Window x:Class="YAFIT.UI.Views.ViewRegisterCode"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:YAFIT.UI.Views"
+        mc:Ignorable="d"
+        SizeToContent="WidthAndHeight"
+        Title="ViewRegisterCode" Height="126" Width="257">
+    <Grid Margin="5">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition />
+            <ColumnDefinition />
+        </Grid.ColumnDefinitions>
+        <Border Background="AliceBlue" CornerRadius="2" 
+                BorderThickness="1"
+                BorderBrush="DarkCyan" Grid.ColumnSpan="2"
+                Margin="2">
+
+            <DockPanel LastChildFill="true" Margin="5">
+                <StackPanel Orientation="Vertical">
+                    <Label Content="Gebe den Registrierungscode ein:" Margin="-5"/>
+                    <TextBox Text="{Binding RegisterCode}" />
+                </StackPanel>
+            </DockPanel>
+        </Border>
+
+        <Button Width="120" Grid.Row="1" Command="{Binding OnRegister}" Content="Registrieren"/>
+        <Button Width="120" Grid.Row="1" Command="{Binding OnCancel}" Content="Abbrechen" Grid.Column="1"/>
+
+    </Grid>
+</Window>
