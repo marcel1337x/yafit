@@ -1,0 +1,52 @@
+<mxfile host="app.diagrams.net" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:134.0) Gecko/20100101 Firefox/134.0" version="26.0.16">
+  <diagram name="Seite-1" id="Jj4xXdSNCB52oUgN3IUD">
+    <mxGraphModel dx="1050" dy="634" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="3300" pageHeight="4681" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="cQmvh3hyG63FEJ4s5Tl2-5" value="User" style="swimlane;childLayout=stackLayout;horizontal=1;startSize=50;horizontalStack=0;rounded=1;fontSize=14;fontStyle=0;strokeWidth=2;resizeParent=0;resizeLast=1;shadow=0;dashed=0;align=center;arcSize=4;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+          <mxGeometry x="240" y="120" width="160" height="230" as="geometry" />
+        </mxCell>
+        <mxCell id="cQmvh3hyG63FEJ4s5Tl2-6" value="&lt;div&gt;int: id&lt;/div&gt;&lt;div&gt;string: name&lt;/div&gt;&lt;div&gt;bool: isAdmin&lt;/div&gt;&lt;div&gt;string: password&lt;br&gt;&lt;/div&gt;" style="align=left;strokeColor=none;fillColor=none;spacingLeft=4;spacingRight=4;fontSize=12;verticalAlign=top;resizable=0;rotatable=0;part=1;html=1;whiteSpace=wrap;" parent="cQmvh3hyG63FEJ4s5Tl2-5" vertex="1">
+          <mxGeometry y="50" width="160" height="180" as="geometry" />
+        </mxCell>
+        <mxCell id="cQmvh3hyG63FEJ4s5Tl2-9" value="Klassen" style="swimlane;childLayout=stackLayout;horizontal=1;startSize=50;horizontalStack=0;rounded=1;fontSize=14;fontStyle=0;strokeWidth=2;resizeParent=0;resizeLast=1;shadow=0;dashed=0;align=center;arcSize=4;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+          <mxGeometry x="240" y="430" width="160" height="230" as="geometry" />
+        </mxCell>
+        <mxCell id="cQmvh3hyG63FEJ4s5Tl2-10" value="&lt;div&gt;int: id&lt;/div&gt;&lt;div&gt;string: name&lt;br&gt;&lt;/div&gt;" style="align=left;strokeColor=none;fillColor=none;spacingLeft=4;spacingRight=4;fontSize=12;verticalAlign=top;resizable=0;rotatable=0;part=1;html=1;whiteSpace=wrap;" parent="cQmvh3hyG63FEJ4s5Tl2-9" vertex="1">
+          <mxGeometry y="50" width="160" height="180" as="geometry" />
+        </mxCell>
+        <mxCell id="cQmvh3hyG63FEJ4s5Tl2-11" value="Umfrage" style="swimlane;childLayout=stackLayout;horizontal=1;startSize=50;horizontalStack=0;rounded=1;fontSize=14;fontStyle=0;strokeWidth=2;resizeParent=0;resizeLast=1;shadow=0;dashed=0;align=center;arcSize=4;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+          <mxGeometry x="440" y="120" width="160" height="230" as="geometry" />
+        </mxCell>
+        <mxCell id="cQmvh3hyG63FEJ4s5Tl2-12" value="&lt;div&gt;int: id&lt;/div&gt;&lt;div&gt;string: schluessel&lt;/div&gt;&lt;div&gt;int: formulartyp&lt;br&gt;&lt;/div&gt;&lt;div&gt;&lt;u&gt;int: userId&lt;/u&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;&lt;u&gt;int: klassenId&lt;br&gt;&lt;/u&gt;&lt;/div&gt;&lt;div&gt;&lt;u&gt;int: abteilungsId&lt;/u&gt;&lt;/div&gt;&lt;div&gt;&lt;u&gt;int: fachId&lt;/u&gt;&lt;/div&gt;&lt;div&gt;Datetime: erstelldatum&lt;br&gt;&lt;/div&gt;" style="align=left;strokeColor=none;fillColor=none;spacingLeft=4;spacingRight=4;fontSize=12;verticalAlign=top;resizable=0;rotatable=0;part=1;html=1;whiteSpace=wrap;" parent="cQmvh3hyG63FEJ4s5Tl2-11" vertex="1">
+          <mxGeometry y="50" width="160" height="180" as="geometry" />
+        </mxCell>
+        <mxCell id="cQmvh3hyG63FEJ4s5Tl2-13" value="Abteilung" style="swimlane;childLayout=stackLayout;horizontal=1;startSize=50;horizontalStack=0;rounded=1;fontSize=14;fontStyle=0;strokeWidth=2;resizeParent=0;resizeLast=1;shadow=0;dashed=0;align=center;arcSize=4;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+          <mxGeometry x="440" y="430" width="160" height="230" as="geometry" />
+        </mxCell>
+        <mxCell id="cQmvh3hyG63FEJ4s5Tl2-14" value="&lt;div&gt;int: id&lt;/div&gt;&lt;div&gt;string: name&lt;br&gt;&lt;/div&gt;" style="align=left;strokeColor=none;fillColor=none;spacingLeft=4;spacingRight=4;fontSize=12;verticalAlign=top;resizable=0;rotatable=0;part=1;html=1;whiteSpace=wrap;" parent="cQmvh3hyG63FEJ4s5Tl2-13" vertex="1">
+          <mxGeometry y="50" width="160" height="180" as="geometry" />
+        </mxCell>
+        <mxCell id="cQmvh3hyG63FEJ4s5Tl2-15" value="Fach" style="swimlane;childLayout=stackLayout;horizontal=1;startSize=50;horizontalStack=0;rounded=1;fontSize=14;fontStyle=0;strokeWidth=2;resizeParent=0;resizeLast=1;shadow=0;dashed=0;align=center;arcSize=4;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+          <mxGeometry x="640" y="430" width="160" height="230" as="geometry" />
+        </mxCell>
+        <mxCell id="cQmvh3hyG63FEJ4s5Tl2-16" value="&lt;div&gt;int: id&lt;/div&gt;&lt;div&gt;string: name&lt;br&gt;&lt;/div&gt;" style="align=left;strokeColor=none;fillColor=none;spacingLeft=4;spacingRight=4;fontSize=12;verticalAlign=top;resizable=0;rotatable=0;part=1;html=1;whiteSpace=wrap;" parent="cQmvh3hyG63FEJ4s5Tl2-15" vertex="1">
+          <mxGeometry y="50" width="160" height="180" as="geometry" />
+        </mxCell>
+        <mxCell id="cQmvh3hyG63FEJ4s5Tl2-17" value="Formular1" style="swimlane;childLayout=stackLayout;horizontal=1;startSize=50;horizontalStack=0;rounded=1;fontSize=14;fontStyle=0;strokeWidth=2;resizeParent=0;resizeLast=1;shadow=0;dashed=0;align=center;arcSize=4;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+          <mxGeometry x="640" y="120" width="160" height="230" as="geometry" />
+        </mxCell>
+        <mxCell id="cQmvh3hyG63FEJ4s5Tl2-18" value="&lt;div&gt;int: id&lt;/div&gt;&lt;div&gt;&lt;u&gt;int: umfrageId&lt;/u&gt;&lt;/div&gt;&lt;div&gt;...&lt;u&gt;&lt;br&gt;&lt;/u&gt;&lt;/div&gt;&lt;div&gt;...&lt;/div&gt;&lt;div&gt;...&lt;br&gt;&lt;/div&gt;" style="align=left;strokeColor=none;fillColor=none;spacingLeft=4;spacingRight=4;fontSize=12;verticalAlign=top;resizable=0;rotatable=0;part=1;html=1;whiteSpace=wrap;" parent="cQmvh3hyG63FEJ4s5Tl2-17" vertex="1">
+          <mxGeometry y="50" width="160" height="180" as="geometry" />
+        </mxCell>
+        <mxCell id="KddOKsnxaT2q98kWcPnf-1" value="Register" style="swimlane;childLayout=stackLayout;horizontal=1;startSize=50;horizontalStack=0;rounded=1;fontSize=14;fontStyle=0;strokeWidth=2;resizeParent=0;resizeLast=1;shadow=0;dashed=0;align=center;arcSize=4;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="840" y="120" width="160" height="230" as="geometry" />
+        </mxCell>
+        <mxCell id="KddOKsnxaT2q98kWcPnf-2" value="&lt;div&gt;int: id&lt;/div&gt;&lt;div&gt;string: Code&lt;br&gt;&lt;/div&gt;" style="align=left;strokeColor=none;fillColor=none;spacingLeft=4;spacingRight=4;fontSize=12;verticalAlign=top;resizable=0;rotatable=0;part=1;html=1;whiteSpace=wrap;" vertex="1" parent="KddOKsnxaT2q98kWcPnf-1">
+          <mxGeometry y="50" width="160" height="180" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
