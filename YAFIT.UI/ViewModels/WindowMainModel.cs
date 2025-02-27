@@ -147,14 +147,26 @@ namespace YAFIT.UI.ViewModels
         /// </summary>
         private void DoAccountRegister()
         {
-            //@TODO Datenbank anbinden & besser machen
-            WindowMain? windowMain = _view as WindowMain;
-            //Authentication auth = new Authentication(LoginUname, windowMain.PWBox.Password);
-
-            //authentications.Add(auth);
-
-            MessageBox.Show("Account " + LoginUname + " registriert!");
+            if (string.IsNullOrEmpty(LoginUname) == true)
+            {
+                MessageBox.Show("Gebe einen Benutzernamen an um fortzufahren!");
+                return;
+            }
+            if (string.IsNullOrEmpty(SecurePassword?.ConvertToPlainText() ?? "") == true)
+            {
+                MessageBox.Show("Gebe ein Passwort ein um fortzufahren!");
+                return;
+            }
+            ViewRegisterCode view = new ();
+            ModelRegisterCode model = new (view, this);
+            ShowChildView(view, model);
+            if (model.IsSuccessful == false)
+            {
+                MessageBox.Show("Registrierung ist fehlgeschlagen!");
+                return;
+            }
             DoAccountLogin();
+
         }
         #endregion
 

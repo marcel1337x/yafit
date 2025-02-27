@@ -25,4 +25,17 @@ public class DebugSeedDB
             UserEntity.GetUserService().Insert(rootUser);
         }
     }
+
+    public void InsertTestRegisterCode()
+    {
+        RegisterEntity register = new RegisterEntity()
+        {
+            Code = "123"
+        };
+
+        if(RegisterEntity.GetRegisterService().GetEntity(x => x.Code == "123") == null)
+        {
+            RegisterEntity.GetRegisterService().Insert(register);
+        }
+    }
 }
