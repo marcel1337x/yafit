@@ -93,6 +93,7 @@ namespace YAFIT.UI.ViewModels
             umfrage.User = _user;
             umfrage.ErstelltDatum = DateTime.Now;
             umfrage.Schluessel = modelFormsSelection.CustomCode;
+            umfrage.Formulartyp = (int) modelFormsSelection.GetSelectedForm();
             
             UmfrageEntity.GetUmfrageService().Insert(umfrage);
             OnLoad();

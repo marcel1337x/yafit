@@ -12,6 +12,7 @@ public class UmfrageMapping : ClassMap<UmfrageEntity>
         References(x => x.Klassen);
         References(x => x.Abteilung);
         References(x => x.Fach);
+        Map(x => x.Formulartyp).Not.Nullable();
         Map(x => x.Schluessel).Not.Nullable();
         Map(x => x.ErstelltDatum);
     }
