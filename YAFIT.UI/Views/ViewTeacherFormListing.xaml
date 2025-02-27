@@ -37,8 +37,8 @@
                         <MouseBinding Gesture="LeftDoubleClick" Command="{Binding OnButtonSelectOpen}"/>
                     </DataGrid.InputBindings>
                     <DataGrid.Columns>
-                        <DataGridTextColumn Binding="{Binding Form, Converter={StaticResource FormTypeToString}}" Header="Formular Name" Width="Auto"/>
-                        <DataGridTextColumn Binding="{Binding ID}" Header="Schlüssel" Width="*"/>
+                        <DataGridTextColumn Binding="{Binding FormType, Converter={StaticResource FormTypeToString}}" Header="Formular Name" Width="Auto"/>
+                        <DataGridTextColumn Binding="{Binding Code}" Header="Schlüssel" Width="*"/>
                         <DataGridTextColumn Binding="{Binding TimeStamp, StringFormat={}{0:dd:MM:yyyy HH:mm}}" Header="Datum" Width="Auto"/>
                     </DataGrid.Columns>
                 </DataGrid>

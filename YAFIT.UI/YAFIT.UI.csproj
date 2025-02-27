@@ -16,7 +16,13 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Compile Update="UserControls\FormEntryIntCheckboxDouble.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Update="UserControls\FormEntryTextCheckboxDouble.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="UserControls\FormEntryIntCheckboxSingle.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
   </ItemGroup>
