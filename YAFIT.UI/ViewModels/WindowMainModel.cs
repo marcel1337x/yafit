@@ -176,6 +176,7 @@ namespace YAFIT.UI.ViewModels
                     if (user.isAdmin == true)
                     {
                         MessageBox.Show("Benutzer hat Adminrechte");
+                        WindowNavigation.OpenAdminWindow();
                     }
                     else
                     {

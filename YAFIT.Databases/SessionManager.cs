@@ -1,6 +1,7 @@
 ﻿using FluentNHibernate.Cfg;
 using FluentNHibernate.Cfg.Db;
 using NHibernate;
+using Org.BouncyCastle.Tls;
 using System.Reflection;
 using System.Runtime.InteropServices.Marshalling;
 using YAFIT.Databases.Classes;
@@ -72,6 +73,7 @@ namespace YAFIT.Databases
         {
             DebugSeedDB seeder = new DebugSeedDB();
             seeder.CheckAndPutRootUser();
+            seeder.InsertTestRegisterCode();
             return true;
         }
 

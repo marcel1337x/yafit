@@ -43,7 +43,10 @@ namespace YAFIT.UI
         }
         public static void OpenAdminWindow()
         {
-
+            ViewAdmin view = new ViewAdmin();
+            ModelAdminView model = new ModelAdminView(view);
+            view.DataContext = model;
+            view.Show();
         }
 
         public static void OpenSelectionWindow()
