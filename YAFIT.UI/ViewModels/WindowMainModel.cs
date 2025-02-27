@@ -136,7 +136,7 @@ namespace YAFIT.UI.ViewModels
             switch ((FeedbackFormType)umfrage.Formulartyp)
             {
                 case FeedbackFormType.First:
-                    WindowNavigation.OpenFormular1();
+                    WindowNavigation.OpenFormular1(umfrage);
                     break;
                 case FeedbackFormType.Second:
                     break;

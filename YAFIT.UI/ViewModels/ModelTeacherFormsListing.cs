@@ -117,10 +117,10 @@ namespace YAFIT.UI.ViewModels
             switch (feedbackForm.FormType)
             {
                 case FeedbackFormType.First:
-                    WindowNavigation.OpenFormular1();
+
                     break;
                 case FeedbackFormType.Second:
-                    WindowNavigation.OpenFormular2();
+
                     break;
             }
             //@TODO Open Window
