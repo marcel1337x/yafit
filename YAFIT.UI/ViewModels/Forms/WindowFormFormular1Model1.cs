@@ -5,6 +5,7 @@ using System.Windows.Controls;
 using System.Windows.Input;
 using YAFIT.Common.UI.ViewModel;
 using YAFIT.Databases.Entities;
+using YAFIT.Databases.Services;
 using YAFIT.UI.UserControls;
 using YAFIT.UI.Views.Forms.Formular1;
 
@@ -43,8 +44,9 @@ namespace YAFIT.UI.ViewModels.Forms
         /// Erstellt ein neues ViewModel für das Hauptfenster
         /// </summary>
         /// <param name="window">Das dazugehörige View</param>
-        public WindowFormFormular1Model1(Window window) : base(window)
+        public WindowFormFormular1Model1(Window window, UmfrageEntity umfrage) : base(window)
         {
+            _umfrage = umfrage;
             OnLoad();
             OnSendResult = new RelayCommand(DoSendResult);
         }
@@ -66,6 +68,45 @@ namespace YAFIT.UI.ViewModels.Forms
             }
             
             byte[] results = GetButtonsResults();
+
+            form.VerhaltenLehrer0 = (int)results[0];
+            form.VerhaltenLehrer1 = (int)results[1];
+            form.VerhaltenLehrer2 = (int)results[2];
+            form.VerhaltenLehrer3 = (int)results[3];
+            form.VerhaltenLehrer4 = (int)results[4];
+            form.VerhaltenLehrer5 = (int)results[5];
+            form.DieLehrer0 = (int)results[6];
+            form.DieLehrer1 = (int)results[7];
+            form.DieLehrer2 = (int)results[8];
+            form.DieLehrer3 = (int)results[9];
+            form.DieLehrer4 = (int)results[10];
+            form.Unterricht0 = (int)results[11];
+            form.Unterricht1 = (int)results[12];
+            form.Unterricht2 = (int)results[13];
+            form.Unterricht3 = (int)results[14];
+            form.Unterricht4 = (int)results[15];
+            form.Unterricht5 = (int)results[16];
+            form.Unterricht6 = (int)results[17];
+            form.Unterricht7 = (int)results[18];
+            form.Unterricht8 = (int)results[19];
+            form.Bewertung0 = (int)results[20];
+            form.Bewertung1 = (int)results[21];
+            form.Bewertung2 = (int)results[22];
+
+            // Textfelder hinzufügen
+            form.Text0 = TextBoxQuestions[0];
+            form.Text1 = TextBoxQuestions[1];
+            form.Text2 = TextBoxQuestions[2];
+
+            form.Umfrage = _umfrage;
+
+            // Speichern in der Datenbank
+            Formular1Entity.GetFormular1Service().Insert(form);
+
+            
+
+
+
             Debug.WriteLine(string.Join("\n", results));
             CloseView();
         }
@@ -205,7 +246,7 @@ namespace YAFIT.UI.ViewModels.Forms
         #region member variables
 
         private string[] _textBoxQuestions = [string.Empty, string.Empty, string.Empty];
-
+        private readonly UmfrageEntity _umfrage;
 
         private static readonly string[][] _presetGroup1 = [
             ["Sie/Er ist...", "...ungeduldig"],
