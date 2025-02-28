@@ -1,0 +1,176 @@
+﻿<Window x:Class="YAFIT.UI.Views.ViewAdmin"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:YAFIT.UI.Views"
+        xmlns:converter="clr-namespace:YAFIT.UI.Converter"
+        mc:Ignorable="d"
+        Title="{Binding WindowCaption}" Height="450" Width="800">
+    <Window.Resources>
+        <converter:BoolToStringConverter x:Key="BoolToString"/>
+    </Window.Resources>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+        
+        <Border Margin="5"
+            Background="AliceBlue" CornerRadius="2"
+            BorderThickness="1"
+            BorderBrush="DarkCyan">
+            <Label Content="Verwaltung"></Label>
+        </Border>
+        
+        <TabControl Grid.Row="1"
+            Margin="5"
+            Background="AliceBlue" 
+            BorderThickness="1"
+            BorderBrush="DarkCyan">
+            <TabItem Header="Benutzer">
+                <Grid>
+                    <DataGrid Margin="5"
+                    ItemsSource="{Binding UserList, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
+                    SelectedIndex="{Binding SelectedUserIndex, Mode=TwoWay}"
+                    AutoGenerateColumns="False"
+                    CanUserAddRows="False"
+                    SelectionMode="Single"
+                    SelectionUnit="FullRow"
+                    IsReadOnly="True">
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Binding="{Binding Name}"  Header="Benutzer Name" Width="Auto"/>
+                            <DataGridTextColumn Binding="{Binding IsAdmin, Converter={StaticResource BoolToString}}"  Header="Ist Admin" Width="Auto"/>
+                        </DataGrid.Columns>
+                    </DataGrid>
+
+                    <StackPanel Grid.Row="1" 
+                    Orientation="Horizontal" 
+                    Margin="15,0,5,15"
+                    Height="20"
+                    HorizontalAlignment="Left"
+                    VerticalAlignment="Bottom">
+                        <Button Width="120" Command="{Binding OnButtonPasswordChange}" Content="Passwort zurücksetzen" Margin="0,0,5,0"/>
+                        <Button Width="120" Command="{Binding OnButtonDeleteUser}" Content="Benutzer Löschen"/>
+                    </StackPanel>
+                </Grid>
+            </TabItem>
+            <TabItem Header="Registrierungsschlüssel">
+                <Grid>
+                    <DataGrid Margin="5"
+                    ItemsSource="{Binding RegisterList, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
+                    SelectedIndex="{Binding SelectedRegisterIndex, Mode=TwoWay}"
+                    AutoGenerateColumns="False"
+                    CanUserAddRows="False"
+                    SelectionMode="Single"
+                    SelectionUnit="FullRow">
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Binding="{Binding Code}"  Header="Registrierungsschlüssel" Width="Auto"/>
+                        </DataGrid.Columns>
+                    </DataGrid>
+
+                    <StackPanel Grid.Row="1" 
+                    Orientation="Horizontal" 
+                    Margin="15,0,5,15"
+                    Height="20"
+                    HorizontalAlignment="Left"
+                    VerticalAlignment="Bottom">
+                        <Button Width="120" Command="{Binding OnButtonNewRegister}" Content="Neuer Registrierungsschlüssel" Margin="0,0,5,0"/>
+                        <Button Width="120" Command="{Binding OnButtonDeleteRegister}" Content="Löschen Registrierungsschlüssel"/>
+                    </StackPanel>
+                </Grid>
+            </TabItem>
+            <TabItem Header="Klassen">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"></RowDefinition>
+                        <RowDefinition Height="*"></RowDefinition>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+
+                    <DataGrid Margin="5"
+                        ItemsSource="{Binding KlassenList, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
+                        SelectedIndex="{Binding SelectedKlasseIndex, Mode=TwoWay}"
+                        AutoGenerateColumns="False"
+                        CanUserAddRows="False"
+                        SelectionMode="Single"
+                        IsReadOnly="True">
+                        <DataGrid.Columns>
+                        <DataGridTextColumn Binding="{Binding Name}"  Header="Klasse" Width="Auto"/>
+                    </DataGrid.Columns>
+                    </DataGrid>
+                    <StackPanel Grid.Row="1" 
+                        Orientation="Horizontal" 
+                        Margin="15,0,5,15"
+                        Height="20"
+                        HorizontalAlignment="Left"
+                        VerticalAlignment="Bottom">
+                    <Button Width="120" Command="{Binding OnButtonNewKlasse}" Content="Neue Klasse" Margin="0,0,5,0"/>
+                    <Button Width="120" Command="{Binding OnButtonDeleteKlasse}" Content="Klasse Löschen"/>
+                </StackPanel>
+            </Grid>
+        </TabItem>
+            <TabItem Header="Abteilung">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"></RowDefinition>
+                        <RowDefinition Height="*"></RowDefinition>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+                    <DataGrid Margin="5"
+                        ItemsSource="{Binding AbteilungList, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
+                        SelectedIndex="{Binding SelectedAbteilungIndex, Mode=TwoWay}"
+                        AutoGenerateColumns="False"
+                        CanUserAddRows="False"
+                        SelectionMode="Single"
+                        IsReadOnly="True">
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Binding="{Binding Name}"  Header="Abteilung" Width="Auto"/>
+                        </DataGrid.Columns>
+                    </DataGrid>
+                    <StackPanel Grid.Row="1" 
+                        Orientation="Horizontal" 
+                        Margin="15,0,5,15"
+                        Height="20"
+                        HorizontalAlignment="Left"
+                        VerticalAlignment="Bottom">
+                        <Button Width="120" Command="{Binding OnButtonNewAbteilung}" Content="Neue Abteilung" Margin="0,0,5,0"/>
+                        <Button Width="120" Command="{Binding OnButtonDeleteAbteilung}" Content="Abteilung Löschen"/>
+                    </StackPanel>
+                </Grid>
+            </TabItem>
+            <TabItem Header="Fach">
+                <Grid>
+                    <DataGrid Margin="5"
+                            ItemsSource="{Binding FachList, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
+                            SelectedIndex="{Binding SelectedFachIndex, Mode=TwoWay}"
+                            AutoGenerateColumns="False"
+                            CanUserAddRows="False"
+                            SelectionMode="Single"
+                            IsReadOnly="True">
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Binding="{Binding Name}"  Header="Fach" Width="Auto"/>
+                        </DataGrid.Columns>
+                    </DataGrid>
+                    
+                    <StackPanel Grid.Row="1" 
+                        Orientation="Horizontal" 
+                        Margin="15,0,5,15"
+                        Height="20"
+                        HorizontalAlignment="Left"
+                        VerticalAlignment="Bottom">
+                        <Button Width="120" Command="{Binding OnButtonNewFach}" Content="Neues Fach" Margin="0,0,5,0"/>
+                        <Button Width="120" Command="{Binding OnButtonDeleteFach}" Content="Fach Löschen"/>
+                    </StackPanel>
+                </Grid>
+            </TabItem>
+        </TabControl>
+
+        <Button Width="120" Command="{Binding OnButtonLogout}" Grid.Row="2" Content="Logout" HorizontalAlignment="Right" Margin="5"/>
+    </Grid>
+</Window>

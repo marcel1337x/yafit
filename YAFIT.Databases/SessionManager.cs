@@ -2,6 +2,7 @@
 using FluentNHibernate.Cfg.Db;
 using FluentNHibernate.Conventions.Helpers;
 using NHibernate;
+using Org.BouncyCastle.Tls;
 using System.Reflection;
 using System.Runtime.InteropServices.Marshalling;
 using YAFIT.Databases.Classes;

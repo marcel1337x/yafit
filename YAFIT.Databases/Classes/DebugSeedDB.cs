@@ -32,8 +32,7 @@ public class DebugSeedDB
         {
             Code = "123"
         };
-
-        if(RegisterEntity.GetRegisterService().GetEntity(x => x.Code == "123") == null)
+        if (RegisterEntity.GetRegisterService().GetEntity(x => x.Code == "123") == null)
         {
             RegisterEntity.GetRegisterService().Insert(register);
         }
