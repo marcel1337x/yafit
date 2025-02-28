@@ -1,5 +1,6 @@
 ﻿using FluentNHibernate.Cfg;
 using FluentNHibernate.Cfg.Db;
+using FluentNHibernate.Conventions.Helpers;
 using NHibernate;
 using System.Reflection;
 using System.Runtime.InteropServices.Marshalling;
@@ -58,7 +59,8 @@ namespace YAFIT.Databases
                     .UseSecondLevelCache()
                     .ProviderClass<NHibernate.Cache.HashtableCacheProvider>())
                 //Mappings für die jeweiligen Entitäten in der Datenbank
-                .Mappings(m => m.FluentMappings.AddFromAssembly(Assembly.GetExecutingAssembly()))
+                .Mappings(m => m.FluentMappings.AddFromAssembly(Assembly.GetExecutingAssembly())
+                    .Conventions.Add(DefaultCascade.All()))
                 .ExposeConfiguration(BuildSchema)
                 ;
 

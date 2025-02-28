@@ -1,6 +1,11 @@
-﻿using System.Windows;
+﻿using FluentNHibernate.MappingModel.Collections;
+using System.ComponentModel;
+using System.Reflection;
+using System.Windows;
 using System.Windows.Controls;
 using YAFIT.Common.UI.ViewModel;
+using YAFIT.Databases.Attributes;
+using YAFIT.Databases.Entities;
 using YAFIT.UI.UserControls;
 using YAFIT.UI.Views.Forms.Formular1;
 
@@ -8,8 +13,9 @@ namespace YAFIT.UI.ViewModels.Forms.Formular1
 {
     public class WindowFormFormular1ResultModel : BaseViewModel
     {
-        public WindowFormFormular1ResultModel(Window window) : base(window)
+        public WindowFormFormular1ResultModel(Window window, UmfrageEntity umfrage) : base(window)
         {
+            _umfrage = umfrage;
             OnLoad();
         }
         #region private methods
@@ -24,7 +30,43 @@ namespace YAFIT.UI.ViewModels.Forms.Formular1
             if (_view is Formular1Result formular == false)
             {
                 return;
+            }
 
+            //FieldInfo? field = formType.GetType().GetField(formType.ToString());
+            //if (field != null)
+            //{
+            //    DescriptionAttribute? attribute = Attribute.GetCustomAttribute(field, typeof(DescriptionAttribute)) as DescriptionAttribute;
+            //    return attribute?.Description ?? DEFAULT_VALUE;
+            //}
+
+            //Aus der Datenbank laden
+            IList<Formular1Entity> entities = Formular1Entity.GetFormular1Service()
+                .GetAllByCriteria(x => x.Umfrage.Id == _umfrage.Id);
+            Type type = typeof(Formular1Entity);
+            int[][] results = [.. Enumerable.Range(0, _presetGroup1.Length + _presetGroup2.Length + _presetGroup3.Length + _presetGroup4.Length+1)
+                .Select(x => new int[] { 0, 0, 0, 0, 0 })];
+            foreach (Formular1Entity entity in entities)
+            {
+                PropertyInfo[] properties = type.GetProperties();
+                foreach (PropertyInfo property in properties)
+                {
+                    ValueBindingAttribute? attribute = property.GetCustomAttribute<ValueBindingAttribute>();
+                    if (attribute == null)
+                    {
+                        continue;
+                    }
+                    object? value = property.GetValue(entity);
+                    if (value == null)
+                    {
+                        continue;
+                    }
+
+                    if (value is int intValue)
+                    {
+                        int index = attribute.Index;
+                        results[index][intValue] += 1;
+                    }
+                }
             }
             //Fragen Gruppe 1
             {
@@ -32,10 +74,14 @@ namespace YAFIT.UI.ViewModels.Forms.Formular1
                 stackPanel.Children.Clear();
                 for (int i = 0; i < _presetGroup1.Length; i++)
                 {
+                    int[] result = results[i];
+
                     FormEntryIntCheckboxDouble formEntryTextCheckBox = new()
                     {
                         Text1 = _presetGroup1[i][0],
-                        Text2 = _presetGroup1[i][1]
+                        Text2 = _presetGroup1[i][1],
+                        Results = result
+
                     };
                     stackPanel.Children.Add(formEntryTextCheckBox);
                 }
@@ -46,9 +92,11 @@ namespace YAFIT.UI.ViewModels.Forms.Formular1
                 stackPanel.Children.Clear();
                 for (int i = 0; i < _presetGroup2.Length; i++)
                 {
+                    int[] result = results[_presetGroup1.Length + i];
                     FormEntryIntCheckboxSingle formEntryTextCheckBox = new()
                     {
-                        Text1 = _presetGroup2[i]
+                        Text1 = _presetGroup2[i],
+                        Results = result
                     };
                     stackPanel.Children.Add(formEntryTextCheckBox);
                 }
@@ -60,9 +108,11 @@ namespace YAFIT.UI.ViewModels.Forms.Formular1
                 stackPanel.Children.Clear();
                 for (int i = 0; i < _presetGroup3.Length; i++)
                 {
+                    int[] result = results[_presetGroup1.Length + _presetGroup2.Length + i];
                     FormEntryIntCheckboxSingle formEntryTextCheckBox = new()
                     {
-                        Text1 = _presetGroup3[i]
+                        Text1 = _presetGroup3[i],
+                        Results = result
                     };
                     stackPanel.Children.Add(formEntryTextCheckBox);
                 }
@@ -73,9 +123,11 @@ namespace YAFIT.UI.ViewModels.Forms.Formular1
                 stackPanel.Children.Clear();
                 for (int i = 0; i < _presetGroup4.Length; i++)
                 {
+                    int[] result = results[_presetGroup1.Length + _presetGroup2.Length + _presetGroup3.Length + i];
                     FormEntryIntCheckboxSingle formEntryTextCheckBox = new()
                     {
-                        Text1 = _presetGroup4[i]
+                        Text1 = _presetGroup4[i],
+                        Results = result
                     };
                     stackPanel.Children.Add(formEntryTextCheckBox);
                 }
@@ -88,6 +140,7 @@ namespace YAFIT.UI.ViewModels.Forms.Formular1
 
         #region member variables
 
+        private readonly UmfrageEntity _umfrage;
         private string[] _textBoxQuestions = [string.Empty, string.Empty, string.Empty];
 
 

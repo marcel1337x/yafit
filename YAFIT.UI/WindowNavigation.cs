@@ -59,7 +59,14 @@ namespace YAFIT.UI
         public static void OpenFormular1(UmfrageEntity umfrage)
         {
             Formular1_1 view = new Formular1_1();
-            WindowFormFormular1Model1 model = new WindowFormFormular1Model1(view,umfrage);
+            WindowFormFormular1Model1 model = new WindowFormFormular1Model1(view, umfrage);
+            view.DataContext = model;
+            view.Show();
+        }
+        public static void OpenFormular1Results(UmfrageEntity umfrage)
+        {
+            Formular1Result view = new Formular1Result();
+            WindowFormFormular1ResultModel model = new WindowFormFormular1ResultModel(view, umfrage);
             view.DataContext = model;
             view.Show();
         }
