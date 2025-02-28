@@ -1,6 +1,7 @@
 ﻿using System.Diagnostics;
 using NHibernate;
 using System.Linq.Expressions;
+using YAFIT.Databases.Entities;
 
 namespace YAFIT.Databases.Services
 {
@@ -36,7 +37,30 @@ namespace YAFIT.Databases.Services
             }
             catch (Exception e)
             {
-                //@TODO: Fehler nachricht hinzufügen
+                Debug.WriteLine("Fehler beim einfügen in die Datenbank: \n" + e);
+                Console.WriteLine("Fehler beim einfügen in die Datenbank: \n" + e);
+                transaction.Rollback();
+            }
+            return false;
+        }
+
+        public bool InsertIfNotExist(Expression<Func<T, bool>> expression, T value)
+        {
+            using var session = SessionManager.Instance.OpenStatelessSession();
+            using var transaction = session.BeginTransaction();
+            try
+            {
+                if (GetEntity(expression) == null)
+                {
+                    Insert(value);
+                }
+                transaction.Commit();
+                return true;
+            }
+            catch (Exception e)
+            {
+                Debug.WriteLine("Fehler beim akutalisieren in die Datenbank: \n" + e);
+                Console.WriteLine("Fehler beim akutalisieren in die Datenbank: \n" + e);
                 transaction.Rollback();
             }
             return false;
@@ -53,7 +77,8 @@ namespace YAFIT.Databases.Services
             }
             catch (Exception e)
             {
-                //@TODO: Fehler nachricht hinzufügen
+                Debug.WriteLine("Fehler beim akutalisieren in die Datenbank: \n" + e);
+                Console.WriteLine("Fehler beim akutalisieren in die Datenbank: \n" + e);
                 transaction.Rollback();
             }
             return false;
@@ -70,16 +95,37 @@ namespace YAFIT.Databases.Services
             }
             catch (Exception e)
             {
-                //@TODO: Fehler nachricht hinzufügen
+                Debug.WriteLine("Fehler beim löschen aus der Datenbank: \n" + e);
+                Console.WriteLine("Fehler beim löschen aus der Datenbank: \n" + e);
                 transaction.Rollback();
             }
             return false;
         }
+        protected virtual bool Insert(IStatelessSession session, params T[] entities)
+        {
+            foreach (var entity in entities)
+            {
+                session.Insert(entity);
+            }
+            return true;
+        }
 
+        protected virtual bool Update(IStatelessSession session, params T[] entities)
+        {
+            foreach (var entity in entities)
+            {
+                session.Update(entity);
+            }
+            return true;
+        }
 
-
-        protected abstract bool Insert(IStatelessSession session, params T[] entities);
-        protected abstract bool Update(IStatelessSession session, params T[] entities);
-        protected abstract bool Delete(IStatelessSession session, params T[] entities);
+        protected virtual bool Delete(IStatelessSession session, params T[] entities)
+        {
+            foreach (var entity in entities)
+            {
+                session.Delete(entity);
+            }
+            return true;
+        }
     }
 }

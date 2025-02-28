@@ -26,7 +26,7 @@
                 </Grid.RowDefinitions>
 
                 <DataGrid Margin="5" 
-                          ItemsSource="{Binding FeedbackForms, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
+                          ItemsSource="{Binding FeedbackForms, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}" 
                           SelectedIndex="{Binding SelectedIndex, Mode=TwoWay}"
                           AutoGenerateColumns="False"
                           CanUserAddRows="False"
@@ -37,9 +37,9 @@
                         <MouseBinding Gesture="LeftDoubleClick" Command="{Binding OnButtonSelectOpen}"/>
                     </DataGrid.InputBindings>
                     <DataGrid.Columns>
-                        <DataGridTextColumn Binding="{Binding FormType, Converter={StaticResource FormTypeToString}}" Header="Formular Name" Width="Auto"/>
-                        <DataGridTextColumn Binding="{Binding Code}" Header="Schlüssel" Width="*"/>
-                        <DataGridTextColumn Binding="{Binding TimeStamp, StringFormat={}{0:dd:MM:yyyy HH:mm}}" Header="Datum" Width="Auto"/>
+                        <DataGridTextColumn Binding="{Binding Formulartyp, Converter={StaticResource FormTypeToString}}" Header="Formular Name" Width="Auto"/>
+                        <DataGridTextColumn Binding="{Binding Schluessel}" Header="Schlüssel" Width="*"/>
+                        <DataGridTextColumn Binding="{Binding ErstelltDatum, StringFormat={}{0:dd:MM:yyyy HH:mm}}" Header="Datum" Width="Auto"/>
                     </DataGrid.Columns>
                 </DataGrid>
                 <StackPanel Grid.Row="1" 
