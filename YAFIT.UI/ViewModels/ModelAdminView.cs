@@ -46,7 +46,15 @@ namespace YAFIT.UI.ViewModels
         /// <summary>
         /// Der Befehl, der ausgeführt wird, wenn man auf den Löschen Button klickt
         /// </summary>
-        public ICommand OnButtonDelete { get; private set; }
+        public ICommand OnButtonDeleteKlasse { get; private set; }
+        /// <summary>
+        /// Der Befehl, der ausgeführt wird, wenn man auf den Löschen Button klickt
+        /// </summary>
+        public ICommand OnButtonDeleteAbteilung { get; private set; }
+        /// <summary>
+        /// Der Befehl, der ausgeführt wird, wenn man auf den Löschen Button klickt
+        /// </summary>
+        public ICommand OnButtonDeleteFach { get; private set; }
         /// <summary>
         /// Der Befehl, der ausgeführt wird, wenn man auf den User Löschen Button klickt
         /// </summary>
@@ -62,7 +70,15 @@ namespace YAFIT.UI.ViewModels
         /// <summary>
         /// Der Befehl, der ausgeführt wird, wenn man auf den Neu Button klickt
         /// </summary>
-        public ICommand OnButtonNew { get; private set; }
+        public ICommand OnButtonNewKlasse { get; private set; }
+        /// <summary>
+        /// Der Befehl, der ausgeführt wird, wenn man auf den Neu Button klickt
+        /// </summary>
+        public ICommand OnButtonNewAbteilung { get; private set; }
+        /// <summary>
+        /// Der Befehl, der ausgeführt wird, wenn man auf den Neu Button klickt
+        /// </summary>
+        public ICommand OnButtonNewFach { get; private set; }
         /// <summary>
         /// Der Befehl, der ausgeführt wird, wenn man auf den Neue Registrierung Button klickt
         /// </summary>
@@ -82,11 +98,15 @@ namespace YAFIT.UI.ViewModels
         public ModelAdminView(Window window) : base(window)
         {
             WindowCaption = "Lehrer Übersicht";
-            OnButtonDelete = new RelayCommand(DoButtonDelete);
+            OnButtonDeleteKlasse = new RelayCommand(DoButtonDeleteKlasse);
+            OnButtonDeleteAbteilung = new RelayCommand(DoButtonDeleteAbteilung);
+            OnButtonDeleteFach = new RelayCommand(DoButtonDeleteFach);
             OnButtonDeleteUser = new RelayCommand(DoButtonDeleteUser);
             OnButtonDeleteRegister = new RelayCommand(DoButtonDeleteRegister);
             OnButtonPasswordChange = new RelayCommand(DoButtonPasswordChange);
-            OnButtonNew = new RelayCommand(DoButtonNew);
+            OnButtonNewKlasse = new RelayCommand(DoButtonNewKlasse);
+            OnButtonNewAbteilung = new RelayCommand(DoButtonNewAbteilung);
+            OnButtonNewFach = new RelayCommand(DoButtonNewFach);
             OnButtonNewRegister = new RelayCommand(DoButtonNewRegister);
             OnButtonLogout = new RelayCommand(DoButtonLogout);
 
@@ -97,12 +117,34 @@ namespace YAFIT.UI.ViewModels
         #region private methods
 
         #region button new
+
+        #region button new klasse
         /// <summary>
         /// Wird ausgeführt, wenn man auf den Neu Button klickt
         /// </summary>
-        private void DoButtonNew()
+        private void DoButtonNewKlasse()
         {
-            // neue Fächer, Abteilungen & Klassen
+            MessageBox.Show("neue Klasse");
+        }
+        #endregion
+
+        #region button new abteilung
+        /// <summary>
+        /// Wird ausgeführt, wenn man auf den Neu Button klickt
+        /// </summary>
+        private void DoButtonNewAbteilung()
+        {
+            MessageBox.Show("neue Abteilung");
+        }
+        #endregion
+
+        #region button new fach
+        /// <summary>
+        /// Wird ausgeführt, wenn man auf den Neu Button klickt
+        /// </summary>
+        private void DoButtonNewFach()
+        {
+            MessageBox.Show("neues Fach");
         }
         #endregion
 
@@ -120,18 +162,65 @@ namespace YAFIT.UI.ViewModels
             RegisterEntity newRegister = new RegisterEntity();
             newRegister.Code = key;
             RegisterEntity.GetRegisterService().Insert(newRegister);
+            _registerList.Add(newRegister);
         }
+        #endregion
+
         #endregion
 
         #region delete buttons
 
-        #region button delete
+        #region button delete klasse
         /// <summary>
         /// Wird ausgeführt, wenn man auf den Delete Button klickt
         /// </summary>
-        private void DoButtonDelete()
+        private void DoButtonDeleteKlasse()
         {
-            // löschen von Fächern, Abteilungen & Klassen
+            KlassenEntity klasse = GetSelectedKlasse();
+            if (klasse == null) 
+            {
+                MessageBox.Show("Bitte erst eine Klasse auswählen!");
+            }
+            else
+            {
+                KlassenEntity.GetKlassenService().Delete(klasse);
+            }
+        }
+        #endregion
+
+        #region button delete fach
+        /// <summary>
+        /// Wird ausgeführt, wenn man auf den Delete Button klickt
+        /// </summary>
+        private void DoButtonDeleteFach()
+        {
+            FachEntity fach = GetSelectedFach();
+            if (fach == null)
+            {
+                MessageBox.Show("Bitte erst ein Fach auswählen!");
+            }
+            else
+            {
+                FachEntity.GetFachService().Delete(fach);
+            }
+        }
+        #endregion
+
+        #region button delete abteilung
+        /// <summary>
+        /// Wird ausgeführt, wenn man auf den Delete Button klickt
+        /// </summary>
+        private void DoButtonDeleteAbteilung()
+        {
+            AbteilungEntity abteilung = GetSelectedAbteilung();
+            if (abteilung == null)
+            {
+                MessageBox.Show("Bitte erst eine Abteilung auswählen!");
+            }
+            else
+            {
+                AbteilungEntity.GetAbteilungService().Delete(abteilung);
+            }
         }
         #endregion
 
@@ -209,9 +298,13 @@ namespace YAFIT.UI.ViewModels
         {
             _userList = UserEntity.GetUserService().GetAll();
             _registerList = RegisterEntity.GetRegisterService().GetAll();
-            
+            _klasseList = KlassenEntity.GetKlassenService().GetAll();
+            _abteilungList = AbteilungEntity.GetAbteilungService().GetAll();
+            _fachList = FachEntity.GetFachService().GetAll();
         }
         #endregion
+
+        #region getSelected
 
         #region getSelectedUser
         /// <summary>
@@ -243,14 +336,67 @@ namespace YAFIT.UI.ViewModels
         }
         #endregion
 
+        #region getSelectedRegister
+        /// <summary>
+        /// Gibt die ausgewählte Klasse zurück
+        /// </summary>
+        /// <returns>Gibt die Klasse KlassenEntity zurück, wenn eines aus der Liste ausgewählt wurde, sonst NULL</returns>
+        private KlassenEntity? GetSelectedKlasse()
+        {
+            if (_selectedKlasseIndex == -1)
+            {
+                return null;
+            }
+            return _klasseList[_selectedKlasseIndex];
+        }
+        #endregion
+
+        #region getSelectedRegister
+        /// <summary>
+        /// Gibt die ausgewählte Abteilung zurück
+        /// </summary>
+        /// <returns>Gibt die Klasse AbteilungEntity zurück, wenn eines aus der Liste ausgewählt wurde, sonst NULL</returns>
+        private AbteilungEntity? GetSelectedAbteilung()
+        {
+            if (_selectedAbteilungIndex == -1)
+            {
+                return null;
+            }
+            return _abteilungList[_selectedAbteilungIndex];
+        }
+        #endregion
+
+        #region getSelectedRegister
+        /// <summary>
+        /// Gibt das ausgewählte Fach zurück
+        /// </summary>
+        /// <returns>Gibt die Klasse FachEntity zurück, wenn eines aus der Liste ausgewählt wurde, sonst NULL</returns>
+        private FachEntity? GetSelectedFach()
+        {
+            if (_selectedFachIndex == -1)
+            {
+                return null;
+            }
+            return _fachList[_selectedFachIndex];
+        }
+        #endregion
+
+        #endregion
+
         #endregion
 
         #region member variabls
 
         private IList<UserEntity> _userList = [];
         private IList<RegisterEntity> _registerList = [];
+        private IList<KlassenEntity> _klasseList = [];
+        private IList<AbteilungEntity> _abteilungList = [];
+        private IList<FachEntity> _fachList = [];
         private int _selectedUserIndex = -1;
         private int _selectedRegisterIndex = -1;
+        private int _selectedKlasseIndex = -1;
+        private int _selectedAbteilungIndex = -1;
+        private int _selectedFachIndex = -1;
         private readonly Random _random = new Random();
 
         #endregion
