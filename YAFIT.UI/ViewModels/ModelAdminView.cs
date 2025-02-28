@@ -267,6 +267,7 @@ namespace YAFIT.UI.ViewModels
         /// </summary>
         private void DoButtonPasswordChange()
         {
+            String standardPasswort = "BSL123";
             UserEntity user = GetSelectedUser();
             if (user != null)
             {
@@ -274,8 +275,9 @@ namespace YAFIT.UI.ViewModels
             }
             else
             {
-                user.password = "BSL123";
+                user.password = standardPasswort;
                 UserEntity.GetUserService().Update(user);
+                MessageBox.Show("Passwort wurde von " + user.Name + " wurde auf das Standartpasswort " + standardPasswort);
             }
         }
         #endregion
