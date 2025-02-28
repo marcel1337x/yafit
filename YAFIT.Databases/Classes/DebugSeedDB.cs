@@ -80,4 +80,70 @@ public class DebugSeedDB
         Formular1Entity formular1Entities = new Formular1Entity() { DieLehrer0 = 3, DieLehrer2 = 2 , Umfrage = umfrage};
         Formular1Entity.GetFormular1Service().InsertIfNotExist(x => x.Id == formular1Entities.Id, formular1Entities);
     }
+
+    public void CheckAndPutFirstAbteilung()
+    {
+        AbteilungEntity abteilung = new AbteilungEntity();
+        abteilung.Name = "abteilung1";
+        abteilung.Id = 1;
+        if (AbteilungEntity.GetAbteilungService().GetEntity(x => x.Id == abteilung.Id) != null)
+        {
+            if (AbteilungEntity.GetAbteilungService().GetEntity(x => x.Id == abteilung.Id && x.Name == abteilung.Name) != null)
+            {
+                return;
+            }
+            else
+            {
+                AbteilungEntity.GetAbteilungService().Update(abteilung);
+            }
+        }
+        else
+        {
+            AbteilungEntity.GetAbteilungService().Insert(abteilung);
+        }
+    }
+
+    public void CheckAndPutFirstFach()
+    {
+        FachEntity fach = new FachEntity();
+        fach.Name = "Informatik";
+        fach.Id = 1;
+        if (FachEntity.GetFachService().GetEntity(x => x.Id == fach.Id) != null)
+        {
+            if (FachEntity.GetFachService().GetEntity(x => x.Id == fach.Id && x.Name == fach.Name) != null)
+            {
+                return;
+            }
+            else
+            {
+                FachEntity.GetFachService().Update(fach);
+            }
+        }
+        else
+        {
+            FachEntity.GetFachService().Insert(fach);
+        }
+    }
+
+    public void CheckAndPutFirstKlasse()
+    {
+        KlassenEntity klasse = new KlassenEntity();
+        klasse.Name = "IFA-12-A";
+        klasse.Id = 1;
+        if (KlassenEntity.GetKlassenService().GetEntity(x => x.Id == klasse.Id) != null)
+        {
+            if (KlassenEntity.GetKlassenService().GetEntity(x => x.Id == klasse.Id && x.Name == klasse.Name) != null)
+            {
+                return;
+            }
+            else
+            {
+                KlassenEntity.GetKlassenService().Update(klasse);
+            }
+        }
+        else
+        {
+            KlassenEntity.GetKlassenService().Insert(klasse);
+        }
+    }
 }

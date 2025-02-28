@@ -85,6 +85,9 @@ namespace YAFIT.Databases
             seeder.CheckAndPutRootUser();
             seeder.InsertTestRegisterCode();
             seeder.CheckAndPutFirstUser();
+            seeder.CheckAndPutFirstAbteilung();
+            seeder.CheckAndPutFirstFach();
+            seeder.CheckAndPutFirstKlasse();
             return true;
         }
 
