@@ -4,15 +4,15 @@ using System.Windows.Data;
 
 namespace YAFIT.UI.Converter
 {
-    public class TimeStampToStringConverter : IValueConverter
+    public class PercentageDisplayConverter : IValueConverter
     {
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            if(value is DateTime dateTime)
+            if(value is float val)
             {
-
+                return $"{val.ToString("0.##")}%";
             }
-            return "-/-";
+            return "0.00%";
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)

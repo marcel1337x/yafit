@@ -1,7 +1,12 @@
-﻿using System.Windows;
+﻿using System.Collections.ObjectModel;
+using System.ComponentModel;
+using System.Runtime.CompilerServices;
+using System.Windows;
 using System.Windows.Input;
 using YAFIT.Common.Enums;
 using YAFIT.Common.UI.ViewModel;
+using YAFIT.Databases.Entities;
+using YAFIT.Databases.Services;
 
 namespace YAFIT.UI.ViewModels
 {
@@ -19,6 +24,38 @@ namespace YAFIT.UI.ViewModels
         #endregion
 
         #region properties
+
+        public string[] Klassenliste
+        {
+            get { return klassen.Select(x => x.Name).ToArray(); }
+        }
+        public int KlassenIndex
+        {
+            get { return klassenIndex; }
+            set { SetProperty("KlassenIndex", ref klassenIndex, value); }
+        }
+
+        public string[] Faecherliste
+        {
+            get { return faecher.Select(x => x.Name).ToArray(); }
+        }
+        public int FaecherIndex
+        {
+            get { return fachIndex; }
+            set { SetProperty("FaecherIndex", ref fachIndex, value); }
+        }
+
+
+        public string[] Abteilungsliste
+        {
+            get { return abteilungen.Select(x => x.Name).ToArray(); }
+        }
+
+        public int Abteilungsindex
+        {
+            get { return fachIndex; }
+            set { SetProperty("Abteilungsindex", ref abteilungenIndex, value); }
+        }
 
         public string CustomCode
         {
@@ -45,6 +82,11 @@ namespace YAFIT.UI.ViewModels
         {
             WindowCaption = "YAFIT - Feedbackauswahl";
             OnGenKey = new RelayCommand(DoGenKey);
+            
+            klassen = KlassenEntity.GetKlassenService().GetAll();
+            faecher = FachEntity.GetFachService().GetAll();
+            abteilungen = AbteilungEntity.GetAbteilungService().GetAll();
+
         }
 
         #endregion
@@ -96,6 +138,9 @@ namespace YAFIT.UI.ViewModels
             //@TODO Database Search for CustomCode/
             return true;
         }
+        
+
+        
 
         #endregion
 
@@ -105,6 +150,14 @@ namespace YAFIT.UI.ViewModels
 
         private string _customCode = string.Empty;
         private readonly Random _random = new Random();
+        
+        
+        public IList<KlassenEntity> klassen = new List<KlassenEntity>();
+        private int klassenIndex = -1;
+        public IList<FachEntity> faecher = new List<FachEntity>();
+        private int fachIndex = -1;
+        private IList<AbteilungEntity> abteilungen = new List<AbteilungEntity>();
+        private int abteilungenIndex = -1;
         #endregion
     }
 }

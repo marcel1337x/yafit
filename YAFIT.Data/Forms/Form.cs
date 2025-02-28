@@ -13,10 +13,10 @@ namespace YAFIT.Data.Forms
         /// <summary>
         /// Die ID des Formulars
         /// </summary>
-        public Guid? ID
+        public string Code
         {
-            get { return _id; }
-            set { _id = value; }
+            get { return _code; }
+            set { _code = value; }
         }
 
         /// <summary>
@@ -27,6 +27,8 @@ namespace YAFIT.Data.Forms
             get { return _timeStamp; }
             set { _timeStamp = value; }
         }
+
+        public string ID { get; }
 
         /// <summary>
         /// Der Typ des Formulars
@@ -41,7 +43,7 @@ namespace YAFIT.Data.Forms
 
         #region member variables
 
-        private Guid? _id;
+        private string _code;
         private DateTime _timeStamp;
         private FeedbackFormType _formType;
 

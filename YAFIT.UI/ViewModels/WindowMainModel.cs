@@ -3,16 +3,15 @@ using System.Security;
 using System.Text.RegularExpressions;
 using System.Windows;
 using System.Windows.Input;
+using YAFIT.Common.Enums;
 using YAFIT.Common.Extensions;
 using YAFIT.Common.UI.ViewModel;
-using YAFIT.Databases;
 using YAFIT.Databases.Classes;
 using YAFIT.Databases.Entities;
 using YAFIT.Databases.Services;
-using YAFIT.UI.ViewModels.Forms;
+using YAFIT.UI.ViewModels.Forms.Formular1;
 using YAFIT.UI.Views;
 using YAFIT.UI.Views.Forms.Formular1;
-using static System.Net.Mime.MediaTypeNames;
 
 namespace YAFIT.UI.ViewModels
 {
@@ -120,26 +119,29 @@ namespace YAFIT.UI.ViewModels
         private void DoFeedbackCodeEnter()
         {
             Regex _regex = new Regex("[^0-9]");
-            if (!_regex.IsMatch(_formularKey)==false)
+            if (!_regex.IsMatch(_formularKey) == false)
             {
                 MessageBox.Show("Die Eingabe kann nur aus Zahlen bestehen!");
+                return;
             }
-            else
+            UmfrageService umfrageService = UmfrageEntity.GetUmfrageService();
+            UmfrageEntity? umfrage = umfrageService.GetEntity(x => x.Schluessel == _formularKey);
+
+            if(umfrage == null)
             {
-                //soll später eine Serviceklasse aufrufen und darüber die Formular und Schlüssel holen
-                if (_formularKey.Equals("11111111"))
-                {
-                    WindowNavigation.OpenWindow<Formular1_1, WindowFormFormular1Model1>();
-                    WindowMain? windowMain = _view as WindowMain;
-                    windowMain.Close();
-                }
-                else
-                {
-                    MessageBox.Show("Der eingegebene Schlüssel existiert nicht!");
-                }
+                MessageBox.Show("Es existiert keine Umfrage mit diesem Code!");
+                return;
             }
-            
-            
+
+            switch ((FeedbackFormType)umfrage.Formulartyp)
+            {
+                case FeedbackFormType.First:
+                    WindowNavigation.OpenFormular1(umfrage);
+                    break;
+                case FeedbackFormType.Second:
+                    break;
+            }
+            CloseView();
         }
 
         #endregion
@@ -150,14 +152,26 @@ namespace YAFIT.UI.ViewModels
         /// </summary>
         private void DoAccountRegister()
         {
-            //@TODO Datenbank anbinden & besser machen
-            WindowMain? windowMain = _view as WindowMain;
-            //Authentication auth = new Authentication(LoginUname, windowMain.PWBox.Password);
-
-            //authentications.Add(auth);
-
-            MessageBox.Show("Account " + LoginUname + " registriert!");
+            if (string.IsNullOrEmpty(LoginUname) == true)
+            {
+                MessageBox.Show("Gebe einen Benutzernamen an um fortzufahren!");
+                return;
+            }
+            if (string.IsNullOrEmpty(SecurePassword?.ConvertToPlainText() ?? "") == true)
+            {
+                MessageBox.Show("Gebe ein Passwort ein um fortzufahren!");
+                return;
+            }
+            ViewRegisterCode view = new ();
+            ModelRegisterCode model = new (view, this);
+            ShowChildView(view, model);
+            if (model.IsSuccessful == false)
+            {
+                MessageBox.Show("Registrierung ist fehlgeschlagen!");
+                return;
+            }
             DoAccountLogin();
+
         }
         #endregion
 
@@ -180,7 +194,7 @@ namespace YAFIT.UI.ViewModels
                     }
                     else
                     {
-                        WindowNavigation.OpenTeacherWindow();
+                        WindowNavigation.OpenTeacherWindow(user);
                     }
                 }
                 else
@@ -213,8 +227,6 @@ namespace YAFIT.UI.ViewModels
 
         #region member variables
 
-        //@TODO Entfernen nach 1 Sprint
-        private List<Authentication> authentications = new List<Authentication>();
         private string _userName = string.Empty;
         private string _formularKey = string.Empty;
 

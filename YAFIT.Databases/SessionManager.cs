@@ -1,5 +1,6 @@
 ﻿using FluentNHibernate.Cfg;
 using FluentNHibernate.Cfg.Db;
+using FluentNHibernate.Conventions.Helpers;
 using NHibernate;
 using Org.BouncyCastle.Tls;
 using System.Reflection;
@@ -52,13 +53,15 @@ namespace YAFIT.Databases
                             /* 2001:1640:18e:8000:be24:11ff:fe39:102a */
                             .Username("root")
                             .Password("yafit")//@TODO HASH PASSWORD
-                            ))
+                            ).ShowSql()
+                )
                 //Caching wenn nötig
                 .Cache(c => c.UseQueryCache()
                     .UseSecondLevelCache()
                     .ProviderClass<NHibernate.Cache.HashtableCacheProvider>())
                 //Mappings für die jeweiligen Entitäten in der Datenbank
-                .Mappings(m => m.FluentMappings.AddFromAssembly(Assembly.GetExecutingAssembly()))
+                .Mappings(m => m.FluentMappings.AddFromAssembly(Assembly.GetExecutingAssembly())
+                    .Conventions.Add(DefaultCascade.All()))
                 .ExposeConfiguration(BuildSchema)
                 ;
 
@@ -66,7 +69,14 @@ namespace YAFIT.Databases
         }
         private void BuildSchema(NHibernate.Cfg.Configuration config)
         {
-            new NHibernate.Tool.hbm2ddl.SchemaExport(config).Create(false, true);
+            try
+            {
+                new NHibernate.Tool.hbm2ddl.SchemaValidator(config).Validate();
+            }
+            catch (Exception e)
+            {
+                new NHibernate.Tool.hbm2ddl.SchemaExport(config).Create(false, true);
+            }
         }
 
         private bool Ping()
@@ -74,6 +84,7 @@ namespace YAFIT.Databases
             DebugSeedDB seeder = new DebugSeedDB();
             seeder.CheckAndPutRootUser();
             seeder.InsertTestRegisterCode();
+            seeder.CheckAndPutFirstUser();
             return true;
         }
 

@@ -13,7 +13,7 @@ namespace YAFIT.Interfaces.Forms
         /// <summary>
         /// Die ID des Formulars
         /// </summary>
-        public Guid? ID { get; }
+        public string Code { get; }
 
         /// <summary>
         /// Der Typ des Formulars
