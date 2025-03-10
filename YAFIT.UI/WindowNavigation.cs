@@ -76,13 +76,13 @@ namespace YAFIT.UI
 
         public static void OpenFormular2()
         {
-            OpenWindow<WindowFeedback2, CheckboxViewDartBoardView>();
+            OpenWindow<WindowFeedback2, WindowFormular2Model>();
         }
         public static void OpenWindowFeedback2()
         {
             //Start Window
             WindowFeedback2 selec = new WindowFeedback2();
-            CheckboxViewDartBoardView model = new CheckboxViewDartBoardView(selec);
+            WindowFormular2Model model = new WindowFormular2Model(selec);
             selec.DataContext = model;
             selec.Show();
         }
