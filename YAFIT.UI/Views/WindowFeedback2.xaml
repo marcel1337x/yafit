@@ -89,7 +89,7 @@
         <!-- Kommentarfeld -->
         <StackPanel Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,207,0,0" Grid.Row="1">
             <TextBlock Text="Was ich sonst noch anmerken möchte:" FontSize="14" Margin="10"/>
-            <TextBox Name="CommentBox" Height="100" Width="400" Margin="10" TextWrapping="Wrap" AcceptsReturn="True"/>
+            <TextBox Name="CommentBox" Height="100" Width="400" Margin="10" TextWrapping="Wrap" AcceptsReturn="True" Text="{Binding TextBoxQuestions[0], Mode=OneWayToSource}" />
         </StackPanel>
 
         <!-- Speichern-Button -->
