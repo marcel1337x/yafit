@@ -75,6 +75,11 @@ namespace YAFIT.UI.ViewModels
             get { return _newFach; }
             set { SetProperty("NewFach", ref _newFach, value); }
         }
+        public string NewPasswort
+        {
+            get { return _newPasswort; }
+            set { SetProperty("NewPasswort", ref _newPasswort, value); }
+        }
         public int SelectedUserIndex { get { return _selectedUserIndex; } set { SetProperty("SelectedUserIndex", ref _selectedUserIndex, value); } }
         public int SelectedRegisterIndex { get { return _selectedRegisterIndex; } set { SetProperty("SelectedRegisterIndex", ref _selectedRegisterIndex, value); } }
         public int SelectedFachIndex { get { return _selectedFachIndex; } set { SetProperty("SelectedFachIndex", ref _selectedFachIndex, value); } }
@@ -369,7 +374,7 @@ namespace YAFIT.UI.ViewModels
             }
         }
         #endregion
-        
+
         #endregion
 
         #region button passwordChange
@@ -378,7 +383,6 @@ namespace YAFIT.UI.ViewModels
         /// </summary>
         private void DoButtonPasswordChange()
         {
-            String standardPasswort = "BSL123";
             UserEntity user = GetSelectedUser();
             if (user == null)
             {
@@ -386,10 +390,18 @@ namespace YAFIT.UI.ViewModels
             }
             else
             {
-                user.password = standardPasswort;
-                UserEntity.GetUserService().Update(user);
-                MessageBox.Show("Passwort wurde von " + user.Name + " wurde auf das Standartpasswort " + standardPasswort + " zurückgesetzt!");
+                if (string.IsNullOrEmpty(NewPasswort))
+                {
+                    MessageBox.Show("Bitte erst ein neues Passwort eingeben!");
+                }
+                else
+                {
+                    user.password = _newPasswort;
+                    UserEntity.GetUserService().Update(user);
+                    MessageBox.Show("Passwort wurde von " + user.Name + " wurde auf " + _newPasswort + " geändert!");
+                }
             }
+            _newPasswort = "";
         }
         #endregion
 
@@ -561,6 +573,7 @@ namespace YAFIT.UI.ViewModels
         private String _newKlasse = string.Empty;
         private String _newAbteilung = string.Empty;
         private String _newFach = string.Empty;
+        private String _newPasswort = string.Empty;
 
         private IList<UserEntity> _userList = [];
         private IList<RegisterEntity> _registerList = [];
