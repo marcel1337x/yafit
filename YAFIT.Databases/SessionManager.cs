@@ -2,9 +2,9 @@
 using FluentNHibernate.Cfg.Db;
 using FluentNHibernate.Conventions.Helpers;
 using NHibernate;
-using Org.BouncyCastle.Tls;
+using NHibernate.Tool.hbm2ddl;
+using System.Diagnostics;
 using System.Reflection;
-using System.Runtime.InteropServices.Marshalling;
 using YAFIT.Databases.Classes;
 
 namespace YAFIT.Databases
@@ -25,7 +25,8 @@ namespace YAFIT.Databases
             }
             catch(Exception e)
             {
-                //@TODO: Exception 
+                Console.WriteLine(e);
+                Debug.WriteLine(e);
             }
             return false;
         }
@@ -71,12 +72,25 @@ namespace YAFIT.Databases
         {
             try
             {
-                new NHibernate.Tool.hbm2ddl.SchemaValidator(config).Validate();
+                new SchemaValidator(config).Validate();
+                return;
             }
             catch (Exception e)
             {
-                new NHibernate.Tool.hbm2ddl.SchemaExport(config).Create(false, true);
+                Console.WriteLine(e);
+                Debug.WriteLine(e);
             }
+            try
+            {
+                new NHibernate.Tool.hbm2ddl.SchemaExport(config).Create(false, true);
+                return;
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+                Debug.WriteLine(e);
+            }
+
         }
 
         private bool Ping()

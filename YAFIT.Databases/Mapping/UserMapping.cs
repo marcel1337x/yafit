@@ -9,7 +9,7 @@ public class UserMapping : ClassMap<UserEntity>
     {
         Id(x => x.Id).GeneratedBy.Increment();
         Map(x => x.Name).Not.Nullable().Unique();
-        Map(x => x.isAdmin);
-        Map(x => x.password).Not.Nullable();
+        Map(x => x.IsAdmin);
+        Map(x => x.Password).Not.Nullable();
     }
 }

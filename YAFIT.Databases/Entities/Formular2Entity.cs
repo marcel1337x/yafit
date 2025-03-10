@@ -2,11 +2,9 @@
 
 namespace YAFIT.Databases.Entities;
 
-public class Formular2Entity
+public class Formular2Entity : FormularBaseEntity
 {
     private static readonly Formular2Service _formular2Service = new Formular2Service();
-    public virtual int Id { get; set; }
-    public virtual UmfrageEntity Umfrage { get; set; }
 
     public virtual int Question1 { get; set; }
     public virtual int Question2 { get; set; }

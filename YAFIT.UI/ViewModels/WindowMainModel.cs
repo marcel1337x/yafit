@@ -184,10 +184,10 @@ namespace YAFIT.UI.ViewModels
             UserEntity? user = UserEntity.GetUserService().GetEntity(x => x.Name == _userName);
             if (user != null)
             {
-                if (user.password == (SecurePassword?.ConvertToPlainText() ?? ""))
+                if (user.Password == (SecurePassword?.ConvertToPlainText() ?? ""))
                 {
                     MessageBox.Show("Login erfolgreich");
-                    if (user.isAdmin == true)
+                    if (user.IsAdmin == true)
                     {
                         MessageBox.Show("Benutzer hat Adminrechte");
                         WindowNavigation.OpenAdminWindow();
