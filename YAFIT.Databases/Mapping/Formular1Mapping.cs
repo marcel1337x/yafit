@@ -3,9 +3,9 @@ using YAFIT.Databases.Entities;
 
 namespace YAFIT.Databases.Mapping;
 
-public class Formular1Map : ClassMap<Formular1Entity>
+public class Formular1Mapping : ClassMap<Formular1Entity>
 {
-    public Formular1Map()
+    public Formular1Mapping()
     {
         Id(x => x.Id).GeneratedBy.Increment();
         References(x => x.Umfrage).Not.Nullable();
