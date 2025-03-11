@@ -343,6 +343,14 @@ namespace YAFIT.UI.ViewModels
             else
             {
                 String userName = user.Name;
+                IList<UmfrageEntity> umfragen = UmfrageEntity.GetUmfrageService().GetAllByCriteria(x => x.User.Id == user.Id);
+                if (umfragen.Count != 0)
+                {
+                    foreach (UmfrageEntity um in umfragen)
+                    {
+                        UmfrageEntity.GetUmfrageService().Delete(um);
+                    }
+                }
                 UserEntity.GetUserService().Delete(user);
                 LoadUser();
                 SelectedUserIndex = -1;
@@ -383,7 +391,7 @@ namespace YAFIT.UI.ViewModels
         /// </summary>
         private void DoButtonPasswordChange()
         {
-            UserEntity user = GetSelectedUser();
+            UserEntity? user = GetSelectedUser();
             if (user == null)
             {
                 MessageBox.Show("Bitte erst einen Benutzer auswählen!");
@@ -396,7 +404,7 @@ namespace YAFIT.UI.ViewModels
                 }
                 else
                 {
-                    user.password = _newPasswort;
+                    user.Password = _newPasswort;
                     UserEntity.GetUserService().Update(user);
                     MessageBox.Show("Passwort wurde von " + user.Name + " wurde auf " + _newPasswort + " geändert!");
                 }
