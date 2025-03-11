@@ -13,9 +13,9 @@ namespace YAFIT.UI.Converter
     {
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            if (value is bool)
+            if (value is bool val)
             {
-                return ((bool)value).ToString();
+                return val.ToString();
             }
             return "";
         }
