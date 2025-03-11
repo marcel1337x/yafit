@@ -10,10 +10,10 @@ public class DebugSeedDB
         UserEntity rootUser = new UserEntity();
         rootUser.Name = "root";
         rootUser.Id = 1;
-        rootUser.password = "root";
-        rootUser.isAdmin = true;
+        rootUser.Password = "root";
+        rootUser.IsAdmin = true;
         UserEntity? user = UserEntity.GetUserService().GetEntity(x => x.Name == "root");
-        if (user != null && user.password == "root" && user.isAdmin == true && user.Id == 1)
+        if (user != null && user.Password == "root" && user.IsAdmin == true && user.Id == 1)
         {
             return;
         }else if (user != null)
@@ -43,11 +43,11 @@ public class DebugSeedDB
         UserEntity firstUser = new UserEntity();
         firstUser.Name = "lehrer";
         firstUser.Id = 2;
-        firstUser.password = "lehrer";
-        firstUser.isAdmin = false;
+        firstUser.Password = "lehrer";
+        firstUser.IsAdmin = false;
         UserEntity? user = UserEntity.GetUserService()
             .GetEntity(x => x.Name == firstUser.Name);
-        if (user != null && user.password == firstUser.password && user.isAdmin == false && user.Id == firstUser.Id)
+        if (user != null && user.Password == firstUser.Password && user.IsAdmin == false && user.Id == firstUser.Id)
         {
             return;
         }else if (user != null)

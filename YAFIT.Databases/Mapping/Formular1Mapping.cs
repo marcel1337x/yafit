@@ -1,14 +1,11 @@
-﻿using FluentNHibernate.Mapping;
-using YAFIT.Databases.Entities;
+﻿using YAFIT.Databases.Entities;
 
 namespace YAFIT.Databases.Mapping;
 
-public class Formular1Mapping : ClassMap<Formular1Entity>
+public class Formular1Mapping : FormularBaseMapping<Formular1Entity>
 {
     public Formular1Mapping()
     {
-        Id(x => x.Id).GeneratedBy.Increment();
-        References(x => x.Umfrage).Not.Nullable();
         Map(x => x.VerhaltenLehrer0).Not.Nullable();
         Map(x => x.VerhaltenLehrer1).Not.Nullable();
         Map(x => x.VerhaltenLehrer2).Not.Nullable();

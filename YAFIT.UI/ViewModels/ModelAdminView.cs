@@ -275,7 +275,7 @@ namespace YAFIT.UI.ViewModels
             }
             else
             {
-                user.password = standardPasswort;
+                user.Password = standardPasswort;
                 UserEntity.GetUserService().Update(user);
                 MessageBox.Show("Passwort wurde von " + user.Name + " wurde auf das Standartpasswort " + standardPasswort);
             }
