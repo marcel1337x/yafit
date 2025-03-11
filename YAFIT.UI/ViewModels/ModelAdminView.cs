@@ -28,7 +28,6 @@ namespace YAFIT.UI.ViewModels
             get { return _userList; }
             set { SetProperty("UserList", ref _userList, value); } 
         }
-
         /// <summary>
         /// Die Liste der bestehenden Registrierungsschlüssel
         /// </summary>
@@ -37,8 +36,55 @@ namespace YAFIT.UI.ViewModels
             get { return _registerList; }
             set { SetProperty("RegisterList", ref _registerList, value); }
         }
+        /// <summary>
+        /// Die Liste der bestehenden Klassen
+        /// </summary>
+        public IList<KlassenEntity> KlassenList
+        {
+            get { return _klassenList; }
+            set { SetProperty("KlassenList", ref _klassenList, value); }
+        }
+        /// <summary>
+        /// Die Liste der bestehenden Registrierungsschlüssel
+        /// </summary>
+        public IList<AbteilungEntity> AbteilungList
+        {
+            get { return _abteilungList; }
+            set { SetProperty("AbteilungList", ref _abteilungList, value); }
+        }
+        /// <summary>
+        /// Die Liste der bestehenden Registrierungsschlüssel
+        /// </summary>
+        public IList<FachEntity> FachList
+        {
+            get { return _fachList; }
+            set { SetProperty("FachList", ref _fachList, value); }
+        }
+        public string NewKlasse
+        {
+            get { return _newKlasse; }
+            set { SetProperty("NewKlasse", ref _newKlasse, value); }
+        }
+        public string NewAbteilung
+        {
+            get { return _newAbteilung; }
+            set { SetProperty("NewAbteilung", ref _newAbteilung, value); }
+        }
+        public string NewFach
+        {
+            get { return _newFach; }
+            set { SetProperty("NewFach", ref _newFach, value); }
+        }
+        public string NewPasswort
+        {
+            get { return _newPasswort; }
+            set { SetProperty("NewPasswort", ref _newPasswort, value); }
+        }
         public int SelectedUserIndex { get { return _selectedUserIndex; } set { SetProperty("SelectedUserIndex", ref _selectedUserIndex, value); } }
         public int SelectedRegisterIndex { get { return _selectedRegisterIndex; } set { SetProperty("SelectedRegisterIndex", ref _selectedRegisterIndex, value); } }
+        public int SelectedFachIndex { get { return _selectedFachIndex; } set { SetProperty("SelectedFachIndex", ref _selectedFachIndex, value); } }
+        public int SelectedAbteilungIndex { get { return _selectedAbteilungIndex; } set { SetProperty("SelectedAbteilungIndex", ref _selectedAbteilungIndex, value); } }
+        public int SelectedKlassenIndex { get { return _selectedKlassenIndex; } set { SetProperty("SelectedKlassenIndex", ref _selectedKlassenIndex, value); } }
 
         #endregion
 
@@ -97,7 +143,7 @@ namespace YAFIT.UI.ViewModels
         /// <param name="window">Das dazugehörige View</param>
         public ModelAdminView(Window window) : base(window)
         {
-            WindowCaption = "Lehrer Übersicht";
+            WindowCaption = "Verwaltung - Lehrer, Klassen, ...";
             OnButtonDeleteKlasse = new RelayCommand(DoButtonDeleteKlasse);
             OnButtonDeleteAbteilung = new RelayCommand(DoButtonDeleteAbteilung);
             OnButtonDeleteFach = new RelayCommand(DoButtonDeleteFach);
@@ -110,7 +156,7 @@ namespace YAFIT.UI.ViewModels
             OnButtonNewRegister = new RelayCommand(DoButtonNewRegister);
             OnButtonLogout = new RelayCommand(DoButtonLogout);
 
-            OnLoad();
+            LoadAll();
         }
         #endregion
 
@@ -124,7 +170,20 @@ namespace YAFIT.UI.ViewModels
         /// </summary>
         private void DoButtonNewKlasse()
         {
-            MessageBox.Show("neue Klasse");
+            if (string.IsNullOrEmpty(_newKlasse) == true)
+            {
+                MessageBox.Show("Bitte erst den Namen der Klasse eingeben!");
+            }
+            else
+            {
+                KlassenEntity klasse = new KlassenEntity();
+                klasse.Name = _newKlasse;
+                KlassenEntity.GetKlassenService().Insert(klasse);
+                LoadKlasse();
+                OnPropertyChanged(nameof(KlassenList));
+                MessageBox.Show("neue Klasse: " + _newKlasse);
+            }           
+            _newKlasse = "";
         }
         #endregion
 
@@ -134,7 +193,20 @@ namespace YAFIT.UI.ViewModels
         /// </summary>
         private void DoButtonNewAbteilung()
         {
-            MessageBox.Show("neue Abteilung");
+            if (string.IsNullOrEmpty(_newAbteilung) == true)
+            {
+                MessageBox.Show("Bitte erst den Namen der Abteilung eingeben!");
+            }
+            else
+            {
+                AbteilungEntity abteilung = new AbteilungEntity();
+                abteilung.Name = _newAbteilung;
+                AbteilungEntity.GetAbteilungService().Insert(abteilung);
+                LoadAbteilung();
+                OnPropertyChanged(nameof(AbteilungList));
+                MessageBox.Show("neue Abteilung: " + _newAbteilung);
+            }
+            _newAbteilung = "";
         }
         #endregion
 
@@ -144,7 +216,20 @@ namespace YAFIT.UI.ViewModels
         /// </summary>
         private void DoButtonNewFach()
         {
-            MessageBox.Show("neues Fach");
+            if (string.IsNullOrEmpty(_newFach) == true)
+            {
+                MessageBox.Show("Bitte erst den Namen des Fachs eingeben!");
+            }
+            else
+            {
+                FachEntity fach = new FachEntity();
+                fach.Name = _newFach;
+                FachEntity.GetFachService().Insert(fach);
+                LoadFach();
+                OnPropertyChanged(nameof(FachList));
+                MessageBox.Show("neues Fach: " + _newFach);
+            }
+            _newFach = "";
         }
         #endregion
 
@@ -162,7 +247,9 @@ namespace YAFIT.UI.ViewModels
             RegisterEntity newRegister = new RegisterEntity();
             newRegister.Code = key;
             RegisterEntity.GetRegisterService().Insert(newRegister);
-            _registerList.Add(newRegister);
+            LoadRegister();
+            OnPropertyChanged(nameof(RegisterList));
+            MessageBox.Show("neuer Registrierungsschlüssel: " + key);
         }
         #endregion
 
@@ -183,7 +270,13 @@ namespace YAFIT.UI.ViewModels
             }
             else
             {
+                String klassenName = klasse.Name;
                 KlassenEntity.GetKlassenService().Delete(klasse);
+                LoadKlasse();
+                SelectedKlassenIndex = -1;
+                OnPropertyChanged(nameof(KlassenList));
+                OnPropertyChanged(nameof(SelectedKlassenIndex));
+                MessageBox.Show("Die Klasse " + klassenName + " wurde erfolgreich gelöscht!");
             }
         }
         #endregion
@@ -201,7 +294,13 @@ namespace YAFIT.UI.ViewModels
             }
             else
             {
+                String fachName = fach.Name;
                 FachEntity.GetFachService().Delete(fach);
+                LoadFach();
+                SelectedFachIndex = -1;
+                OnPropertyChanged(nameof(FachList));
+                OnPropertyChanged(nameof(SelectedFachIndex));
+                MessageBox.Show("Das Fach " + fachName + " wurde erfolgreich gelöscht!");
             }
         }
         #endregion
@@ -219,7 +318,13 @@ namespace YAFIT.UI.ViewModels
             }
             else
             {
+                String abteilungsName = abteilung.Name;
                 AbteilungEntity.GetAbteilungService().Delete(abteilung);
+                LoadAbteilung();
+                SelectedAbteilungIndex = -1;
+                OnPropertyChanged(nameof(AbteilungList));
+                OnPropertyChanged(nameof(SelectedAbteilungIndex));
+                MessageBox.Show("Die Abteilung " + abteilungsName + " wurde erfolgreich gelöscht!");
             }
         }
         #endregion
@@ -237,7 +342,13 @@ namespace YAFIT.UI.ViewModels
             }
             else
             {
+                String userName = user.Name;
                 UserEntity.GetUserService().Delete(user);
+                LoadUser();
+                SelectedUserIndex = -1;
+                OnPropertyChanged(nameof(UserList));
+                OnPropertyChanged(nameof(SelectedUserIndex));
+                MessageBox.Show("Der Benutzer " + userName + " wurde erfolgreich gelöscht!");
             }
         }
         #endregion
@@ -255,10 +366,15 @@ namespace YAFIT.UI.ViewModels
             }
             {
                 RegisterEntity.GetRegisterService().Delete(register);
+                LoadRegister();
+                SelectedRegisterIndex = -1;
+                OnPropertyChanged(nameof(RegisterList));
+                OnPropertyChanged(nameof(SelectedRegisterIndex));
+                MessageBox.Show("Der Registrierungsschlüssel wurde erfolgreich gelöscht!");
             }
         }
         #endregion
-        
+
         #endregion
 
         #region button passwordChange
@@ -267,18 +383,25 @@ namespace YAFIT.UI.ViewModels
         /// </summary>
         private void DoButtonPasswordChange()
         {
-            String standardPasswort = "BSL123";
             UserEntity user = GetSelectedUser();
-            if (user != null)
+            if (user == null)
             {
                 MessageBox.Show("Bitte erst einen Benutzer auswählen!");
             }
             else
             {
-                user.Password = standardPasswort;
-                UserEntity.GetUserService().Update(user);
-                MessageBox.Show("Passwort wurde von " + user.Name + " wurde auf das Standartpasswort " + standardPasswort);
+                if (string.IsNullOrEmpty(NewPasswort))
+                {
+                    MessageBox.Show("Bitte erst ein neues Passwort eingeben!");
+                }
+                else
+                {
+                    user.password = _newPasswort;
+                    UserEntity.GetUserService().Update(user);
+                    MessageBox.Show("Passwort wurde von " + user.Name + " wurde auf " + _newPasswort + " geändert!");
+                }
             }
+            _newPasswort = "";
         }
         #endregion
 
@@ -292,18 +415,76 @@ namespace YAFIT.UI.ViewModels
         }
         #endregion
 
-        #region onload
+        #region load
+        #region loadAll
         /// <summary>
-        /// Holt alle vorhandenen Lehrer und Registrierungsschlüssel aus der Datenbank
+        /// Holt alle vorhandenen Lehrer, Registrierungsschlüssel, Klassen, Fächer und Abteilungen aus der Datenbank
         /// </summary>
-        private void OnLoad()
+        private void LoadAll()
         {
             _userList = UserEntity.GetUserService().GetAll();
             _registerList = RegisterEntity.GetRegisterService().GetAll();
-            _klasseList = KlassenEntity.GetKlassenService().GetAll();
+            _klassenList = KlassenEntity.GetKlassenService().GetAll();
             _abteilungList = AbteilungEntity.GetAbteilungService().GetAll();
             _fachList = FachEntity.GetFachService().GetAll();
         }
+        #endregion
+
+        #region loadUser
+        /// <summary>
+        /// Holt alle vorhandenen Lehrer aus der Datenbank
+        /// </summary>
+        private void LoadUser() 
+        {
+            _userList.Clear();
+            _userList = UserEntity.GetUserService().GetAll();
+            OnPropertyChanged("UserList");
+        }
+        #endregion
+        #region loadRegister
+        /// <summary>
+        /// Holt alle vorhandenen Registrierungsschlüssel aus der Datenbank
+        /// </summary>
+        private void LoadRegister()
+        {
+            _registerList.Clear();
+            _registerList = RegisterEntity.GetRegisterService().GetAll();
+            OnPropertyChanged("RegisterList");
+        }
+        #endregion
+        #region loadKlasse
+        /// <summary>
+        /// Holt alle vorhandenen Klassen aus der Datenbank
+        /// </summary>
+        private void LoadKlasse()
+        {
+            _klassenList.Clear();
+            _klassenList = KlassenEntity.GetKlassenService().GetAll();
+            OnPropertyChanged("KlassenList");
+        }
+        #endregion
+        #region loadAbteilung
+        /// <summary>
+        /// Holt alle vorhandenen Abteilungen aus der Datenbank
+        /// </summary>
+        private void LoadAbteilung()
+        {
+            _abteilungList.Clear();
+            _abteilungList = AbteilungEntity.GetAbteilungService().GetAll();
+            OnPropertyChanged("AbteilungList");
+        }
+        #endregion
+        #region loadFach
+        /// <summary>
+        /// Holt alle vorhandenen Fächer aus der Datenbank
+        /// </summary>
+        private void LoadFach()
+        {
+            _fachList.Clear();
+            _fachList = FachEntity.GetFachService().GetAll();
+            OnPropertyChanged("FachList");
+        }
+        #endregion
         #endregion
 
         #region getSelected
@@ -345,11 +526,11 @@ namespace YAFIT.UI.ViewModels
         /// <returns>Gibt die Klasse KlassenEntity zurück, wenn eines aus der Liste ausgewählt wurde, sonst NULL</returns>
         private KlassenEntity? GetSelectedKlasse()
         {
-            if (_selectedKlasseIndex == -1)
+            if (_selectedKlassenIndex == -1)
             {
                 return null;
             }
-            return _klasseList[_selectedKlasseIndex];
+            return _klassenList[_selectedKlassenIndex];
         }
         #endregion
 
@@ -389,16 +570,23 @@ namespace YAFIT.UI.ViewModels
 
         #region member variabls
 
+        private String _newKlasse = string.Empty;
+        private String _newAbteilung = string.Empty;
+        private String _newFach = string.Empty;
+        private String _newPasswort = string.Empty;
+
         private IList<UserEntity> _userList = [];
         private IList<RegisterEntity> _registerList = [];
-        private IList<KlassenEntity> _klasseList = [];
+        private IList<KlassenEntity> _klassenList = [];
         private IList<AbteilungEntity> _abteilungList = [];
         private IList<FachEntity> _fachList = [];
+
         private int _selectedUserIndex = -1;
         private int _selectedRegisterIndex = -1;
-        private int _selectedKlasseIndex = -1;
+        private int _selectedKlassenIndex = -1;
         private int _selectedAbteilungIndex = -1;
         private int _selectedFachIndex = -1;
+
         private readonly Random _random = new Random();
 
         #endregion
