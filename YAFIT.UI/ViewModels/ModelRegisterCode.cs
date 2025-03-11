@@ -26,7 +26,7 @@ namespace YAFIT.UI.ViewModels
         public ModelRegisterCode(Window window, WindowMainModel windowMainModel) : base(window)
         {
             OnRegister = new RelayCommand(DoRegister);
-            _loginData = [windowMainModel.LoginUname, windowMainModel.SecurePassword?.ConvertToPlainText()??"password"];
+            _loginData = [windowMainModel.LoginUname, windowMainModel.SecurePassword?.ConvertToPlainText()??"Password"];
         }
 
         private void DoRegister()
@@ -49,9 +49,9 @@ namespace YAFIT.UI.ViewModels
             UserService userService = UserEntity.GetUserService();
             UserEntity user = new UserEntity()
             {
-                isAdmin = false,
+                IsAdmin = false,
                 Name = _loginData[0],
-                password = _loginData[1]
+                Password = _loginData[1]
             };
 
             _successful = userService.Insert(user);

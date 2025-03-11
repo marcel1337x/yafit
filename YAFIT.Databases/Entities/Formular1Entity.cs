@@ -3,11 +3,10 @@ using YAFIT.Databases.Services;
 
 namespace YAFIT.Databases.Entities;
 
-public class Formular1Entity
+public class Formular1Entity : FormularBaseEntity
 {
     private static readonly Formular1Service _formular1Service = new Formular1Service();
-    public virtual int Id { get; set; }
-    public virtual UmfrageEntity Umfrage { get; set; }
+
     [ValueBinding(0)]
     public virtual int VerhaltenLehrer0 { get; set; }
     [ValueBinding(1)]
