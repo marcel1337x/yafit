@@ -1,5 +1,6 @@
 ﻿using System.Diagnostics;
 using System.Security;
+using System.Security.Cryptography;
 using System.Text.RegularExpressions;
 using System.Windows;
 using System.Windows.Input;
@@ -184,7 +185,18 @@ namespace YAFIT.UI.ViewModels
             UserEntity? user = UserEntity.GetUserService().GetEntity(x => x.Name == _userName);
             if (user != null)
             {
-                if (user.Password == (SecurePassword?.ConvertToPlainText() ?? ""))
+                string savedPasswordHash = user.Password;
+                byte[] hashBytes = Convert.FromBase64String(savedPasswordHash);
+                byte[] salt = new byte[16];
+                Array.Copy(hashBytes, 0, salt, 0, 16);
+                var pbkdf2 = new Rfc2898DeriveBytes((SecurePassword?.ConvertToPlainText() ?? ""), salt, 100000);
+                byte[] hash = pbkdf2.GetBytes(20);
+                bool passwordMatch = true;
+                for (int i=0; i < 20; i++)
+                    if (hashBytes[i + 16] != hash[i])
+                        passwordMatch = false;
+                
+                if (passwordMatch)
                 {
                     MessageBox.Show("Login erfolgreich");
                     if (user.IsAdmin == true)
