@@ -337,7 +337,7 @@ namespace YAFIT.UI.ViewModels
                 {
                     foreach (UmfrageEntity um in umfragen)
                     {
-                        UmfrageEntity.GetUmfrageService().Delete(um);
+                        UmfrageEntity.GetUmfrageService().DeleteUmfrage(um);
                     }
                 }
                 UserEntity.GetUserService().Delete(user);
