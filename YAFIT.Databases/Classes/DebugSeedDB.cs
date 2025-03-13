@@ -24,7 +24,8 @@ public class DebugSeedDB
         else if (user != null)
         {
             Debug.WriteLine("3");
-            UserEntity.GetUserService().Update(rootUser);
+            UserEntity.GetUserService().Delete(user);
+            UserEntity.GetUserService().Insert(rootUser);
         }
         else
         {
