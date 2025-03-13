@@ -24,6 +24,9 @@ namespace YAFIT.UI.Views
             InitializeComponent();
         }
 
-        
+        private void CommentBox_TextChanged(object sender, TextChangedEventArgs e)
+        {
+
+        }
     }
 }

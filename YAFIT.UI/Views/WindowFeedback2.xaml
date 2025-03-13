@@ -4,108 +4,96 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:YAFIT.UI.Views"
+        xmlns:control="clr-namespace:YAFIT.UI.UserControls"
         mc:Ignorable="d"
-        Title="Feedbackbogen Zielscheibe" Height="800" Width="600">
-    <Grid>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="353*"/>
-            <RowDefinition Height="431*"/>
-        </Grid.RowDefinitions>
-        <!-- Überschrift und Anweisungen -->
-        <StackPanel Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,10,0,0">
-            <TextBlock Text="Zielscheibe" FontSize="20" FontWeight="Bold" TextAlignment="Center" Margin="0,5"/>
-            <TextBlock Text="Bitte bewerten Sie die angegebenen Teilbereiche und setzen Sie innerhalb der einzelnen Segmente an der nach Ihrer Meinung richtigen Stelle ein Kreuzchen. Je näher das Kreuzchen in der Mitte der Zielscheibe gesetzt wird, desto positiver ist die Bewertung." 
+        Title="Feedbackbogen Zielscheibe" Height="850" Width="600">
+    <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto">
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="400"/>
+                <RowDefinition Height="350"/>
+                <RowDefinition Height="50"/>
+            </Grid.RowDefinitions>
+            <!-- Überschrift und Anweisungen -->
+            <StackPanel Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,10,0,0">
+                <TextBlock Text="Zielscheibe" FontSize="20" FontWeight="Bold" TextAlignment="Center" Margin="0,5"/>
+                <TextBlock Text="Bitte bewerten Sie die angegebenen Teilbereiche und setzen Sie innerhalb der einzelnen Segmente an der nach Ihrer Meinung richtigen Stelle ein Kreuzchen. Je näher das Kreuzchen in der Mitte der Zielscheibe gesetzt wird, desto positiver ist die Bewertung." 
                        FontSize="14" TextWrapping="Wrap" TextAlignment="Center" Width="550" Margin="0,5"/>
-            <TextBlock Text="Die Auswertung der Fragebögen erfolgt anonym." FontSize="14" TextAlignment="Center" Margin="0,5"/>
-        </StackPanel>
+                <TextBlock Text="Die Auswertung der Fragebögen erfolgt anonym." FontSize="14" TextAlignment="Center" Margin="0,5"/>
+            </StackPanel>
 
-        <!-- Zielscheibe -->
-        <Canvas Width="400" Height="400" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="110,155,0,0" Grid.RowSpan="2">
-            <!-- Kreise der Zielscheibe -->
-            <Ellipse Width="400" Height="400" Stroke="Black" StrokeThickness="1" Fill="White" HorizontalAlignment="Center" VerticalAlignment="Center"/>
-            <Ellipse Width="350" Height="350" Stroke="Black" StrokeThickness="1" Fill="LightGray" Canvas.Left="25" Canvas.Top="25"/>
-            <Ellipse Width="270" Height="280" Stroke="Black" StrokeThickness="1" Fill="White" Canvas.Left="65" Canvas.Top="60" HorizontalAlignment="Left" VerticalAlignment="Top"/>
-            <Ellipse Width="200" Height="200" Stroke="Black" StrokeThickness="1" Fill="LightGray" Canvas.Left="100" Canvas.Top="100"/>
-            <Ellipse Width="100" Height="100" Stroke="Black" StrokeThickness="1" Fill="White" Canvas.Left="150" Canvas.Top="150"/>
+            <!-- Zielscheibe -->
+            <Canvas Width="400" Height="400" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="110,155,0,0" Grid.RowSpan="2">
+                <!-- Kreise der Zielscheibe -->
+                <Ellipse Width="400" Height="400" Stroke="Black" StrokeThickness="1" Fill="White" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                <Ellipse Width="350" Height="350" Stroke="Black" StrokeThickness="1" Fill="LightGray" Canvas.Left="25" Canvas.Top="25"/>
+                <Ellipse Width="270" Height="280" Stroke="Black" StrokeThickness="1" Fill="White" Canvas.Left="65" Canvas.Top="60" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+                <Ellipse Width="200" Height="200" Stroke="Black" StrokeThickness="1" Fill="LightGray" Canvas.Left="100" Canvas.Top="100"/>
+                <Ellipse Width="100" Height="100" Stroke="Black" StrokeThickness="1" Fill="White" Canvas.Left="150" Canvas.Top="150"/>
 
-            <!-- Unterteilungen -->
-            <Line X1="200" Y1="0" X2="200" Y2="400" Stroke="Black" StrokeThickness="1"/>
-            <Line X1="0" Y1="200" X2="400" Y2="200" Stroke="Black" StrokeThickness="1"/>
-            <Line X1="60" Y1="60" X2="340" Y2="340" Stroke="Black" StrokeThickness="1"/>
-            <Line X1="340" Y1="60" X2="60" Y2="340" Stroke="Black" StrokeThickness="1"/>
+                <!-- Unterteilungen -->
+                <Line X1="200" Y1="0" X2="200" Y2="400" Stroke="Black" StrokeThickness="1"/>
+                <Line X1="0" Y1="200" X2="400" Y2="200" Stroke="Black" StrokeThickness="1"/>
+                <Line X1="60" Y1="60" X2="340" Y2="340" Stroke="Black" StrokeThickness="1"/>
+                <Line X1="340" Y1="60" X2="60" Y2="340" Stroke="Black" StrokeThickness="1"/>
 
-            <!-- Labels der Aussagen -->
-            <TextBlock FontSize="12" TextAlignment="Center"
+                <!-- Labels der Aussagen -->
+                <TextBlock FontSize="12" TextAlignment="Center"
                        Canvas.Left="313" Width="125" Height="55" HorizontalAlignment="Left" VerticalAlignment="Center"><Run Text="Die Lehrkraft hat ein"/><LineBreak/><Run Text="großes"/><LineBreak/><Run Text="Hintergrundwissen."/></TextBlock>
-            <TextBlock FontSize="12" TextAlignment="Center"
+                <TextBlock FontSize="12" TextAlignment="Center"
                        Canvas.Left="380" Canvas.Top="79" Width="101" HorizontalAlignment="Left" VerticalAlignment="Top"><Run Text="Die Lehrkraft ist"/><LineBreak/><Run Text="immer gut"/><LineBreak/><Run Text="vorbereitet."/></TextBlock>
-            <TextBlock FontSize="12" TextAlignment="Center"
+                <TextBlock FontSize="12" TextAlignment="Center"
                        Canvas.Left="380" Canvas.Top="275" Width="105" Height="57"><Run Text="Die Lehrkraft zeigt"/><LineBreak/><Run Text="Interesse an ihren"/><LineBreak/><Run Text="Schülern."/></TextBlock>
-            <TextBlock FontSize="12" TextAlignment="Center"
-                       Canvas.Left="-103" Canvas.Top="104" Width="111" Height="36"><Run Text="Der Unterricht wird"/><LineBreak/><Run Text="vielfältig gestaltet."/></TextBlock>
+                <TextBlock FontSize="12" TextAlignment="Center"
+                       Canvas.Left="-103" Canvas.Top="103" Width="111" Height="36"><Run Text="Der Unterricht wird"/><LineBreak/><Run Text="vielfältig gestaltet."/></TextBlock>
+                <TextBlock FontSize="12" TextAlignment="Center" Grid.Row="1" Canvas.Left="301" Canvas.Top="375"><Run Text="Die Lehrkraft sorgt"/><LineBreak/><Run Text="für ein gutes"/><LineBreak/><Run Text="Lernklima in der"/><LineBreak/><Run Text="Klasse."/></TextBlock>
+                <TextBlock FontSize="12" TextAlignment="Center" Grid.Row="1" Canvas.Left="-95" Canvas.Top="275"><Run Text="Die Notengebung"/><LineBreak/><Run Text="ist fair und"/><LineBreak/><Run Text="nachvollziehbar."/></TextBlock>
+                <TextBlock FontSize="12" TextAlignment="Center" Grid.Row="1" Canvas.Left="-6" Canvas.Top="-17"><Run Text="Ich konnte dem"/><LineBreak/><Run Text="Unterricht immer"/><LineBreak/><Run Text="gut folgen."/></TextBlock>
+                <TextBlock FontSize="12" TextAlignment="Center" Canvas.Left="26" Canvas.Top="380" RenderTransformOrigin="-0.863,3.823" HorizontalAlignment="Left" VerticalAlignment="Center"><Run Text="Ich lerne im"/><LineBreak/><Run Text="Unterricht viel"/></TextBlock>
+                
+                
+                
+                <StackPanel Canvas.Left="-10" Canvas.Top="110" x:Name="EntryGroup1">
+                    <StackPanel.RenderTransform>
+                        <RotateTransform CenterX="0" CenterY="0"/>
+                    </StackPanel.RenderTransform>
+                    <control:FormEntryLineRadiobuttonSingle>
+                        <UserControl.RenderTransform>
+                            <TransformGroup>
+                                <RotateTransform Angle="10"  CenterY=""/>
+                            </TransformGroup>
+                        </UserControl.RenderTransform>
+                    </control:FormEntryLineRadiobuttonSingle>
+                </StackPanel>
+
+              
+                
 
 
-            <RadioButton IsChecked="{ Binding Nachvollziehbar.CheckBox1}" GroupName="nachvollziehbar"  Content="2"  HorizontalAlignment="Left" Canvas.Left="128" Canvas.Top="340" VerticalAlignment="Top" RenderTransformOrigin="-0.51,3.523"/>
-            <RadioButton GroupName="nachvollziehbar" Content="5"  HorizontalAlignment="Left" Canvas.Left="175" Canvas.Top="222" VerticalAlignment="Top" RenderTransformOrigin="-2.958,-6.995"/>
-            <RadioButton GroupName="nachvollziehbar" Content="1" HorizontalAlignment="Left" VerticalAlignment="Top" Grid.Row="1" Canvas.Left="107" Canvas.Top="363"/>
-            <RadioButton GroupName="nachvollziehbar" Content="4" HorizontalAlignment="Left" Canvas.Left="162" Canvas.Top="263" VerticalAlignment="Top"/>
-            <RadioButton GroupName="nachvollziehbar" Content="3" HorizontalAlignment="Left" Canvas.Left="141" Canvas.Top="300" VerticalAlignment="Top" RenderTransformOrigin="-0.72,-4.7"/>
-            <RadioButton GroupName="Hintergrundwissen." Content="5" HorizontalAlignment="Left" Canvas.Left="200" Canvas.Top="157" VerticalAlignment="Top"/>
-            <RadioButton GroupName="Hintergrundwissen" Content="1" HorizontalAlignment="Left" VerticalAlignment="Top" Canvas.Left="275" Canvas.Top="27"/>
-            <RadioButton GroupName="Hintergrundwissen" Content="3" HorizontalAlignment="Left" VerticalAlignment="Top" RenderTransformOrigin="0.955,0.024" Canvas.Left="225" Canvas.Top="88"/>
-            <RadioButton GroupName="Hintergrundwissen" Content="4" HorizontalAlignment="Center" Canvas.Left="212" Canvas.Top="124" VerticalAlignment="Top"/>
-            <RadioButton GroupName="Hintergrundwissen" Content="2" HorizontalAlignment="Left" Canvas.Left="250" Canvas.Top="48" VerticalAlignment="Top"/>
-            <RadioButton GroupName="Lernklima" Content="2" HorizontalAlignment="Left" Canvas.Left="248" Canvas.Top="340" VerticalAlignment="Top" RenderTransformOrigin="4.24,-3.229"/>
-            <RadioButton GroupName="Lernklima" Content="5" HorizontalAlignment="Left" Canvas.Left="200" Canvas.Top="222" VerticalAlignment="Top"/>
-            <RadioButton GroupName="Lernklima" Content="1" HorizontalAlignment="Left" VerticalAlignment="Top"  Grid.Row="1" Canvas.Left="262" Canvas.Top="363"/>
-            <RadioButton GroupName="Lernklima" Content="4" HorizontalAlignment="Left" Canvas.Left="212" Canvas.Top="260" VerticalAlignment="Top"/>
-            <RadioButton GroupName="Lernklima" Content="3" HorizontalAlignment="Left" Canvas.Left="238" Canvas.Top="300" VerticalAlignment="Top" RenderTransformOrigin="1.61,0.203"/>
-            <RadioButton GroupName="vielfältig" Content="5" HorizontalAlignment="Left" Canvas.Left="162" Canvas.Top="180" VerticalAlignment="Top"/>
-            <RadioButton GroupName="vielfältig" Content="1" HorizontalAlignment="Left" VerticalAlignment="Top" Canvas.Left="8" Canvas.Top="131"/>
-            <RadioButton GroupName="vielfältig" Content="2" HorizontalAlignment="Left" VerticalAlignment="Center" RenderTransformOrigin="8.127,-5.167" Canvas.Left="45" Canvas.Top="146"/>
-            <RadioButton GroupName="vielfältig" Content="4" HorizontalAlignment="Left" Canvas.Left="120" Canvas.Top="166" VerticalAlignment="Top"/>
-            <RadioButton GroupName="vielfältig" Content="3" HorizontalAlignment="Left" Canvas.Left="75" Canvas.Top="150" VerticalAlignment="Top"/>
-            <RadioButton GroupName="lerneviel" Content="1" HorizontalAlignment="Left" VerticalAlignment="Top" Canvas.Left="133" Canvas.Top="15"/>
-            <RadioButton GroupName="lerneviel" Content="5" HorizontalAlignment="Left" VerticalAlignment="Top" RenderTransformOrigin="-3.913,-9.155" Canvas.Left="171" Canvas.Top="160"/>
-            <RadioButton GroupName="lerneviel" Content="2" HorizontalAlignment="Left" VerticalAlignment="Top" Canvas.Left="146" Canvas.Top="43"/>
-            <RadioButton GroupName="lerneviel" Content="4"  HorizontalAlignment="Left" Canvas.Left="158" Canvas.Top="121" VerticalAlignment="Top"/>
-            <RadioButton GroupName="lerneviel" Content="3"  HorizontalAlignment="Left" Canvas.Left="142" Canvas.Top="85" VerticalAlignment="Center" RenderTransformOrigin="1.479,-3.942"/>
-            <RadioButton GroupName="Interesse" Content="2"   HorizontalAlignment="Left" Canvas.Left="335" Canvas.Top="253" VerticalAlignment="Top" RenderTransformOrigin="6.989,-6.438"/>
-            <RadioButton GroupName="Interesse" Content="1" HorizontalAlignment="Left" VerticalAlignment="Top" Grid.Row="1" Canvas.Left="360" Canvas.Top="263"/>
-            <RadioButton GroupName="Interesse" Content="3" HorizontalAlignment="Left" VerticalAlignment="Top" Grid.Row="1" Canvas.Left="300" Canvas.Top="235"/>
-            <RadioButton GroupName="Interesse" Content="4" HorizontalAlignment="Left" Canvas.Left="255" Canvas.Top="219" VerticalAlignment="Top"/>
-            <RadioButton GroupName="Interesse" Content="5" HorizontalAlignment="Left" Canvas.Left="213" Canvas.Top="202" VerticalAlignment="Top"/>
-            <RadioButton GroupName="vorbereitet" Content="5" HorizontalAlignment="Left" Canvas.Left="213" Canvas.Top="183" VerticalAlignment="Center" RenderTransformOrigin="0.052,1.607"/>
-            <RadioButton GroupName="vorbereitet" Content="3" HorizontalAlignment="Left" Canvas.Left="300" Canvas.Top="150" VerticalAlignment="Top" RenderTransformOrigin="2.526,0.091"/>
-            <RadioButton GroupName="vorbereitet" Content="2" HorizontalAlignment="Left" Canvas.Left="322" Canvas.Top="133" VerticalAlignment="Top"/>
-            <RadioButton GroupName="vorbereitet" Content="4" HorizontalAlignment="Left" Canvas.Left="255" Canvas.Top="166" VerticalAlignment="Top"/>
-            <RadioButton GroupName="vorbereitet" Content="1" HorizontalAlignment="Left" VerticalAlignment="Top" Canvas.Left="360" Canvas.Top="126"/>
-            <RadioButton GroupName="folgen" Content="1" HorizontalAlignment="Left" VerticalAlignment="Top" Grid.Row="1" Canvas.Left="10" Canvas.Top="256"/>
-            <RadioButton GroupName="folgen" Content="2" HorizontalAlignment="Left" VerticalAlignment="Top" Grid.Row="1" RenderTransformOrigin="0.733,2.452" Canvas.Left="46" Canvas.Top="247"/>
-            <RadioButton GroupName="folgen" Content="3" HorizontalAlignment="Left" VerticalAlignment="Top" Grid.Row="1" Canvas.Left="76" Canvas.Top="235"/>
-            <RadioButton GroupName="folgen" Content="4" HorizontalAlignment="Left" VerticalAlignment="Top" Grid.Row="1" RenderTransformOrigin="1.937,3.277" Canvas.Left="115" Canvas.Top="219"/>
-            <RadioButton GroupName="folgen" Content="5" HorizontalAlignment="Left" VerticalAlignment="Top" Grid.Row="1" Canvas.Left="162" Canvas.Top="200"/>
-        </Canvas>
-        <!-- Kommentarfeld -->
-        <StackPanel Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,207,0,0" Grid.Row="1">
-            <TextBlock Text="Was ich sonst noch anmerken möchte:" FontSize="14" Margin="10"/>
-            <TextBox Name="CommentBox" Height="100" Width="400" Margin="10" TextWrapping="Wrap" AcceptsReturn="True" Text="{Binding TextBoxQuestions[0], Mode=OneWayToSource}" />
-        </StackPanel>
+            </Canvas>
+            <!-- Kommentarfeld -->
+            <StackPanel Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,207,0,0" Grid.Row="1">
+                <TextBlock Text="Was ich sonst noch anmerken möchte:" FontSize="14" Margin="10"/>
+                <TextBox x:Name="CommentBox" Height="100" Width="400" TextWrapping="Wrap" AcceptsReturn="True" Text="{Binding TextBoxQuestions[0], Mode=OneWayToSource}" TextChanged="CommentBox_TextChanged" />
+            </StackPanel>
 
-        <!-- Speichern-Button -->
-        <Button Content="Bewertung speichern" Width="200" Height="40" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,371,0,0" Grid.Row="1"/>
-        <TextBlock FontSize="12" TextAlignment="Center"
-    Margin="394,181,100,181" Grid.Row="1"><Run Text="Die Lehrkraft sorgt"/><LineBreak/><Run Text="für ein gutes"/><LineBreak/><Run Text="Lernklima in der"/><LineBreak/><Run Text="Klasse."/></TextBlock>
-        <TextBlock FontSize="12" TextAlignment="Center"
-    Margin="102,173,386,212" Grid.Row="1"><Run Text="Die Notengebung"/><LineBreak/><Run Text="ist fair und"/><LineBreak/><Run Text="nachvollziehbar."/></TextBlock>
-        <TextBlock FontSize="12" TextAlignment="Center"
-    Margin="20,71,471,307" Grid.Row="1"><Run Text="Ich konnte dem"/><LineBreak/><Run Text="Unterricht immer"/><LineBreak/><Run Text="gut folgen."/></TextBlock>
-        <TextBlock FontSize="12" TextAlignment="Center"
-    Margin="110,148,375,174"><Run Text="Ich lerne im"/><LineBreak/><Run Text="Unterricht viel"/></TextBlock>
+            <!-- Speichern-Button -->
+            <Button Grid.Row="3" 
+         Width="120" 
+         Content="Abgeben" 
+         HorizontalAlignment="Right"
+         Margin="5"
+         Command="{Binding OnSendResult}"/>
+            <Button Grid.Row="3" 
+         Width="120" 
+         Content="Abbrechen" 
+         HorizontalAlignment="Left"
+         Margin="5"/>
 
 
 
-    </Grid>
+        </Grid>
+    </ScrollViewer>
 </Window>
 
 
