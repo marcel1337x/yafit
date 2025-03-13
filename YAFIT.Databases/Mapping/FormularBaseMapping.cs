@@ -8,7 +8,7 @@ namespace YAFIT.Databases.Mapping
         public FormularBaseMapping()
         {
             Id(x => x.Id).GeneratedBy.Increment();
-            References(x => x.Umfrage).Not.Nullable();
+            Map(x => x.Umfrage_Id).Not.Nullable();
         }
     }
 }

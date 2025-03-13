@@ -3,11 +3,11 @@
 namespace YAFIT.UI.Views
 {
     /// <summary>
-    /// Interaktionslogik für MainWindow.xaml
+    /// Interaktionslogik für ViewTeacher.xaml
     /// </summary>
-    public partial class WindowMain : Window
+    public partial class ViewTeacher : Window
     {
-        public WindowMain()
+        public ViewTeacher()
         {
             InitializeComponent();
         }

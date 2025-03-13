@@ -6,19 +6,16 @@ using System.Windows.Input;
 using YAFIT.Common.Enums;
 using YAFIT.Common.Extensions;
 using YAFIT.Common.UI.ViewModel;
-using YAFIT.Databases.Classes;
 using YAFIT.Databases.Entities;
 using YAFIT.Databases.Services;
-using YAFIT.UI.ViewModels.Forms.Formular1;
 using YAFIT.UI.Views;
-using YAFIT.UI.Views.Forms.Formular1;
 
 namespace YAFIT.UI.ViewModels
 {
     /// <summary>
     /// Das ViewModel für das Hauptfenster
     /// </summary>
-    public class WindowMainModel : BaseViewModel
+    public class ModelMain : BaseViewModel
     {
         #region commands
         /// <summary>
@@ -55,7 +52,7 @@ namespace YAFIT.UI.ViewModels
         {
             get
             {
-                if(_view is WindowMain windowMain)
+                if(_view is ViewMain windowMain)
                 {
                     return windowMain.PWBox.SecurePassword ?? null;
                 }
@@ -80,13 +77,13 @@ namespace YAFIT.UI.ViewModels
         /// Erstellt ein neues ViewModel für das Hauptfenster
         /// </summary>
         /// <param name="window">Das dazugehörige View</param>
-        public WindowMainModel(Window window) : base(window) {
+        public ModelMain(Window window) : base(window) {
             WindowCaption = "YAFIT - Yet Another Feeback Information Tool";
             OnFeedbackCodeEnter = new RelayCommand(DoFeedbackCodeEnter);
             OnAccountLogin = new RelayCommand(DoAccountLogin);
             OnAccountRegister = new RelayCommand(DoAccountRegister);
 
-            if (_view is WindowMain windowMain)
+            if (_view is ViewMain windowMain)
             {
                 windowMain.PWBox.KeyDown += OnPasswordEnterEvent;
             }
@@ -216,7 +213,7 @@ namespace YAFIT.UI.ViewModels
 
         protected override void CloseView()
         {
-            if (_view is WindowMain windowMain)
+            if (_view is ViewMain windowMain)
             {
                 windowMain.PWBox.KeyDown -= OnPasswordEnterEvent;
             }

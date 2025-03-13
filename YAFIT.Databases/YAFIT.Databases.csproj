@@ -7,6 +7,10 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="Configuration\DatabaseConfigPreset.json" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="FluentNHibernate" Version="3.4.0" />
     <PackageReference Include="MySql.Data" Version="9.2.0" />
   </ItemGroup>
@@ -14,6 +18,12 @@
   <ItemGroup>
     <ProjectReference Include="..\YAFIT.Data\YAFIT.Data.csproj" />
     <ProjectReference Include="..\YAFIT.Interfaces\YAFIT.Interfaces.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="Configuration\DatabaseConfigPreset.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
 
 </Project>

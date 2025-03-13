@@ -1,18 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
+﻿using System.Windows;
 using System.Windows.Input;
-using YAFIT.Common.Enums;
 using YAFIT.Common.UI.ViewModel;
-using YAFIT.Data.Forms;
 using YAFIT.Databases.Entities;
-using YAFIT.Interfaces.Forms;
-using YAFIT.UI.Views;
-using static Org.BouncyCastle.Bcpg.Attr.ImageAttrib;
 
 namespace YAFIT.UI.ViewModels
 {
@@ -383,7 +372,7 @@ namespace YAFIT.UI.ViewModels
         /// </summary>
         private void DoButtonPasswordChange()
         {
-            UserEntity user = GetSelectedUser();
+            UserEntity? user = GetSelectedUser();
             if (user == null)
             {
                 MessageBox.Show("Bitte erst einen Benutzer auswählen!");
@@ -396,7 +385,7 @@ namespace YAFIT.UI.ViewModels
                 }
                 else
                 {
-                    user.password = _newPasswort;
+                    user.Password = _newPasswort;
                     UserEntity.GetUserService().Update(user);
                     MessageBox.Show("Passwort wurde von " + user.Name + " wurde auf " + _newPasswort + " geändert!");
                 }

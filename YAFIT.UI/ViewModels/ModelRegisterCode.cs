@@ -23,7 +23,7 @@ namespace YAFIT.UI.ViewModels
             get { return _successful; }
         }
 
-        public ModelRegisterCode(Window window, WindowMainModel windowMainModel) : base(window)
+        public ModelRegisterCode(Window window, ModelMain windowMainModel) : base(window)
         {
             OnRegister = new RelayCommand(DoRegister);
             _loginData = [windowMainModel.LoginUname, windowMainModel.SecurePassword?.ConvertToPlainText()??"Password"];

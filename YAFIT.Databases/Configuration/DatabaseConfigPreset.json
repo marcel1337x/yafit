@@ -1,0 +1,21 @@
+{
+  "Using": "MySQL",
+  "Settings": {
+    "Caching": "true"
+  },
+  "Databases": {
+    "MySQL": {
+      "Database": "yafit",
+      "Server": "10.0.126.13",
+      "Port": "3306",
+      "Username": "root",
+      "Password": "yafit"
+    },
+    "SQLite": {
+
+    },
+    "MSSQL": {
+
+    }
+  }
+}
