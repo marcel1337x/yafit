@@ -53,9 +53,9 @@ namespace YAFIT.Databases.Services
                 if (GetEntity(expression) == null)
                 {
                     Insert(value);
+                    transaction.Commit();
+                    return true;
                 }
-                transaction.Commit();
-                return true;
             }
             catch (Exception e)
             {

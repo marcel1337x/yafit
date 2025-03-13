@@ -3,11 +3,11 @@
 namespace YAFIT.UI.Views.Forms.Formular1
 {
     /// <summary>
-    /// Interaktionslogik für windowfeedback.xaml
+    /// Interaktionslogik für Formular1Result.xaml
     /// </summary>
-    public partial class Formular1 : Window
+    public partial class ViewFormular1Result : Window
     {
-        public Formular1()
+        public ViewFormular1Result()
         {
             InitializeComponent();
         }
