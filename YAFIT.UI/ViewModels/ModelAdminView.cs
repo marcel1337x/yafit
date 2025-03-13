@@ -332,7 +332,7 @@ namespace YAFIT.UI.ViewModels
             else
             {
                 String userName = user.Name;
-                IList<UmfrageEntity> umfragen = UmfrageEntity.GetUmfrageService().GetAllByCriteria(x => x.User.Id == user.Id);
+                IList<UmfrageEntity> umfragen = UmfrageEntity.GetUmfrageService().GetAllByCriteria(x => x.User_Id == user.Id);
                 if (umfragen.Count != 0)
                 {
                     foreach (UmfrageEntity um in umfragen)

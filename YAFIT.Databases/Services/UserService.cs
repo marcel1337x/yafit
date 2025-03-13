@@ -1,5 +1,5 @@
-﻿using System.Security.Cryptography;
-using NHibernate;
+﻿using NHibernate;
+using System.Security.Cryptography;
 using YAFIT.Databases.Entities;
 
 namespace YAFIT.Databases.Services;
@@ -21,6 +21,6 @@ public class UserService : SessionService<UserEntity>
             string savedPasswordHash = Convert.ToBase64String(hashBytes);
             entity.Password = savedPasswordHash;
         }
-        return base.Insert(entities);
+        return base.Insert(session,entities);
     }
 }
