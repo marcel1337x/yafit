@@ -1,4 +1,5 @@
-﻿using System.Windows;
+﻿using System.Diagnostics;
+using System.Windows;
 using YAFIT.Databases;
 using YAFIT.UI;
 using YAFIT.UI.ViewModels;
@@ -34,7 +35,8 @@ namespace YAFIT
         /// <param name="e">ExitEventArgs</param>
         private void Application_Exit(object sender, ExitEventArgs e)
         {
-
+            SessionManager.Disconnect();
+            Environment.Exit(0);
         }
     }
 

@@ -1,18 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
+﻿using System.Windows;
 using System.Windows.Input;
-using YAFIT.Common.Enums;
 using YAFIT.Common.UI.ViewModel;
-using YAFIT.Data.Forms;
 using YAFIT.Databases.Entities;
-using YAFIT.Interfaces.Forms;
-using YAFIT.UI.Views;
-using static Org.BouncyCastle.Bcpg.Attr.ImageAttrib;
 
 namespace YAFIT.UI.ViewModels
 {

@@ -1,4 +1,7 @@
 ﻿using System.Collections.Immutable;
+using System.Diagnostics;
+using System.Reflection;
+using YAFIT.Databases.Attributes;
 using YAFIT.Databases.Entities;
 
 namespace YAFIT.Databases.Classes;
@@ -16,7 +19,8 @@ public class DebugSeedDB
         if (user != null && user.Password == "root" && user.IsAdmin == true && user.Id == 1)
         {
             return;
-        }else if (user != null)
+        }
+        else if (user != null)
         {
             UserEntity.GetUserService().Update(rootUser);
         }
@@ -37,7 +41,7 @@ public class DebugSeedDB
             RegisterEntity.GetRegisterService().Insert(register);
         }
     }
-    
+
     public void CheckAndPutFirstUser()
     {
         UserEntity firstUser = new UserEntity();
@@ -50,41 +54,62 @@ public class DebugSeedDB
         if (user != null && user.Password == firstUser.Password && user.IsAdmin == false && user.Id == firstUser.Id)
         {
             return;
-        }else if (user != null)
+        }
+        else if (user != null)
         {
             UserEntity.GetUserService().Update(firstUser);
-            PutFirstUserUmfrage(firstUser);
         }
         else
         {
             UserEntity.GetUserService().Insert(firstUser);
-            PutFirstUserUmfrage(firstUser);
         }
-        
+
     }
 
     public void AddFormular1TestResults()
     {
     }
 
-    private void PutFirstUserUmfrage(UserEntity user)
+    public void PutFirstUserUmfrage()
     {
         UmfrageEntity umfrage = new UmfrageEntity();
         umfrage.ErstelltDatum = DateTime.Now;
         umfrage.Id = 1;
         umfrage.Schluessel = "12345678";
         umfrage.Formulartyp = 1;
-        umfrage.User = user;
-        UmfrageEntity.GetUmfrageService().Insert(umfrage);
+        umfrage.User_Id = 2;
+        Random random = new Random();
 
-        Formular1Entity formular1Entities = new Formular1Entity() { DieLehrer0 = 3, DieLehrer2 = 2 , Umfrage = umfrage};
-        Formular1Entity.GetFormular1Service().InsertIfNotExist(x => x.Id == formular1Entities.Id, formular1Entities);
+
+        if (UmfrageEntity.GetUmfrageService().InsertIfNotExist(x => x.Id == umfrage.Id, umfrage))
+        {
+
+            for (int i = 0; i < 10; i++)
+            {
+                Formular1Entity entity = new Formular1Entity() { Umfrage_Id = umfrage.Id };
+                PropertyInfo[] properties = entity.GetType().GetProperties();
+                foreach (PropertyInfo property in properties)
+                {
+                    ValueBindingAttribute? bindings = property.GetCustomAttribute<ValueBindingAttribute>();
+                    if(bindings != null)
+                    {
+                        property.SetValue(entity, random.Next(0, 4));
+
+                    }
+                }
+                Formular1Entity.GetFormular1Service().Insert(entity);
+            }
+        }
+        else
+        {
+            Debug.WriteLine("EXIST :(");
+        }
     }
 
     public void CheckAndPutFirstAbteilung()
     {
         AbteilungEntity abteilung = new AbteilungEntity();
-        abteilung.Name = "abteilung1";
+        abteilung.Name = "Abteilung1";
         abteilung.Id = 1;
         if (AbteilungEntity.GetAbteilungService().GetEntity(x => x.Id == abteilung.Id) != null)
         {

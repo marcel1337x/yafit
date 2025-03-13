@@ -8,10 +8,10 @@ public class UmfrageMapping : ClassMap<UmfrageEntity>
     public UmfrageMapping()
     {
         Id(x => x.Id).GeneratedBy.Increment();
-        References(x => x.User).Not.Nullable();
-        References(x => x.Klassen);
-        References(x => x.Abteilung);
-        References(x => x.Fach);
+        Map(x => x.User_Id).Not.Nullable();
+        Map(x => x.Klassen_Id);
+        Map(x => x.Abteilung_Id);
+        Map(x => x.Fach_Id);
         Map(x => x.Formulartyp).Not.Nullable();
         Map(x => x.Schluessel).Not.Nullable();
         Map(x => x.ErstelltDatum);

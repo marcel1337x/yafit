@@ -1,12 +1,9 @@
 ﻿using System.Collections.ObjectModel;
 using System.Windows;
 using System.Windows.Input;
-using YAFIT.Common.Enums;
 using YAFIT.Common.Extensions;
 using YAFIT.Common.UI.ViewModel;
-using YAFIT.Data.Forms;
 using YAFIT.Databases.Entities;
-using YAFIT.Interfaces.Forms;
 using YAFIT.UI.Views;
 
 namespace YAFIT.UI.ViewModels
@@ -84,18 +81,25 @@ namespace YAFIT.UI.ViewModels
         /// </summary>
         private void DoButtonNew()
         {
-            ViewFormsSelection viewFormsSelection = new ViewFormsSelection();
-            ModelFormsSelection modelFormsSelection = new ModelFormsSelection(viewFormsSelection);
+            ViewFormsSelection view = new ViewFormsSelection();
+            ModelFormsSelection model = new ModelFormsSelection(view);
             
-            ShowChildView(viewFormsSelection, modelFormsSelection, true);
+            ShowChildView(view, model, true);
+            if (model.ShouldSave() == false)
+            {
+                return;
+            }
 
             UmfrageEntity umfrage = new UmfrageEntity();
-            umfrage.User = _user;
+            umfrage.User_Id = _user.Id;
             umfrage.ErstelltDatum = DateTime.Now;
-            umfrage.Schluessel = modelFormsSelection.CustomCode;
-            umfrage.Formulartyp = (int) modelFormsSelection.GetSelectedForm();
-            
+            umfrage.Schluessel = model.CustomCode;
+            umfrage.Formulartyp = (int) model.GetSelectedForm();
+            umfrage.Abteilung_Id = model.AbteilungsList[model.AbteilungsIndex].Id;
+            umfrage.Fach_Id = model.FaecherList[model.FaecherIndex].Id;
+            umfrage.Klassen_Id = model.KlassenList[model.KlassenIndex].Id;
             UmfrageEntity.GetUmfrageService().Insert(umfrage);
+
             ReLoadList();
             
             OnPropertyChanged(nameof(FeedbackForms));
@@ -118,6 +122,12 @@ namespace YAFIT.UI.ViewModels
                 case 1:
                     WindowNavigation.OpenFormular1Results(umfrage);
                     break;
+                case 2:
+                    //WindowNavigation.OpenFormular1Results(umfrage);
+                    break;
+                case 3:
+                    //WindowNavigation.OpenFormular1Results(umfrage);
+                    break;
             }
         }
 
@@ -130,16 +140,23 @@ namespace YAFIT.UI.ViewModels
         /// </summary>
         private void DoButtonDelete()
         {
-            UmfrageEntity? feedbackForm = GetSelectedFeedbackForm();
-            if (feedbackForm == null)
+            UmfrageEntity? umfrage = GetSelectedFeedbackForm();
+            if (umfrage == null)
             {
-                //@TODO Nachricht
                 return;
             }
-            UmfrageEntity.GetUmfrageService().Delete(feedbackForm);
-            SelectedIndex = -1;
-            OnPropertyChanged(nameof(FeedbackForms));
-            OnPropertyChanged(nameof(SelectedIndex));
+
+            MessageBoxResult result = MessageBox.Show("oll wirklich diese Umfrage gelöscht werden?", "", MessageBoxButton.YesNo);
+            if (result == MessageBoxResult.Yes)
+            {
+                if (UmfrageEntity.GetUmfrageService().DeleteUmfrage(umfrage) == false)
+                {
+                    MessageBox.Show("Umfrage konnte nicht gelöscht werden!");
+                    return;
+                }
+                MessageBox.Show("Umfrage wurde gelöscht!");
+                ReLoadList();
+            }
         }
 
         #endregion
@@ -157,12 +174,13 @@ namespace YAFIT.UI.ViewModels
         #region onload
         /// <summary>
         /// Wird ausgeführt, wenn das Fenster geladen wird
+        /// 
         /// </summary>
         private void ReLoadList()
         {
+            SelectedIndex = -1;
             _umfrageEntities.Clear();
-            _umfrageEntities = UmfrageEntity.GetUmfrageService().GetAllByCriteria(
-                x => x.User.Id == _user.Id);
+            _umfrageEntities = UmfrageEntity.GetUmfrageService().GetAllByCriteria(x => x.User_Id == _user.Id);
             OnPropertyChanged("FeedbackForms");
         }
 
