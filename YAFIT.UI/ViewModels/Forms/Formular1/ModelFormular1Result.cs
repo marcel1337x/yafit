@@ -1,6 +1,4 @@
-﻿using FluentNHibernate.MappingModel.Collections;
-using System.ComponentModel;
-using System.Reflection;
+﻿using System.Reflection;
 using System.Windows;
 using System.Windows.Controls;
 using YAFIT.Common.UI.ViewModel;
@@ -11,9 +9,9 @@ using YAFIT.UI.Views.Forms.Formular1;
 
 namespace YAFIT.UI.ViewModels.Forms.Formular1
 {
-    public class WindowFormFormular1ResultModel : BaseViewModel
+    public class ModelFormular1Result : BaseViewModel
     {
-        public WindowFormFormular1ResultModel(Window window, UmfrageEntity umfrage) : base(window)
+        public ModelFormular1Result(Window window, UmfrageEntity umfrage) : base(window)
         {
             _umfrage = umfrage;
             OnLoad();
@@ -27,21 +25,14 @@ namespace YAFIT.UI.ViewModels.Forms.Formular1
         /// </summary>
         private void OnLoad()
         {
-            if (_view is Formular1Result formular == false)
+            if (_view is ViewFormular1Result formular == false)
             {
                 return;
             }
 
-            //FieldInfo? field = formType.GetType().GetField(formType.ToString());
-            //if (field != null)
-            //{
-            //    DescriptionAttribute? attribute = Attribute.GetCustomAttribute(field, typeof(DescriptionAttribute)) as DescriptionAttribute;
-            //    return attribute?.Description ?? DEFAULT_VALUE;
-            //}
-
             //Aus der Datenbank laden
-            IList<Formular1Entity> entities = Formular1Entity.GetFormular1Service()
-                .GetAllByCriteria(x => x.Umfrage.Id == _umfrage.Id);
+            IList<Formular1Entity> entities = Formular1Entity.GetFormular1Service().GetAllByCriteria(x => x.Umfrage_Id == _umfrage.Id);
+            
             Type type = typeof(Formular1Entity);
             int[][] results = [.. Enumerable.Range(0, _presetGroup1.Length + _presetGroup2.Length + _presetGroup3.Length + _presetGroup4.Length+1)
                 .Select(x => new int[] { 0, 0, 0, 0, 0 })];

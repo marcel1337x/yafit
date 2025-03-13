@@ -1,12 +1,8 @@
-﻿using System.Collections.ObjectModel;
-using System.ComponentModel;
-using System.Runtime.CompilerServices;
-using System.Windows;
+﻿using System.Windows;
 using System.Windows.Input;
 using YAFIT.Common.Enums;
 using YAFIT.Common.UI.ViewModel;
 using YAFIT.Databases.Entities;
-using YAFIT.Databases.Services;
 
 namespace YAFIT.UI.ViewModels
 {
@@ -25,36 +21,37 @@ namespace YAFIT.UI.ViewModels
 
         #region properties
 
-        public string[] Klassenliste
+
+        public IList<KlassenEntity> KlassenList
         {
-            get { return klassen.Select(x => x.Name).ToArray(); }
+            get { return _klassen; }
+        }
+
+        public IList<FachEntity> FaecherList
+        {
+            get { return _faecher; }
+        }
+        public IList<AbteilungEntity> AbteilungsList
+        {
+            get { return _abteilungen; }
         }
         public int KlassenIndex
         {
-            get { return klassenIndex; }
-            set { SetProperty("KlassenIndex", ref klassenIndex, value); }
+            get { return _klassenIndex; }
+            set { SetProperty("KlassenIndex", ref _klassenIndex, value); }
         }
 
-        public string[] Faecherliste
-        {
-            get { return faecher.Select(x => x.Name).ToArray(); }
-        }
         public int FaecherIndex
         {
-            get { return fachIndex; }
-            set { SetProperty("FaecherIndex", ref fachIndex, value); }
+            get { return _fachIndex; }
+            set { SetProperty("FaecherIndex", ref _fachIndex, value); }
         }
 
 
-        public string[] Abteilungsliste
+        public int AbteilungsIndex
         {
-            get { return abteilungen.Select(x => x.Name).ToArray(); }
-        }
-
-        public int Abteilungsindex
-        {
-            get { return fachIndex; }
-            set { SetProperty("Abteilungsindex", ref abteilungenIndex, value); }
+            get { return _fachIndex; }
+            set { SetProperty("AbteilungsIndex", ref _abteilungenIndex, value); }
         }
 
         public string CustomCode
@@ -82,10 +79,12 @@ namespace YAFIT.UI.ViewModels
         {
             WindowCaption = "YAFIT - Feedbackauswahl";
             OnGenKey = new RelayCommand(DoGenKey);
-            
-            klassen = KlassenEntity.GetKlassenService().GetAll();
-            faecher = FachEntity.GetFachService().GetAll();
-            abteilungen = AbteilungEntity.GetAbteilungService().GetAll();
+
+            _klassen = KlassenEntity.GetKlassenService().GetAll();
+            _faecher = FachEntity.GetFachService().GetAll();
+            _abteilungen = AbteilungEntity.GetAbteilungService().GetAll();
+
+            CustomCode = _random.Next(10_000_000, 99_999_999).ToString().PadLeft(8, '0');
 
         }
 
@@ -109,6 +108,13 @@ namespace YAFIT.UI.ViewModels
 
         #endregion
 
+
+        public bool ShouldSave()
+        {
+            return _save;
+        }
+
+
         #region private methods
 
         /// <summary>
@@ -116,48 +122,45 @@ namespace YAFIT.UI.ViewModels
         /// </summary>
         private void DoGenKey()
         {
-            if(string.IsNullOrEmpty(_customCode) == true)
-            {
-                CustomCode = _random.Next(10_000_000, 99_999_999).ToString().PadLeft(8, '0'); 
-            }
-            if(ValidateCode() == false)
+            if (Validate() == false)
             {
                 MessageBox.Show("Code existiert bereits!");
                 return;
             }
-
+            _save = true;
             CloseView();
         }
 
-        private bool ValidateCode()
+        private bool Validate()
         {
-            if(string.IsNullOrEmpty(_customCode) == true)
+            if (_abteilungenIndex == -1 ||
+                _klassenIndex == -1 ||
+                _fachIndex == -1)
             {
                 return false;
             }
-            //@TODO Database Search for CustomCode/
-            return true;
+            if (string.IsNullOrEmpty(_customCode) == true)
+            {
+                return false;
+            }
+            return UmfrageEntity.GetUmfrageService().GetAllByCriteria(x => x.Schluessel == _customCode).Count == 0;
         }
-        
-
-        
 
         #endregion
 
         #region member variables
 
-        private bool[] _selectedButton = [true, false];
-
-        private string _customCode = string.Empty;
         private readonly Random _random = new Random();
-        
-        
-        public IList<KlassenEntity> klassen = new List<KlassenEntity>();
-        private int klassenIndex = -1;
-        public IList<FachEntity> faecher = new List<FachEntity>();
-        private int fachIndex = -1;
-        private IList<AbteilungEntity> abteilungen = new List<AbteilungEntity>();
-        private int abteilungenIndex = -1;
+
+        private bool[] _selectedButton = [true, false];
+        private string _customCode = string.Empty;
+        private IList<AbteilungEntity> _abteilungen = [];
+        private IList<KlassenEntity> _klassen = [];
+        private IList<FachEntity> _faecher = [];
+        private int _abteilungenIndex = -1;
+        private int _klassenIndex = -1;
+        private int _fachIndex = -1;
+        public bool _save = false;
         #endregion
     }
 }

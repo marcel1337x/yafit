@@ -4,7 +4,6 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
 using YAFIT.Common.UI.ViewModel;
-using YAFIT.Data.Forms;
 using YAFIT.Databases.Entities;
 using YAFIT.UI.UserControls;
 using YAFIT.UI.Views.Forms.Formular1;
@@ -14,7 +13,7 @@ namespace YAFIT.UI.ViewModels.Forms.Formular1
     /// <summary>
     /// ViewModel für das 1. Formular
     /// </summary>
-    internal class WindowFormFormular1Model1 : BaseViewModel
+    internal class ModelFormular1 : BaseViewModel
     {
         #region commands
         /// <summary>
@@ -42,7 +41,7 @@ namespace YAFIT.UI.ViewModels.Forms.Formular1
         /// Erstellt ein neues ViewModel für das Hauptfenster
         /// </summary>
         /// <param name="window">Das dazugehörige View</param>
-        public WindowFormFormular1Model1(Window window, UmfrageEntity umfrage) : base(window)
+        public ModelFormular1(Window window, UmfrageEntity umfrage) : base(window)
         {
             _umfrage = umfrage;
             OnLoad();
@@ -60,7 +59,7 @@ namespace YAFIT.UI.ViewModels.Forms.Formular1
         /// </summary>
         private void DoSendResult()
         {
-            if (_view is Formular1_1 formular == false)
+            if (_view is ViewFormular1 formular == false)
             {
                 return;
             }
@@ -97,7 +96,7 @@ namespace YAFIT.UI.ViewModels.Forms.Formular1
             form.Text1 = TextBoxQuestions[1];
             form.Text2 = TextBoxQuestions[2];
 
-            form.Umfrage = _umfrage;
+            form.Umfrage_Id = _umfrage.Id;
 
             // Speichern in der Datenbank
             Formular1Entity.GetFormular1Service().Insert(form);
@@ -116,7 +115,7 @@ namespace YAFIT.UI.ViewModels.Forms.Formular1
         /// <returns>Gibt ein Byte[] zurück</returns>
         private byte[] GetButtonsResults()
         {
-            if (_view is Formular1_1 formular == false)
+            if (_view is ViewFormular1 formular == false)
             {
                 return [];
             }
@@ -142,7 +141,7 @@ namespace YAFIT.UI.ViewModels.Forms.Formular1
         /// </summary>
         private void OnLoad()
         {
-            if (_view is Formular1_1 formular == false)
+            if (_view is ViewFormular1 formular == false)
             {
                 return;
             }

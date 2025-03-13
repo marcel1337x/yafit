@@ -35,31 +35,31 @@
                     <ColumnDefinition Width="*"/>
                     <ColumnDefinition Width="*"/>
                 </Grid.ColumnDefinitions>
-                <Border BorderBrush="Black" BorderThickness="1,0,0,0" Grid.Column="0">
+                <Border BorderBrush="Black" BorderThickness="1,0,0,0" Grid.Column="0" x:Name="Border0">
                     <TextBlock Text="{Binding Percentage[0], Mode=OneWay, Converter={StaticResource FloatToString}}"
                                HorizontalAlignment="Center" 
                                VerticalAlignment="Center" 
                                TextWrapping="Wrap"/>
                 </Border>
-                <Border BorderBrush="Black" BorderThickness="1,0,0,0" Grid.Column="1">
+                <Border BorderBrush="Black" BorderThickness="1,0,0,0" Grid.Column="1" x:Name="Border1">
                     <TextBlock Text="{Binding Percentage[1], Mode=OneWay, Converter={StaticResource FloatToString}}"
                                HorizontalAlignment="Center" 
                                VerticalAlignment="Center" 
                                TextWrapping="Wrap"/>
                 </Border>
-                <Border BorderBrush="Black" BorderThickness="1,0,0,0" Grid.Column="2">
+                <Border BorderBrush="Black" BorderThickness="1,0,0,0" Grid.Column="2" x:Name="Border2">
                     <TextBlock Text="{Binding Percentage[2], Mode=OneWay, Converter={StaticResource FloatToString}}"
                                HorizontalAlignment="Center" 
                                VerticalAlignment="Center" 
                                TextWrapping="Wrap"/>
                 </Border>
-                <Border BorderBrush="Black" BorderThickness="1,0,0,0" Grid.Column="3">
+                <Border BorderBrush="Black" BorderThickness="1,0,0,0" Grid.Column="3" x:Name="Border3">
                     <TextBlock Text="{Binding Percentage[3], Mode=OneWay, Converter={StaticResource FloatToString}}"
                                HorizontalAlignment="Center" 
                                VerticalAlignment="Center" 
                                TextWrapping="Wrap"/>
                 </Border>
-                <Border BorderBrush="Black" BorderThickness="1,0,0,0" Grid.Column="4">
+                <Border BorderBrush="Black" BorderThickness="1,0,0,0" Grid.Column="4" x:Name="Border4">
                     <TextBlock Text="{Binding Percentage[4], Mode=OneWay, Converter={StaticResource FloatToString}}"
                                HorizontalAlignment="Center" 
                                VerticalAlignment="Center" 
