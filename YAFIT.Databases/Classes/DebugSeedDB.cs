@@ -1,5 +1,4 @@
-﻿using System.Collections.Immutable;
-using System.Diagnostics;
+﻿using System.Diagnostics;
 using System.Reflection;
 using YAFIT.Databases.Attributes;
 using YAFIT.Databases.Entities;
@@ -8,32 +7,6 @@ namespace YAFIT.Databases.Classes;
 
 public class DebugSeedDB
 {
-    public void CheckAndPutRootUser()
-    {
-        UserEntity rootUser = new UserEntity();
-        rootUser.Name = "root";
-        rootUser.Id = 1;
-        rootUser.Password = "root";
-        rootUser.IsAdmin = true;
-        UserEntity? user = UserEntity.GetUserService().GetEntity(x => x.Name == "root");
-        if (user != null && user.IsAdmin == true && user.Id == 1)
-        {
-            Debug.WriteLine("1");
-            return;
-        }
-        else if (user != null)
-        {
-            Debug.WriteLine("3");
-            UserEntity.GetUserService().Delete(user);
-            UserEntity.GetUserService().Insert(rootUser);
-        }
-        else
-        {
-            Debug.WriteLine("2");
-            UserEntity.GetUserService().Insert(rootUser);
-        }
-        Debug.WriteLine("4");
-    }
 
     public void InsertTestRegisterCode()
     {
@@ -47,57 +20,53 @@ public class DebugSeedDB
         }
     }
 
-    public void CheckAndPutFirstUser()
+    public void AddTestUsers()
     {
-        UserEntity firstUser = new UserEntity();
-        firstUser.Name = "lehrer";
-        firstUser.Id = 2;
-        firstUser.Password = "lehrer";
-        firstUser.IsAdmin = false;
-        UserEntity? user = UserEntity.GetUserService()
-            .GetEntity(x => x.Name == firstUser.Name);
-        if (user != null && user.IsAdmin == false && user.Id == firstUser.Id)
+        for (int i = 0; i < 10; i++)
         {
-            return;
-        }
-        else if (user != null)
-        {
-            UserEntity.GetUserService().Delete(user);
-            UserEntity.GetUserService().Insert(firstUser);
-        }
-        else
-        {
-            UserEntity.GetUserService().Insert(firstUser);
-        }
 
+            UserEntity user = new()
+            {
+                Name = "lehrer" + i,
+                Id = 2 + i,
+                Password = "lehrer",
+                IsAdmin = false
+            };
+            if (UserEntity.GetUserService().InsertIfNotExist(x => x.Id == user.Id, user))
+            {
+                Debug.WriteLine("Added " + user.Name + " with ID " + user.Id);
+            }
+        }
     }
 
-    public void AddFormular1TestResults()
+    public void AddUmfragenTests()
     {
-    }
-
-    public void PutFirstUserUmfrage()
-    {
-        UmfrageEntity umfrage = new UmfrageEntity();
-        umfrage.ErstelltDatum = DateTime.Now;
-        umfrage.Id = 1;
-        umfrage.Schluessel = "12345678";
-        umfrage.Formulartyp = 1;
-        umfrage.User_Id = 2;
-        Random random = new Random();
-
-
-        if (UmfrageEntity.GetUmfrageService().InsertIfNotExist(x => x.Id == umfrage.Id, umfrage))
+        for (int i = 0; i < 5; i++)
         {
+            UmfrageEntity umfrage = new()
+            {
+                ErstelltDatum = DateTime.Now,
+                Id = 1+i,
+                Schluessel = "lehrer"+i,
+                Formulartyp = 1,
+                User_Id = 2+i
+            };
+            Random random = new Random();
 
-            for (int i = 0; i < 10; i++)
+
+            if (UmfrageEntity.GetUmfrageService().InsertIfNotExist(x => x.Id == umfrage.Id, umfrage) == false)
+            {
+                return;
+            }
+
+            for (int x = 0; x < random.Next(7,12); x++)
             {
                 Formular1Entity entity = new Formular1Entity() { Umfrage_Id = umfrage.Id };
                 PropertyInfo[] properties = entity.GetType().GetProperties();
                 foreach (PropertyInfo property in properties)
                 {
                     ValueBindingAttribute? bindings = property.GetCustomAttribute<ValueBindingAttribute>();
-                    if(bindings != null)
+                    if (bindings != null)
                     {
                         property.SetValue(entity, random.Next(0, 4));
 
@@ -106,75 +75,44 @@ public class DebugSeedDB
                 Formular1Entity.GetFormular1Service().Insert(entity);
             }
         }
-        else
+    }
+
+    public void AddAbteilungen()
+    {
+        for (int i = 0; i < 10; i++)
         {
-            Debug.WriteLine("EXIST :(");
+            AbteilungEntity abteilung = new()
+            {
+                Name = "Abteilung"+i,
+                Id = 1 + i
+            };
+            AbteilungEntity.GetAbteilungService().InsertIfNotExist(x => x.Id == abteilung.Id, abteilung);
         }
     }
 
-    public void CheckAndPutFirstAbteilung()
+    public void AddFaecher()
     {
-        AbteilungEntity abteilung = new AbteilungEntity();
-        abteilung.Name = "Abteilung1";
-        abteilung.Id = 1;
-        if (AbteilungEntity.GetAbteilungService().GetEntity(x => x.Id == abteilung.Id) != null)
+        for (int i = 0; i < 10; i++)
         {
-            if (AbteilungEntity.GetAbteilungService().GetEntity(x => x.Id == abteilung.Id && x.Name == abteilung.Name) != null)
+            FachEntity fach = new()
             {
-                return;
-            }
-            else
-            {
-                AbteilungEntity.GetAbteilungService().Update(abteilung);
-            }
-        }
-        else
-        {
-            AbteilungEntity.GetAbteilungService().Insert(abteilung);
+                Name = "Informatik" + i,
+                Id = 1 + i
+            };
+            FachEntity.GetFachService().InsertIfNotExist(x => x.Id == fach.Id, fach);
         }
     }
 
-    public void CheckAndPutFirstFach()
+    public void AddKlassen()
     {
-        FachEntity fach = new FachEntity();
-        fach.Name = "Informatik";
-        fach.Id = 1;
-        if (FachEntity.GetFachService().GetEntity(x => x.Id == fach.Id) != null)
+        for (int i = 0; i < 10; i++)
         {
-            if (FachEntity.GetFachService().GetEntity(x => x.Id == fach.Id && x.Name == fach.Name) != null)
+            KlassenEntity klasse = new()
             {
-                return;
-            }
-            else
-            {
-                FachEntity.GetFachService().Update(fach);
-            }
-        }
-        else
-        {
-            FachEntity.GetFachService().Insert(fach);
-        }
-    }
-
-    public void CheckAndPutFirstKlasse()
-    {
-        KlassenEntity klasse = new KlassenEntity();
-        klasse.Name = "IFA-12-A";
-        klasse.Id = 1;
-        if (KlassenEntity.GetKlassenService().GetEntity(x => x.Id == klasse.Id) != null)
-        {
-            if (KlassenEntity.GetKlassenService().GetEntity(x => x.Id == klasse.Id && x.Name == klasse.Name) != null)
-            {
-                return;
-            }
-            else
-            {
-                KlassenEntity.GetKlassenService().Update(klasse);
-            }
-        }
-        else
-        {
-            KlassenEntity.GetKlassenService().Insert(klasse);
+                Name = "IFA-12,"+i+"-A",
+                Id = 1 + i
+            };
+            KlassenEntity.GetKlassenService().InsertIfNotExist(x => x.Id == klasse.Id, klasse);
         }
     }
 }
