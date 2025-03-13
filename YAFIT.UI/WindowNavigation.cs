@@ -91,11 +91,11 @@ namespace YAFIT.UI
             view.DataContext = model;
             view.Show();
         }
-        public static void OpenWindowFeedback2()
+        public static void OpenWindowFeedback2(UmfrageEntity umfrage)
         {
             //Start Window
             WindowFeedback2 selec = new WindowFeedback2();
-            WindowFormular2Model model = new WindowFormular2Model(selec);
+            WindowFormular2Model model = new WindowFormular2Model(selec,umfrage);
             selec.DataContext = model;
             selec.Show();
         }

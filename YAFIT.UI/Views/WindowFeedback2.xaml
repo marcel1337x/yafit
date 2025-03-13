@@ -44,48 +44,11 @@
                        Canvas.Left="380" Canvas.Top="275" Width="105" Height="57"><Run Text="Die Lehrkraft zeigt"/><LineBreak/><Run Text="Interesse an ihren"/><LineBreak/><Run Text="Schülern."/></TextBlock>
             <TextBlock FontSize="12" TextAlignment="Center"
                        Canvas.Left="-103" Canvas.Top="104" Width="111" Height="36"><Run Text="Der Unterricht wird"/><LineBreak/><Run Text="vielfältig gestaltet."/></TextBlock>
+            <Grid  x:Name="EntryGroup4"/>
+            
 
 
-            <RadioButton IsChecked="{ Binding Nachvollziehbar.CheckBox1}" GroupName="nachvollziehbar"  Content="2"  HorizontalAlignment="Left" Canvas.Left="128" Canvas.Top="340" VerticalAlignment="Top" RenderTransformOrigin="-0.51,3.523"/>
-            <RadioButton GroupName="nachvollziehbar" Content="5"  HorizontalAlignment="Left" Canvas.Left="175" Canvas.Top="222" VerticalAlignment="Top" RenderTransformOrigin="-2.958,-6.995"/>
-            <RadioButton GroupName="nachvollziehbar" Content="1" HorizontalAlignment="Left" VerticalAlignment="Top" Grid.Row="1" Canvas.Left="107" Canvas.Top="363"/>
-            <RadioButton GroupName="nachvollziehbar" Content="4" HorizontalAlignment="Left" Canvas.Left="162" Canvas.Top="263" VerticalAlignment="Top"/>
-            <RadioButton GroupName="nachvollziehbar" Content="3" HorizontalAlignment="Left" Canvas.Left="141" Canvas.Top="300" VerticalAlignment="Top" RenderTransformOrigin="-0.72,-4.7"/>
-            <RadioButton GroupName="Hintergrundwissen." Content="5" HorizontalAlignment="Left" Canvas.Left="200" Canvas.Top="157" VerticalAlignment="Top"/>
-            <RadioButton GroupName="Hintergrundwissen" Content="1" HorizontalAlignment="Left" VerticalAlignment="Top" Canvas.Left="275" Canvas.Top="27"/>
-            <RadioButton GroupName="Hintergrundwissen" Content="3" HorizontalAlignment="Left" VerticalAlignment="Top" RenderTransformOrigin="0.955,0.024" Canvas.Left="225" Canvas.Top="88"/>
-            <RadioButton GroupName="Hintergrundwissen" Content="4" HorizontalAlignment="Center" Canvas.Left="212" Canvas.Top="124" VerticalAlignment="Top"/>
-            <RadioButton GroupName="Hintergrundwissen" Content="2" HorizontalAlignment="Left" Canvas.Left="250" Canvas.Top="48" VerticalAlignment="Top"/>
-            <RadioButton GroupName="Lernklima" Content="2" HorizontalAlignment="Left" Canvas.Left="248" Canvas.Top="340" VerticalAlignment="Top" RenderTransformOrigin="4.24,-3.229"/>
-            <RadioButton GroupName="Lernklima" Content="5" HorizontalAlignment="Left" Canvas.Left="200" Canvas.Top="222" VerticalAlignment="Top"/>
-            <RadioButton GroupName="Lernklima" Content="1" HorizontalAlignment="Left" VerticalAlignment="Top"  Grid.Row="1" Canvas.Left="262" Canvas.Top="363"/>
-            <RadioButton GroupName="Lernklima" Content="4" HorizontalAlignment="Left" Canvas.Left="212" Canvas.Top="260" VerticalAlignment="Top"/>
-            <RadioButton GroupName="Lernklima" Content="3" HorizontalAlignment="Left" Canvas.Left="238" Canvas.Top="300" VerticalAlignment="Top" RenderTransformOrigin="1.61,0.203"/>
-            <RadioButton GroupName="vielfältig" Content="5" HorizontalAlignment="Left" Canvas.Left="162" Canvas.Top="180" VerticalAlignment="Top"/>
-            <RadioButton GroupName="vielfältig" Content="1" HorizontalAlignment="Left" VerticalAlignment="Top" Canvas.Left="8" Canvas.Top="131"/>
-            <RadioButton GroupName="vielfältig" Content="2" HorizontalAlignment="Left" VerticalAlignment="Center" RenderTransformOrigin="8.127,-5.167" Canvas.Left="45" Canvas.Top="146"/>
-            <RadioButton GroupName="vielfältig" Content="4" HorizontalAlignment="Left" Canvas.Left="120" Canvas.Top="166" VerticalAlignment="Top"/>
-            <RadioButton GroupName="vielfältig" Content="3" HorizontalAlignment="Left" Canvas.Left="75" Canvas.Top="150" VerticalAlignment="Top"/>
-            <RadioButton GroupName="lerneviel" Content="1" HorizontalAlignment="Left" VerticalAlignment="Top" Canvas.Left="133" Canvas.Top="15"/>
-            <RadioButton GroupName="lerneviel" Content="5" HorizontalAlignment="Left" VerticalAlignment="Top" RenderTransformOrigin="-3.913,-9.155" Canvas.Left="171" Canvas.Top="160"/>
-            <RadioButton GroupName="lerneviel" Content="2" HorizontalAlignment="Left" VerticalAlignment="Top" Canvas.Left="146" Canvas.Top="43"/>
-            <RadioButton GroupName="lerneviel" Content="4"  HorizontalAlignment="Left" Canvas.Left="158" Canvas.Top="121" VerticalAlignment="Top"/>
-            <RadioButton GroupName="lerneviel" Content="3"  HorizontalAlignment="Left" Canvas.Left="142" Canvas.Top="85" VerticalAlignment="Center" RenderTransformOrigin="1.479,-3.942"/>
-            <RadioButton GroupName="Interesse" Content="2"   HorizontalAlignment="Left" Canvas.Left="335" Canvas.Top="253" VerticalAlignment="Top" RenderTransformOrigin="6.989,-6.438"/>
-            <RadioButton GroupName="Interesse" Content="1" HorizontalAlignment="Left" VerticalAlignment="Top" Grid.Row="1" Canvas.Left="360" Canvas.Top="263"/>
-            <RadioButton GroupName="Interesse" Content="3" HorizontalAlignment="Left" VerticalAlignment="Top" Grid.Row="1" Canvas.Left="300" Canvas.Top="235"/>
-            <RadioButton GroupName="Interesse" Content="4" HorizontalAlignment="Left" Canvas.Left="255" Canvas.Top="219" VerticalAlignment="Top"/>
-            <RadioButton GroupName="Interesse" Content="5" HorizontalAlignment="Left" Canvas.Left="213" Canvas.Top="202" VerticalAlignment="Top"/>
-            <RadioButton GroupName="vorbereitet" Content="5" HorizontalAlignment="Left" Canvas.Left="213" Canvas.Top="183" VerticalAlignment="Center" RenderTransformOrigin="0.052,1.607"/>
-            <RadioButton GroupName="vorbereitet" Content="3" HorizontalAlignment="Left" Canvas.Left="300" Canvas.Top="150" VerticalAlignment="Top" RenderTransformOrigin="2.526,0.091"/>
-            <RadioButton GroupName="vorbereitet" Content="2" HorizontalAlignment="Left" Canvas.Left="322" Canvas.Top="133" VerticalAlignment="Top"/>
-            <RadioButton GroupName="vorbereitet" Content="4" HorizontalAlignment="Left" Canvas.Left="255" Canvas.Top="166" VerticalAlignment="Top"/>
-            <RadioButton GroupName="vorbereitet" Content="1" HorizontalAlignment="Left" VerticalAlignment="Top" Canvas.Left="360" Canvas.Top="126"/>
-            <RadioButton GroupName="folgen" Content="1" HorizontalAlignment="Left" VerticalAlignment="Top" Grid.Row="1" Canvas.Left="10" Canvas.Top="256"/>
-            <RadioButton GroupName="folgen" Content="2" HorizontalAlignment="Left" VerticalAlignment="Top" Grid.Row="1" RenderTransformOrigin="0.733,2.452" Canvas.Left="46" Canvas.Top="247"/>
-            <RadioButton GroupName="folgen" Content="3" HorizontalAlignment="Left" VerticalAlignment="Top" Grid.Row="1" Canvas.Left="76" Canvas.Top="235"/>
-            <RadioButton GroupName="folgen" Content="4" HorizontalAlignment="Left" VerticalAlignment="Top" Grid.Row="1" RenderTransformOrigin="1.937,3.277" Canvas.Left="115" Canvas.Top="219"/>
-            <RadioButton GroupName="folgen" Content="5" HorizontalAlignment="Left" VerticalAlignment="Top" Grid.Row="1" Canvas.Left="162" Canvas.Top="200"/>
+
         </Canvas>
         <!-- Kommentarfeld -->
         <StackPanel Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,207,0,0" Grid.Row="1">

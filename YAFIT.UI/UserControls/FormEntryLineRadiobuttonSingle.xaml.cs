@@ -55,9 +55,9 @@ namespace YAFIT.UI.UserControls
         }
 
 
-        private bool[] _selects = [false, false, false, false];
+        private bool[] _selects = [false, false, false, false, false];
         private string _id = "SingleGroup" + _idCounter++;
-        private string _text1 = string.Empty;
+        
 
         /* DEBUG
         private void RadioButton_Checked(object sender, System.Windows.RoutedEventArgs e)

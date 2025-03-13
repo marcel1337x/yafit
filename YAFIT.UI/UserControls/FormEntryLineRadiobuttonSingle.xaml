@@ -6,40 +6,61 @@
              xmlns:local="clr-namespace:YAFIT.UI.UserControls"
                d:DesignHeight="40" d:DesignWidth="150">
     <Border BorderBrush="Black" BorderThickness="1,1,1,1" Background="White">
-        <Grid>
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="2*"/>
-                <ColumnDefinition Width="3*"/>
-            </Grid.ColumnDefinitions>
 
-            <Grid Grid.Column="0" x:Name="ButtonGrid">
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="*"/>
-                    <ColumnDefinition Width="*"/>
-                    <ColumnDefinition Width="*"/>
-                    <ColumnDefinition Width="*"/>
-                </Grid.ColumnDefinitions>
-                <Border BorderBrush="Black" BorderThickness="1,0,0,0" Grid.Column="0">
-                    <RadioButton GroupName = "{Binding RandomGroup, Mode=OneWay}"
-                             VerticalAlignment="Center" HorizontalAlignment="Center"
-                             IsChecked="{Binding Selection[0]}"/>
-                </Border>
-                <Border BorderBrush="Black" BorderThickness="1,0,0,0" Grid.Column="1">
-                    <RadioButton GroupName = "{Binding RandomGroup, Mode=OneWay}"
-                             VerticalAlignment="Center" HorizontalAlignment="Center"
-                             IsChecked="{Binding Selection[1]}"/>
-                </Border>
-                <Border BorderBrush="Black" BorderThickness="1,0,0,0" Grid.Column="2">
-                    <RadioButton GroupName = "{Binding RandomGroup, Mode=OneWay}"
-                             VerticalAlignment="Center" HorizontalAlignment="Center"
-                             IsChecked="{Binding Selection[2]}"/>
-                </Border>
-                <Border BorderBrush="Black" BorderThickness="1,0,0,0" Grid.Column="3">
-                    <RadioButton GroupName = "{Binding RandomGroup, Mode=OneWay}"
-                             VerticalAlignment="Center" HorizontalAlignment="Center"
-                             IsChecked="{Binding Selection[3]}"/>
-                </Border>
-            </Grid>
+
+
+        <Grid  x:Name="ButtonGrid" Margin="5">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <StackPanel Orientation="Vertical"  >
+                <RadioButton GroupName = "{Binding RandomGroup, Mode=OneWay}"
+                             VerticalAlignment="Center" HorizontalAlignment="Center" 
+                             IsChecked="{Binding Selection[4]}"/>
+                <TextBlock  Text="5" HorizontalAlignment="Center"/>
+
+
+            </StackPanel>
+            <StackPanel Orientation="Vertical" Grid.Column="1">
+                <RadioButton GroupName = "{Binding RandomGroup, Mode=OneWay}"
+                 VerticalAlignment="Center" HorizontalAlignment="Center" 
+                 IsChecked="{Binding Selection[3]}"/>
+                <TextBlock  Text="4" HorizontalAlignment="Center"/>
+
+
+            </StackPanel>
+            <StackPanel Orientation="Vertical" Grid.Column="2">
+                <RadioButton GroupName = "{Binding RandomGroup, Mode=OneWay}"
+                VerticalAlignment="Center" HorizontalAlignment="Center" 
+                IsChecked="{Binding Selection[2]}"/>
+                <TextBlock  Text="3" HorizontalAlignment="Center"/>
+
+
+            </StackPanel>
+            <StackPanel Orientation="Vertical" Grid.Column="3">
+                <RadioButton GroupName = "{Binding RandomGroup, Mode=OneWay}"
+                VerticalAlignment="Center" HorizontalAlignment="Center" 
+                 IsChecked="{Binding Selection[1]}"/>
+                <TextBlock  Text="2" HorizontalAlignment="Center"/>
+
+
+            </StackPanel>
+            <StackPanel Orientation="Vertical" Grid.Column="4">
+                <RadioButton GroupName = "{Binding RandomGroup, Mode=OneWay}"
+                VerticalAlignment="Center" HorizontalAlignment="Center" 
+                IsChecked="{Binding Selection[0]}"/>
+                <TextBlock  Text="1" HorizontalAlignment="Center"/>
+
+
+            </StackPanel>
+
+            
         </Grid>
+
+
     </Border>
 </UserControl>
