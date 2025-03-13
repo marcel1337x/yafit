@@ -18,16 +18,20 @@ public class DebugSeedDB
         UserEntity? user = UserEntity.GetUserService().GetEntity(x => x.Name == "root");
         if (user != null && user.Password == "root" && user.IsAdmin == true && user.Id == 1)
         {
+            Debug.WriteLine("1");
             return;
         }
         else if (user != null)
         {
+            Debug.WriteLine("3");
             UserEntity.GetUserService().Update(rootUser);
         }
         else
         {
+            Debug.WriteLine("2");
             UserEntity.GetUserService().Insert(rootUser);
         }
+        Debug.WriteLine("4");
     }
 
     public void InsertTestRegisterCode()

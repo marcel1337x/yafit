@@ -133,6 +133,7 @@ namespace YAFIT.Databases
 
 
             _sessionFactory = configuration.BuildSessionFactory();
+            Debug.WriteLine("Database connection established");
         }
         private void BuildSchema(NHibernate.Cfg.Configuration config)
         {
