@@ -118,12 +118,8 @@ namespace YAFIT.UI.ViewModels
         /// </summary>
         private void DoFeedbackCodeEnter()
         {
-            Regex _regex = new Regex("[^0-9]");
-            if (!_regex.IsMatch(_formularKey) == false)
-            {
-                MessageBox.Show("Die Eingabe kann nur aus Zahlen bestehen!");
-                return;
-            }
+            
+            
             UmfrageService umfrageService = UmfrageEntity.GetUmfrageService();
             UmfrageEntity? umfrage = umfrageService.GetEntity(x => x.Schluessel == _formularKey);
 

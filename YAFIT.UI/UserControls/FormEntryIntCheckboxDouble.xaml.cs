@@ -59,9 +59,8 @@ namespace YAFIT.UI.UserControls
                 float percentage = (float)_results[i] / MaxResult;
                 _resultsPercentage[i] = percentage;
 
-                int percentageInt = (int)_resultsPercentage[i];
-                percentageInt = Math.Max(100, percentageInt);
-                percentageInt = Math.Min(0, percentageInt);
+                int percentageInt = (int)(percentage * 100.0F);
+                
                 _resultsColor[i] = ControlConstants.COLOR_SCHEME[percentageInt];
                 _borderReference[i].Background = ToSolidColorBrush(_resultsColor[i]);
             }

@@ -6,9 +6,9 @@ namespace YAFIT.Common.Helper
     {
         public static Color GradientPick(Color startColor, Color endColor, float percentage)
         {
-            int r = (int)(startColor.R + (endColor.R - startColor.R) * (percentage / 100f));
-            int g = (int)(startColor.G + (endColor.G - startColor.G) * (percentage / 100f));
-            int b = (int)(startColor.B + (endColor.B - startColor.B) * (percentage / 100f));
+            int r = (int)(startColor.R + (endColor.R - startColor.R) * percentage);
+            int g = (int)(startColor.G + (endColor.G - startColor.G) * percentage);
+            int b = (int)(startColor.B + (endColor.B - startColor.B) * percentage);
 
             return Color.FromArgb(r, g, b);
         }

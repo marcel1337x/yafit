@@ -24,6 +24,14 @@ namespace YAFIT.UI.Views
             InitializeComponent();
         }
 
-        
+        private void CommentBox_TextChanged(object sender, TextChangedEventArgs e)
+        {
+
+        }
+
+        private void FormEntryLineRadiobuttonSingle_Loaded(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }

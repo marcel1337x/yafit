@@ -7,6 +7,7 @@ using YAFIT.UI.Views;
 using YAFIT.UI.ViewModels.Forms.Formular1;
 using YAFIT.UI.Views.Forms.Formular3;
 using YAFIT.UI.ViewModels.Forms.Formular3;
+using YAFIT.UI.Views.Forms.Formular2;
 
 namespace YAFIT.UI
 {
@@ -79,9 +80,13 @@ namespace YAFIT.UI
             view.Show();
         }
 
-        public static void OpenFormular2()
+        public static void OpenFormular2(UmfrageEntity umfrage)
         {
-            OpenWindow<WindowFeedback2, WindowFormular2Model>();
+            
+            WindowFeedback2 view = new WindowFeedback2();
+            WindowFormular2Model model = new WindowFormular2Model(view,umfrage);
+            view.DataContext = model;
+            view.Show();
         }
 
         public static void OpenFormular3(UmfrageEntity umfrage)
@@ -91,11 +96,11 @@ namespace YAFIT.UI
             view.DataContext = model;
             view.Show();
         }
-        public static void OpenWindowFeedback2()
+        public static void OpenWindowFeedback2(UmfrageEntity umfrage)
         {
             //Start Window
             WindowFeedback2 selec = new WindowFeedback2();
-            WindowFormular2Model model = new WindowFormular2Model(selec);
+            WindowFormular2Model model = new WindowFormular2Model(selec, umfrage);
             selec.DataContext = model;
             selec.Show();
         }
