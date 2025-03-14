@@ -24,7 +24,7 @@ namespace YAFIT
         {
             if (SessionManager.Connect() == true)
             {
-                WindowNavigation.OpenFormular2();
+                WindowNavigation.OpenLoginWindow();
             }
         }
 

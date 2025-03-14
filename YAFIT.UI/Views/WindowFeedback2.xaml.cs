@@ -28,5 +28,10 @@ namespace YAFIT.UI.Views
         {
 
         }
+
+        private void FormEntryLineRadiobuttonSingle_Loaded(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }

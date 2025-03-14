@@ -20,7 +20,7 @@
                 <RadioButton GroupName = "{Binding RandomGroup, Mode=OneWay}"
                              VerticalAlignment="Center" HorizontalAlignment="Center" 
                              IsChecked="{Binding Selection[4]}"/>
-                <TextBlock  Text="5" HorizontalAlignment="Center"/>
+                
 
 
             </StackPanel>
@@ -28,7 +28,7 @@
                 <RadioButton GroupName = "{Binding RandomGroup, Mode=OneWay}"
                  VerticalAlignment="Center" HorizontalAlignment="Center" 
                  IsChecked="{Binding Selection[3]}"/>
-                <TextBlock  Text="4" HorizontalAlignment="Center"/>
+               
 
 
             </StackPanel>
@@ -36,7 +36,7 @@
                 <RadioButton GroupName = "{Binding RandomGroup, Mode=OneWay}"
                 VerticalAlignment="Center" HorizontalAlignment="Center" 
                 IsChecked="{Binding Selection[2]}"/>
-                <TextBlock  Text="3" HorizontalAlignment="Center"/>
+               
 
 
             </StackPanel>
@@ -44,7 +44,7 @@
                 <RadioButton GroupName = "{Binding RandomGroup, Mode=OneWay}"
                 VerticalAlignment="Center" HorizontalAlignment="Center" 
                  IsChecked="{Binding Selection[1]}"/>
-                <TextBlock  Text="2" HorizontalAlignment="Center"/>
+                
 
 
             </StackPanel>
@@ -52,7 +52,7 @@
                 <RadioButton GroupName = "{Binding RandomGroup, Mode=OneWay}"
                 VerticalAlignment="Center" HorizontalAlignment="Center" 
                 IsChecked="{Binding Selection[0]}"/>
-                <TextBlock  Text="1" HorizontalAlignment="Center"/>
+                
 
 
             </StackPanel>

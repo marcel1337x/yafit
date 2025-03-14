@@ -50,24 +50,67 @@
                 <TextBlock FontSize="12" TextAlignment="Center" Grid.Row="1" Canvas.Left="-95" Canvas.Top="275"><Run Text="Die Notengebung"/><LineBreak/><Run Text="ist fair und"/><LineBreak/><Run Text="nachvollziehbar."/></TextBlock>
                 <TextBlock FontSize="12" TextAlignment="Center" Grid.Row="1" Canvas.Left="-6" Canvas.Top="-17"><Run Text="Ich konnte dem"/><LineBreak/><Run Text="Unterricht immer"/><LineBreak/><Run Text="gut folgen."/></TextBlock>
                 <TextBlock FontSize="12" TextAlignment="Center" Canvas.Left="26" Canvas.Top="380" RenderTransformOrigin="-0.863,3.823" HorizontalAlignment="Left" VerticalAlignment="Center"><Run Text="Ich lerne im"/><LineBreak/><Run Text="Unterricht viel"/></TextBlock>
-                
-                
-                
-                <StackPanel Canvas.Left="-10" Canvas.Top="110" x:Name="EntryGroup1">
-                    <StackPanel.RenderTransform>
-                        <RotateTransform CenterX="0" CenterY="0"/>
-                    </StackPanel.RenderTransform>
-                    <control:FormEntryLineRadiobuttonSingle>
-                        <UserControl.RenderTransform>
-                            <TransformGroup>
-                                <RotateTransform Angle="10"  CenterY=""/>
-                            </TransformGroup>
-                        </UserControl.RenderTransform>
-                    </control:FormEntryLineRadiobuttonSingle>
-                </StackPanel>
 
-              
-                
+
+
+                <StackPanel Canvas.Left="5" Canvas.Top="110" x:Name="EntryGroup1">
+                    <StackPanel.RenderTransform>
+                        <RotateTransform Angle="25"  CenterX="25" CenterY="25"/>
+                    </StackPanel.RenderTransform>
+
+                </StackPanel>
+                <StackPanel Canvas.Left="85" Canvas.Top="15" x:Name="EntryGroup2">
+                    <StackPanel.RenderTransform>
+                        <RotateTransform Angle="65"  CenterX="25" CenterY="25"/>
+                    </StackPanel.RenderTransform>
+
+
+                </StackPanel>
+                <StackPanel Canvas.Left="195" Canvas.Top="150" x:Name="EntryGroup3">
+                    <StackPanel.RenderTransform>
+                        <RotateTransform Angle="-60"  CenterX="25" CenterY="25"/>
+                    </StackPanel.RenderTransform>
+
+                </StackPanel>
+                <StackPanel Canvas.Left="215" Canvas.Top="170" x:Name="EntryGroup4">
+                    <StackPanel.RenderTransform>
+                        <RotateTransform Angle="-25"  CenterX="25" CenterY="25"/>
+                    </StackPanel.RenderTransform>
+
+                </StackPanel>
+                <StackPanel Canvas.Left="205" Canvas.Top="200" x:Name="EntryGroup5">
+                    <StackPanel.RenderTransform>
+                        <RotateTransform Angle="25"  CenterX="25" CenterY="25"/>
+                    </StackPanel.RenderTransform>
+
+                </StackPanel>
+                <StackPanel Canvas.Left="175" Canvas.Top="220" x:Name="EntryGroup6">
+                    <StackPanel.RenderTransform>
+                        <RotateTransform Angle="60"  CenterX="25" CenterY="25"/>
+                    </StackPanel.RenderTransform>
+
+                </StackPanel>
+                <StackPanel Canvas.Left="105" Canvas.Top="350" x:Name="EntryGroup7">
+                    <StackPanel.RenderTransform>
+                        <RotateTransform Angle="-65"  CenterX="25" CenterY="25"/>
+                    </StackPanel.RenderTransform>
+
+                </StackPanel>
+                <StackPanel Canvas.Left="10" Canvas.Top="260" x:Name="EntryGroup8">
+                    <StackPanel.RenderTransform>
+                        <RotateTransform Angle="-25"  CenterX="25" CenterY="25"/>
+                    </StackPanel.RenderTransform>
+
+
+                </StackPanel>
+                <TextBlock Text="5" Canvas.Left="152" Canvas.Top="185" HorizontalAlignment="Center" VerticalAlignment="Top" />
+                <TextBlock Text="4" Canvas.Left="121" Canvas.Top="185" />
+                <TextBlock Text="3" Canvas.Left="78" Canvas.Top="185" />
+                <TextBlock Text="2" Canvas.Left="39" Canvas.Top="185" HorizontalAlignment="Center" VerticalAlignment="Top" />
+                <TextBlock Text="1" Canvas.Left="10" Canvas.Top="185" HorizontalAlignment="Center" VerticalAlignment="Top" />
+
+
+
 
 
             </Canvas>

@@ -80,11 +80,11 @@ namespace YAFIT.UI
             view.Show();
         }
 
-        public static void OpenFormular2()
+        public static void OpenFormular2(UmfrageEntity umfrage)
         {
             
             WindowFeedback2 view = new WindowFeedback2();
-            WindowFormular2Model model = new WindowFormular2Model(view);
+            WindowFormular2Model model = new WindowFormular2Model(view,umfrage);
             view.DataContext = model;
             view.Show();
         }
@@ -96,11 +96,11 @@ namespace YAFIT.UI
             view.DataContext = model;
             view.Show();
         }
-        public static void OpenWindowFeedback2()
+        public static void OpenWindowFeedback2(UmfrageEntity umfrage)
         {
             //Start Window
             WindowFeedback2 selec = new WindowFeedback2();
-            WindowFormular2Model model = new WindowFormular2Model(selec);
+            WindowFormular2Model model = new WindowFormular2Model(selec, umfrage);
             selec.DataContext = model;
             selec.Show();
         }
