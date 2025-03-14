@@ -1,4 +1,5 @@
-﻿using YAFIT.Databases.Services;
+﻿using System.Security.Cryptography;
+using YAFIT.Databases.Services;
 
 namespace YAFIT.Databases.Entities;
 

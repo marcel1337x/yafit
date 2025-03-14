@@ -8,6 +8,7 @@ using YAFIT.Common.Enums;
 using YAFIT.Common.Extensions;
 using YAFIT.Common.UI.ViewModel;
 using YAFIT.Databases.Entities;
+using YAFIT.Databases.Extensions;
 using YAFIT.Databases.Services;
 using YAFIT.UI.Views;
 
@@ -40,10 +41,10 @@ namespace YAFIT.UI.ViewModels
         /// <summary>
         /// Der Benutzername, der eingegeben wurde
         /// </summary>
-        public string LoginUname 
-        { 
-            get { return _userName; }  
-            set { SetProperty("LoginUname", ref _userName, value); } 
+        public string LoginUname
+        {
+            get { return _userName; }
+            set { SetProperty("LoginUname", ref _userName, value); }
         }
 
         /// <summary>
@@ -53,7 +54,7 @@ namespace YAFIT.UI.ViewModels
         {
             get
             {
-                if(_view is ViewMain windowMain)
+                if (_view is ViewMain windowMain)
                 {
                     return windowMain.PWBox.SecurePassword ?? null;
                 }
@@ -78,7 +79,8 @@ namespace YAFIT.UI.ViewModels
         /// Erstellt ein neues ViewModel für das Hauptfenster
         /// </summary>
         /// <param name="window">Das dazugehörige View</param>
-        public ModelMain(Window window) : base(window) {
+        public ModelMain(Window window) : base(window)
+        {
             WindowCaption = "YAFIT - Yet Another Feeback Information Tool";
             OnFeedbackCodeEnter = new RelayCommand(DoFeedbackCodeEnter);
             OnAccountLogin = new RelayCommand(DoAccountLogin);
@@ -125,7 +127,7 @@ namespace YAFIT.UI.ViewModels
             UmfrageService umfrageService = UmfrageEntity.GetUmfrageService();
             UmfrageEntity? umfrage = umfrageService.GetEntity(x => x.Schluessel == _formularKey);
 
-            if(umfrage == null)
+            if (umfrage == null)
             {
                 MessageBox.Show("Es existiert keine Umfrage mit diesem Code!");
                 return;
@@ -160,8 +162,8 @@ namespace YAFIT.UI.ViewModels
                 MessageBox.Show("Gebe ein Passwort ein um fortzufahren!");
                 return;
             }
-            ViewRegisterCode view = new ();
-            ModelRegisterCode model = new (view, this);
+            ViewRegisterCode view = new();
+            ModelRegisterCode model = new(view, this);
             ShowChildView(view, model);
             if (model.IsSuccessful == false)
             {
@@ -180,43 +182,40 @@ namespace YAFIT.UI.ViewModels
         private void DoAccountLogin()
         {
             UserEntity? user = UserEntity.GetUserService().GetEntity(x => x.Name == _userName);
-            if (user != null)
-            {
-                string savedPasswordHash = user.Password;
-                byte[] hashBytes = Convert.FromBase64String(savedPasswordHash);
-                byte[] salt = new byte[16];
-                Array.Copy(hashBytes, 0, salt, 0, 16);
-                var pbkdf2 = new Rfc2898DeriveBytes((SecurePassword?.ConvertToPlainText() ?? ""), salt, 100000);
-                byte[] hash = pbkdf2.GetBytes(20);
-                bool passwordMatch = true;
-                for (int i=0; i < 20; i++)
-                    if (hashBytes[i + 16] != hash[i])
-                        passwordMatch = false;
-                
-                if (passwordMatch)
-                {
-                    MessageBox.Show("Login erfolgreich");
-                    if (user.IsAdmin == true)
-                    {
-                        MessageBox.Show("Benutzer hat Adminrechte");
-                        WindowNavigation.OpenAdminWindow();
-                    }
-                    else
-                    {
-                        WindowNavigation.OpenTeacherWindow(user);
-                    }
-                }
-                else
-                {
-                    MessageBox.Show("Passworteingabe ist falsch!");
-                }
-            }
-            else
+            if (user == null)
             {
                 MessageBox.Show("Der Benutzer " + _userName + " konnte nicht gefunden werden!");
+                return;
             }
-            Debug.WriteLine(LoginUname);
+
+            if (user.IsPasswordValid(SecurePassword?.ConvertToPlainText() ?? "") == false)
+            {
+                MessageBox.Show("Passworteingabe ist falsch!");
+                return;
+            }
+
+            if (user.IsAdmin == true)
+            {
+                WindowNavigation.OpenAdminWindow();
+                return;
+            }
+
+            WindowNavigation.OpenTeacherWindow(user);
+
+            //string savedPasswordHash = user.Password;
+            //byte[] hashBytes = Convert.FromBase64String(savedPasswordHash);
+            //byte[] salt = new byte[16];
+            //Array.Copy(hashBytes, 0, salt, 0, 16);
+            //var pbkdf2 = new Rfc2898DeriveBytes((SecurePassword?.ConvertToPlainText() ?? ""), salt, 100000);
+            //byte[] hash = pbkdf2.GetBytes(20);
+            //bool passwordMatch = true;
+            //for (int i = 0; i < 20; i++)
+            //    if (hashBytes[i + 16] != hash[i])
+            //        passwordMatch = false;
+
+            
         }
+        
         #endregion
 
         #endregion

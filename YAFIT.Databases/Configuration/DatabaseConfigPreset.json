@@ -1,7 +1,8 @@
 {
   "Using": "MySQL",
   "Settings": {
-    "Caching": "true"
+    "TestEntries": false,
+    "Caching": true
   },
   "Databases": {
     "MySQL": {
