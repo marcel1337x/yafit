@@ -14,15 +14,12 @@ namespace YAFIT.UI.UserControls
             Color[] colorScheme = new Color[101];
 
             Color red = Color.Red;
-            Color yellow = Color.Blue;
+            Color yellow = Color.Yellow;
             Color green = Color.Green;
 
             for (int i = 0; i < colorScheme.Length; i++)
             {
-                float percentage = 0.01F;
-                percentage = Math.Min(0, percentage);
-                percentage = Math.Max(100, percentage);
-                colorScheme[i] = ColorHelper.GradientPick(red, yellow, green,percentage);
+                colorScheme[i] = ColorHelper.GradientPick(red, yellow, green,i);
             }
             return colorScheme;
         }

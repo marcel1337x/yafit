@@ -167,7 +167,7 @@ namespace YAFIT.UI.ViewModels
 
             // Speichern in der Datenbank
             Formular2Entity.GetFormular2Service().Insert(form);
-            Debug.WriteLine(string.Join(", ",GetButtonsResults()));
+            Debug.WriteLine(string.Join(", ",form.Question8,form.Text));
             CloseView(); 
         }
         /// <summary>
