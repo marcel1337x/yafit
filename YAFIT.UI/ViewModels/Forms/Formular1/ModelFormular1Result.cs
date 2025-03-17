@@ -1,4 +1,6 @@
-﻿using System.Reflection;
+﻿using FluentNHibernate.Data;
+using System.Drawing;
+using System.Reflection;
 using System.Windows;
 using System.Windows.Controls;
 using YAFIT.Common.UI.ViewModel;
@@ -11,6 +13,29 @@ namespace YAFIT.UI.ViewModels.Forms.Formular1
 {
     public class ModelFormular1Result : BaseViewModel
     {
+
+        public Color[] ColorReview
+        {
+            get
+            {
+                Color[] c = [
+                    ControlConstants.Formular1ColorGood(0), ControlConstants.Formular1ColorGood(1), ControlConstants.Formular1ColorGood(2),
+                    ControlConstants.Formular1ColorBad(0), ControlConstants.Formular1ColorBad(1), ControlConstants.Formular1ColorBad(2),
+                ];
+                Console.WriteLine(string.Join(", ",c));
+                return c;
+            }
+        }
+        public string[] ColorReviewName
+        {
+            get
+            {
+                return [
+                    "sehr gut","gut","ok","relativ","schlecht","sehr schlecht"
+                ];
+            }
+        }
+
         public ModelFormular1Result(Window window, UmfrageEntity umfrage) : base(window)
         {
             _umfrage = umfrage;
@@ -32,7 +57,7 @@ namespace YAFIT.UI.ViewModels.Forms.Formular1
 
             //Aus der Datenbank laden
             IList<Formular1Entity> entities = Formular1Entity.GetFormular1Service().GetAllByCriteria(x => x.Umfrage_Id == _umfrage.Id);
-            
+
             Type type = typeof(Formular1Entity);
             int[][] results = [.. Enumerable.Range(0, _presetGroup1.Length + _presetGroup2.Length + _presetGroup3.Length + _presetGroup4.Length+1)
                 .Select(x => new int[] { 0, 0, 0, 0, 0 })];
@@ -123,6 +148,16 @@ namespace YAFIT.UI.ViewModels.Forms.Formular1
                     stackPanel.Children.Add(formEntryTextCheckBox);
                 }
             }
+            //Textboxen
+            {
+                foreach (Formular1Entity entity in entities)
+                {
+
+                    formular.TextBoxQuestion1.Children.Add(new TextBlock() { Text = entity.Text0, TextWrapping = TextWrapping.Wrap });
+                    formular.TextBoxQuestion2.Children.Add(new TextBlock() { Text = entity.Text1, TextWrapping = TextWrapping.Wrap });
+                    formular.TextBoxQuestion3.Children.Add(new TextBlock() { Text = entity.Text2, TextWrapping = TextWrapping.Wrap });
+                }
+            }
             formular.UpdateLayout();
         }
 
@@ -132,8 +167,6 @@ namespace YAFIT.UI.ViewModels.Forms.Formular1
         #region member variables
 
         private readonly UmfrageEntity _umfrage;
-        private string[] _textBoxQuestions = [string.Empty, string.Empty, string.Empty];
-
 
         private static readonly string[][] _presetGroup1 = [
             ["Sie/Er ist...", "...ungeduldig"],
