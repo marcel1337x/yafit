@@ -135,6 +135,10 @@ namespace YAFIT.UI.ViewModels
                     WindowNavigation.OpenFormular1(umfrage);
                     break;
                 case FeedbackFormType.Second:
+                    WindowNavigation.OpenFormular2(umfrage);
+                    break;
+                case FeedbackFormType.Third:
+                    WindowNavigation.OpenFormular3(umfrage);
                     break;
             }
             CloseView();

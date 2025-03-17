@@ -8,6 +8,7 @@
     <UseWPF>true</UseWPF>
     <StartupObject></StartupObject>
     <PackageReadmeFile>README.md</PackageReadmeFile>
+    <ApplicationIcon>yafit_logo.ico</ApplicationIcon>
   </PropertyGroup>
 
   <ItemGroup>
