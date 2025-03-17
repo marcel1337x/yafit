@@ -34,6 +34,7 @@
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
             <Border Margin="5"
                     Background="AliceBlue" CornerRadius="2"
@@ -53,6 +54,16 @@
                 <StackPanel Orientation="Vertical" Margin="5">
                     <Image Source="pack://application:,,,/YAFIT.Resources;component/Images/SS_Feedbackformular2.png" Height="240" Width="120"/>
                     <RadioButton Content="FeedbackFormular2" Name="FeedbackFormular2" GroupName="feedbackauswahl" IsChecked="{Binding SelectionButton[1], Mode=TwoWay}"/>
+                </StackPanel>
+            </Border>
+            <Border Margin="5"
+                Background="AliceBlue" CornerRadius="2"
+                BorderThickness="1"
+                BorderBrush="DarkCyan"
+                Grid.Column="2">
+                <StackPanel Orientation="Vertical" Margin="5">
+                    <Image Source="pack://application:,,,/YAFIT.Resources;component/Images/SS_Feedbackformular3.png" Height="240" Width="120"/>
+                    <RadioButton Content="FeedbackFormular3" Name="FeedbackFormular3" GroupName="feedbackauswahl" IsChecked="{Binding SelectionButton[2], Mode=TwoWay}"/>
                 </StackPanel>
             </Border>
         </Grid>
