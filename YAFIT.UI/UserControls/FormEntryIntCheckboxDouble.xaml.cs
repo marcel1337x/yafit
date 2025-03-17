@@ -54,15 +54,38 @@ namespace YAFIT.UI.UserControls
             {
                 return;
             }
+
+            
             for (int i = 0; i < _resultsPercentage.Length; i++)
             {
                 float percentage = (float)_results[i] / MaxResult;
                 _resultsPercentage[i] = percentage;
 
-                int percentageInt = (int)(percentage * 100.0F);
-                
-                _resultsColor[i] = ControlConstants.COLOR_SCHEME[percentageInt];
-                _borderReference[i].Background = ToSolidColorBrush(_resultsColor[i]);
+                //int percentageInt = (int)(percentage * 100.0F);
+                //
+                //_resultsColor[i] = ControlConstants.COLOR_SCHEME[percentageInt];
+                //_borderReference[i].Background = ToSolidColorBrush(_resultsColor[i]);
+            }
+            float halfPercentage = _resultsPercentage.All(x => x <= 0.1) == true ? 0.5F : _resultsPercentage.Max() / 2.0F;
+            
+            var ordered = _resultsPercentage
+                .Select((x, i) => new { Index = i, Percentage = x })
+                .GroupBy(x => x.Percentage >= halfPercentage)
+                .OrderByDescending(x => x.Key)
+                .ToArray();
+            for (int i = 0; i < ordered.Count(); i++)
+            {
+                var order = ordered[i];
+
+
+                int[] array = order.OrderByDescending(x => x.Percentage).Select(x => x.Index).ToArray();
+                for(int x = 0; x < array.Length; x++) { 
+
+                    System.Drawing.Color color = order.Key == true ? ControlConstants.Formular1ColorGood(x) : ControlConstants.Formular1ColorBad(x);
+                    int indicies = array[x];
+                    _resultsColor[indicies] = color;
+                    _borderReference[indicies].Background = ToSolidColorBrush(_resultsColor[indicies]);
+                }
             }
         }
 
@@ -81,6 +104,10 @@ namespace YAFIT.UI.UserControls
             System.Drawing.Color.Transparent,
             System.Drawing.Color.Transparent
         ];
+
+
+
+
 
         private float[] _resultsPercentage = [0, 0, 0, 0, 0];
         private int[] _results = [0, 0, 0, 0, 0];
