@@ -21,6 +21,11 @@ namespace YAFIT.Common.Enums
         /// Zweites Feedback Formular
         /// </summary>
         [Description("Kreisfeedback")]
-        Second = 2
+        Second = 2,
+        /// <summary>
+        /// Drittes Feedback Formular
+        /// </summary>
+        [Description("Smileyback")]
+        Third = 3
     }
 }

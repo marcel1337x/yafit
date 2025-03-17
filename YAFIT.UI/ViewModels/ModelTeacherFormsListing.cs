@@ -123,9 +123,11 @@ namespace YAFIT.UI.ViewModels
                     WindowNavigation.OpenFormular1Results(umfrage);
                     break;
                 case 2:
+                    WindowNavigation.OpenFormular2(umfrage);
                     //WindowNavigation.OpenFormular1Results(umfrage);
                     break;
                 case 3:
+                    WindowNavigation.OpenFormular3(umfrage);
                     //WindowNavigation.OpenFormular1Results(umfrage);
                     break;
             }
@@ -146,7 +148,7 @@ namespace YAFIT.UI.ViewModels
                 return;
             }
 
-            MessageBoxResult result = MessageBox.Show("oll wirklich diese Umfrage gelöscht werden?", "", MessageBoxButton.YesNo);
+            MessageBoxResult result = MessageBox.Show("Soll wirklich diese Umfrage gelöscht werden?", "", MessageBoxButton.YesNo);
             if (result == MessageBoxResult.Yes)
             {
                 if (UmfrageEntity.GetUmfrageService().DeleteUmfrage(umfrage) == false)
