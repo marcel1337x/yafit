@@ -98,13 +98,10 @@ namespace YAFIT.UI.ViewModels
         /// <returns>Gibt FeedbackFormType(Enum) zurück</returns>
         public FeedbackFormType GetSelectedForm()
         {
-            Console.Write("Button: " + _selectedButton);
             int index = Array.IndexOf(_selectedButton, true);
-            Console.WriteLine("index: " + index);
             if (index == -1)
             {
-                Console.WriteLine("Unkown");
-                return FeedbackFormType.Unknown;
+               return FeedbackFormType.Unknown;
             }
             return (FeedbackFormType)(index + 1);
         }
