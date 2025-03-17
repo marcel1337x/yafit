@@ -152,7 +152,7 @@ namespace YAFIT.UI.ViewModels
 
         private readonly Random _random = new Random();
 
-        private bool[] _selectedButton = [true, false];
+        private bool[] _selectedButton = [true, false, false];
         private string _customCode = string.Empty;
         private IList<AbteilungEntity> _abteilungen = [];
         private IList<KlassenEntity> _klassen = [];
