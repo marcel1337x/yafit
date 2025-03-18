@@ -11,8 +11,9 @@ namespace YAFIT.UI.Converter
     {
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            if (value is FeedbackFormType formType)
+            if (value is int val)
             {
+                var formType = (FeedbackFormType) val;
                 FieldInfo? field = formType.GetType().GetField(formType.ToString());
                 if (field != null)
                 {
