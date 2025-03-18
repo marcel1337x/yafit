@@ -68,30 +68,30 @@
                                     <ColumnDefinition />
                                     <ColumnDefinition />
                                 </Grid.ColumnDefinitions>
-                                <Border BorderBrush="Black" BorderThickness="1,1,0,0">
-                                    <TextBlock TextWrapping="Wrap" TextAlignment="Center" 
-                                               HorizontalAlignment="Center" 
-                                               VerticalAlignment="Center">enthaltene<LineBreak/>Stimmen</TextBlock>
-                                </Border>
-                                <Border BorderBrush="Black" BorderThickness="1,1,0,0" Grid.Column="1">
+                                <Border BorderBrush="Black" BorderThickness="1,1,0,0" Grid.Column="0">
                                     <TextBlock TextWrapping="Wrap" TextAlignment="Center" 
                                                HorizontalAlignment="Center" 
                                                VerticalAlignment="Center">trifft völlig zu</TextBlock>
                                 </Border>
-                                <Border BorderBrush="Black" BorderThickness="1,1,0,0" Grid.Column="2">
+                                <Border BorderBrush="Black" BorderThickness="1,1,0,0" Grid.Column="1">
                                     <TextBlock TextWrapping="Wrap" TextAlignment="Center" 
                                                HorizontalAlignment="Center" 
                                                VerticalAlignment="Center">trifft eher zu</TextBlock>
                                 </Border>
-                                <Border BorderBrush="Black" BorderThickness="1,1,0,0" Grid.Column="3">
+                                <Border BorderBrush="Black" BorderThickness="1,1,0,0" Grid.Column="2">
                                     <TextBlock TextWrapping="Wrap" TextAlignment="Center" 
                                                HorizontalAlignment="Center" 
                                                VerticalAlignment="Center">trifft<LineBreak/>eher nicht zu</TextBlock>
                                 </Border>
-                                <Border BorderBrush="Black" BorderThickness="1,1,1,0" Grid.Column="4">
+                                <Border BorderBrush="Black" BorderThickness="1,1,0,0" Grid.Column="3">
                                     <TextBlock TextWrapping="Wrap" TextAlignment="Center" 
                                                HorizontalAlignment="Center" 
                                                VerticalAlignment="Center">trifft überhaupt<LineBreak/>nicht zu</TextBlock>
+                                </Border>
+                                <Border BorderBrush="Black" BorderThickness="1,1,1,0" Grid.Column="4">
+                                    <TextBlock TextWrapping="Wrap" TextAlignment="Center" 
+                                               HorizontalAlignment="Center" 
+                                               VerticalAlignment="Center">enthaltene<LineBreak/>Stimmen</TextBlock>
                                 </Border>
                                 <Border BorderBrush="Black" BorderThickness="0,1,1,0" Grid.Column="5">
                                     <TextBlock TextWrapping="Wrap" TextAlignment="Center" 
