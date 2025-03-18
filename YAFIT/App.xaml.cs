@@ -17,11 +17,10 @@ namespace YAFIT
         /// <param name="e">StartupEventArgs</param>
         private void Application_Startup(object sender, StartupEventArgs e)
         {
-            WindowNavigation.OpenFormular2Results(null);
-            //if (SessionManager.Connect() == true)
-            //{
-            //    WindowNavigation.OpenLoginWindow();
-            //}
+            if (SessionManager.Connect() == true)
+            {
+                WindowNavigation.OpenLoginWindow();
+            }
         }
 
         /// <summary>

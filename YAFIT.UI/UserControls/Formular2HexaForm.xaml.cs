@@ -188,7 +188,7 @@ namespace YAFIT.UI.UserControls
             }
         }
         private readonly bool[][] _selectedPieSection;
-        private Polygon[][] _polygons;
+        public Polygon[][] _polygons;
 
         private int _length = 15;
         private bool _interactable = true;

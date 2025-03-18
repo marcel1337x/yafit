@@ -85,15 +85,7 @@ namespace YAFIT.UI
         {
             
             ViewFormular2 view = new ViewFormular2();
-            WindowFormular2Model model = new WindowFormular2Model(view,umfrage);
-            view.DataContext = model;
-            view.Show();
-        }
-
-        public static void OpenFormular3(UmfrageEntity umfrage)
-        {
-            Formular3 view = new Formular3();
-            WindowFormFormular3Model model = new WindowFormFormular3Model(view, umfrage);
+            ModelFormular2 model = new ModelFormular2(view,umfrage);
             view.DataContext = model;
             view.Show();
         }
@@ -101,6 +93,21 @@ namespace YAFIT.UI
         {
             ViewFormular2Result view = new ViewFormular2Result();
             ModelFormular2Result model = new ModelFormular2Result(view, umfrage);
+            view.DataContext = model;
+            view.Show();
+        }
+
+        public static void OpenFormular3(UmfrageEntity umfrage)
+        {
+            ViewFormular3 view = new ViewFormular3();
+            WindowFormFormular3Model model = new WindowFormFormular3Model(view, umfrage);
+            view.DataContext = model;
+            view.Show();
+        }
+        public static void OpenFormular3Results(UmfrageEntity umfrage)
+        {
+            ViewFormular3Result view = new ViewFormular3Result();
+            ModelFormular3Result model = new ModelFormular3Result(view, umfrage);
             view.DataContext = model;
             view.Show();
         }
