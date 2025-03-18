@@ -15,18 +15,18 @@ namespace YAFIT.UI.UserControls
         {
             return id switch
             {
-                0 => Color.FromArgb(255, 96, 36, 155),
-                1 => Color.FromArgb(255, 49, 97, 168),
-                _ => Color.FromArgb(255, 77, 115, 38),
+                0 => Color.FromArgb(255, 0, 180, 0),
+                1 => Color.FromArgb(255, 0, 255, 0),
+                _ => Color.FromArgb(255, 124, 255, 124),
             };
         }
         public static Color Formular1ColorBad(int id)
         {
             return id switch
             {
-                0 => Color.FromArgb(255, 204, 184, 0),
-                1 => Color.FromArgb(255, 204, 122, 0),
-                _ => Color.FromArgb(255, 205, 51, 51),
+                0 => Color.FromArgb(255, 255, 255, 128),
+                1 => Color.FromArgb(255, 255, 91, 91),
+                _ => Color.FromArgb(255, 255, 4, 4),
             };
         }
         private static Color[] CreateColorScheme()
