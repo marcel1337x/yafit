@@ -123,10 +123,10 @@ namespace YAFIT.UI.ViewModels
                     WindowNavigation.OpenFormular1Results(umfrage);
                     break;
                 case 2:
-                    //WindowNavigation.OpenFormular1Results(umfrage);
+                    WindowNavigation.OpenFormular2Results(umfrage);
                     break;
                 case 3:
-                    //WindowNavigation.OpenFormular1Results(umfrage);
+                    WindowNavigation.OpenFormular3Results(umfrage);
                     break;
             }
         }

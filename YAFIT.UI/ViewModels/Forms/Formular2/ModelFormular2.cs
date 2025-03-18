@@ -5,10 +5,10 @@ using YAFIT.Databases.Entities;
 using YAFIT.UI.UserControls;
 using YAFIT.UI.Views;
 
-namespace YAFIT.UI.ViewModels
+namespace YAFIT.UI.ViewModels.Forms.Formular2
 {
 
-    internal class WindowFormular2Model : BaseViewModel
+    internal class ModelFormular2 : BaseViewModel
     {
         public ICommand OnSendResult { get; private set; }
 
@@ -22,7 +22,7 @@ namespace YAFIT.UI.ViewModels
         }
 
 
-        public WindowFormular2Model(Window window, UmfrageEntity umfrage) : base(window)
+        public ModelFormular2(Window window, UmfrageEntity umfrage) : base(window)
         {
             _umfrage = umfrage;
             OnLoad();
