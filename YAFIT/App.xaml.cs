@@ -1,11 +1,6 @@
-﻿using System.Diagnostics;
-using System.Windows;
+﻿using System.Windows;
 using YAFIT.Databases;
 using YAFIT.UI;
-using YAFIT.UI.ViewModels;
-using YAFIT.UI.ViewModels.Forms.Formular1;
-using YAFIT.UI.Views;
-using YAFIT.UI.Views.Forms.Formular1;
 
 namespace YAFIT
 {
@@ -22,10 +17,11 @@ namespace YAFIT
         /// <param name="e">StartupEventArgs</param>
         private void Application_Startup(object sender, StartupEventArgs e)
         {
-            if (SessionManager.Connect() == true)
-            {
-                WindowNavigation.OpenLoginWindow();
-            }
+            WindowNavigation.OpenFormular2Results(null);
+            //if (SessionManager.Connect() == true)
+            //{
+            //    WindowNavigation.OpenLoginWindow();
+            //}
         }
 
         /// <summary>

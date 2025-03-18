@@ -2,12 +2,13 @@
 using YAFIT.Common.UI.ViewModel;
 using YAFIT.Databases.Entities;
 using YAFIT.UI.ViewModels;
-using YAFIT.UI.Views.Forms.Formular1;
-using YAFIT.UI.Views;
 using YAFIT.UI.ViewModels.Forms.Formular1;
-using YAFIT.UI.Views.Forms.Formular3;
+using YAFIT.UI.ViewModels.Forms.Formular2;
 using YAFIT.UI.ViewModels.Forms.Formular3;
+using YAFIT.UI.Views;
+using YAFIT.UI.Views.Forms.Formular1;
 using YAFIT.UI.Views.Forms.Formular2;
+using YAFIT.UI.Views.Forms.Formular3;
 
 namespace YAFIT.UI
 {
@@ -83,7 +84,7 @@ namespace YAFIT.UI
         public static void OpenFormular2(UmfrageEntity umfrage)
         {
             
-            WindowFeedback2 view = new WindowFeedback2();
+            ViewFormular2 view = new ViewFormular2();
             WindowFormular2Model model = new WindowFormular2Model(view,umfrage);
             view.DataContext = model;
             view.Show();
@@ -96,13 +97,12 @@ namespace YAFIT.UI
             view.DataContext = model;
             view.Show();
         }
-        public static void OpenWindowFeedback2(UmfrageEntity umfrage)
+        public static void OpenFormular2Results(UmfrageEntity umfrage)
         {
-            //Start Window
-            WindowFeedback2 selec = new WindowFeedback2();
-            WindowFormular2Model model = new WindowFormular2Model(selec, umfrage);
-            selec.DataContext = model;
-            selec.Show();
+            ViewFormular2Result view = new ViewFormular2Result();
+            ModelFormular2Result model = new ModelFormular2Result(view, umfrage);
+            view.DataContext = model;
+            view.Show();
         }
     }
 }

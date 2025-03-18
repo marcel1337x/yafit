@@ -3,11 +3,11 @@
 namespace YAFIT.UI.Views.Forms.Formular2
 {
     /// <summary>
-    /// Interaktionslogik für Formular2_2.xaml
+    /// Interaktionslogik für ViewFormular2Result.xaml
     /// </summary>
-    public partial class Formular2_2 : Window
+    public partial class ViewFormular2Result : Window
     {
-        public Formular2_2()
+        public ViewFormular2Result()
         {
             InitializeComponent();
         }
