@@ -6,6 +6,7 @@
         xmlns:local="clr-namespace:YAFIT.UI.Views"
         xmlns:control="clr-namespace:YAFIT.UI.UserControls"
         mc:Ignorable="d"
+        ResizeMode="NoResize"
         Title="Feedbackbogen Zielscheibe" Height="850" Width="800">
     <Grid>
         <Grid.RowDefinitions>
