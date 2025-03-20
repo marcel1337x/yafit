@@ -43,6 +43,7 @@ namespace YAFIT.UI.ViewModels.Forms.Formular1
         /// <param name="window">Das dazugehörige View</param>
         public ModelFormular1(Window window, UmfrageEntity umfrage) : base(window)
         {
+            WindowCaption = "Erstes Feedback";
             _umfrage = umfrage;
             OnLoad();
             OnSendResult = new RelayCommand(DoSendResult);

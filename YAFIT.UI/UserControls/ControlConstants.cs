@@ -1,5 +1,4 @@
-﻿using FluentNHibernate.Automapping;
-using System.Drawing;
+﻿using System.Drawing;
 using YAFIT.Common.Helper;
 
 namespace YAFIT.UI.UserControls
@@ -10,6 +9,19 @@ namespace YAFIT.UI.UserControls
         internal static Color[] COLOR_SCHEME { get { return _colorScheme ??= CreateColorScheme(); } }
         private static Color[]? _colorScheme;
 
+        public static Color FormularColorScheme(int id)
+        {
+            return id switch
+            {
+                1 => Color.FromArgb(255, 0, 180, 0),
+                //2 => Color.FromArgb(255, 0, 255, 0),
+                2 => Color.FromArgb(255, 124, 255, 124),
+                3 => Color.FromArgb(255, 255, 255, 128),
+                4 => Color.FromArgb(255, 255, 91, 91),
+                //6 => Color.FromArgb(255, 255, 4, 4),
+                _ => Color.White
+            };
+        }
 
         public static Color Formular1ColorGood(int id)
         {

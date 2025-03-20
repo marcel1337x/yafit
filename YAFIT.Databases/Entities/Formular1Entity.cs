@@ -29,29 +29,29 @@ public class Formular1Entity : FormularBaseEntity
     public virtual int DieLehrer3 { get; set; }
     [ValueBinding(10)]
     public virtual int DieLehrer4 { get; set; }
-    [ValueBinding(12)]
+    [ValueBinding(11)]
     public virtual int Unterricht0 { get; set; }
-    [ValueBinding(13)]
+    [ValueBinding(12)]
     public virtual int Unterricht1 { get; set; }
-    [ValueBinding(14)]
+    [ValueBinding(13)]
     public virtual int Unterricht2 { get; set; }
-    [ValueBinding(15)]
+    [ValueBinding(14)]
     public virtual int Unterricht3 { get; set; }
-    [ValueBinding(16)]
+    [ValueBinding(15)]
     public virtual int Unterricht4 { get; set; }
-    [ValueBinding(17)]
+    [ValueBinding(16)]
     public virtual int Unterricht5 { get; set; }
-    [ValueBinding(18)]
+    [ValueBinding(17)]
     public virtual int Unterricht6 { get; set; }
-    [ValueBinding(19)]
+    [ValueBinding(18)]
     public virtual int Unterricht7 { get; set; }
-    [ValueBinding(20)]
+    [ValueBinding(19)]
     public virtual int Unterricht8 { get; set; }
-    [ValueBinding(21)]
+    [ValueBinding(20)]
     public virtual int Bewertung0 { get; set; }
-    [ValueBinding(22)]
+    [ValueBinding(21)]
     public virtual int Bewertung1 { get; set; }
-    [ValueBinding(23)]
+    [ValueBinding(22)]
     public virtual int Bewertung2 { get; set; }
     
     public virtual string Text0 { get; set; }

@@ -1,5 +1,4 @@
-﻿using FluentNHibernate.Data;
-using System.Drawing;
+﻿using System.Drawing;
 using System.Reflection;
 using System.Windows;
 using System.Windows.Controls;
@@ -18,12 +17,7 @@ namespace YAFIT.UI.ViewModels.Forms.Formular1
         {
             get
             {
-                Color[] c = [
-                    ControlConstants.Formular1ColorGood(0), ControlConstants.Formular1ColorGood(1), ControlConstants.Formular1ColorGood(2),
-                    ControlConstants.Formular1ColorBad(0), ControlConstants.Formular1ColorBad(1), ControlConstants.Formular1ColorBad(2),
-                ];
-                Console.WriteLine(string.Join(", ",c));
-                return c;
+                return Enumerable.Range(0, 4).Select(x => ControlConstants.FormularColorScheme(x + 1)).ToArray(); ;
             }
         }
         public string[] ColorReviewName
@@ -31,13 +25,14 @@ namespace YAFIT.UI.ViewModels.Forms.Formular1
             get
             {
                 return [
-                    "sehr gut","gut","ok","relativ","schlecht","sehr schlecht"
+                    "Sehr Hoch"," Hoch","Mittel","Niedrig"
                 ];
             }
         }
 
         public ModelFormular1Result(Window window, UmfrageEntity umfrage) : base(window)
         {
+            WindowCaption = "Erstes Feedback Resultat";
             _umfrage = umfrage;
             OnLoad();
         }
@@ -59,7 +54,7 @@ namespace YAFIT.UI.ViewModels.Forms.Formular1
             IList<Formular1Entity> entities = Formular1Entity.GetFormular1Service().GetAllByCriteria(x => x.Umfrage_Id == _umfrage.Id);
 
             Type type = typeof(Formular1Entity);
-            int[][] results = [.. Enumerable.Range(0, _presetGroup1.Length + _presetGroup2.Length + _presetGroup3.Length + _presetGroup4.Length+1)
+            int[][] results = [.. Enumerable.Range(0, _presetGroup1.Length + _presetGroup2.Length + _presetGroup3.Length + _presetGroup4.Length)
                 .Select(x => new int[] { 0, 0, 0, 0, 0 })];
             foreach (Formular1Entity entity in entities)
             {
@@ -84,6 +79,7 @@ namespace YAFIT.UI.ViewModels.Forms.Formular1
                     }
                 }
             }
+
             //Fragen Gruppe 1
             {
                 StackPanel stackPanel = formular.EntryGroup1;
@@ -124,7 +120,8 @@ namespace YAFIT.UI.ViewModels.Forms.Formular1
                 stackPanel.Children.Clear();
                 for (int i = 0; i < _presetGroup3.Length; i++)
                 {
-                    int[] result = results[_presetGroup1.Length + _presetGroup2.Length + i];
+                    int index = _presetGroup1.Length + _presetGroup2.Length + i;
+                    int[] result = results[index];
                     FormEntryIntCheckboxSingle formEntryTextCheckBox = new()
                     {
                         Text1 = _presetGroup3[i],
@@ -139,7 +136,8 @@ namespace YAFIT.UI.ViewModels.Forms.Formular1
                 stackPanel.Children.Clear();
                 for (int i = 0; i < _presetGroup4.Length; i++)
                 {
-                    int[] result = results[_presetGroup1.Length + _presetGroup2.Length + _presetGroup3.Length + i];
+                    int index = _presetGroup1.Length + _presetGroup2.Length + _presetGroup3.Length + i;
+                    int[] result = results[index];
                     FormEntryIntCheckboxSingle formEntryTextCheckBox = new()
                     {
                         Text1 = _presetGroup4[i],

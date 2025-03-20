@@ -1,18 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
+﻿using System.Windows;
 using System.Windows.Input;
 using YAFIT.Common.UI.ViewModel;
 using YAFIT.Databases.Entities;
-using YAFIT.UI.Views.Forms.Formular3;
 
 namespace YAFIT.UI.ViewModels.Forms.Formular3
 {
-    internal class WindowFormFormular3Model : BaseViewModel
+    internal class ModelFormular3 : BaseViewModel
     {
         public ICommand OnSendResults { get; private set; }
         public string[] TextBoxQuestion
@@ -21,7 +14,7 @@ namespace YAFIT.UI.ViewModels.Forms.Formular3
             set { SetProperty(nameof(TextBoxQuestion), ref _textBoxQuestions, value); }
         }
 
-        public WindowFormFormular3Model(Window window, UmfrageEntity umfrage) : base(window)
+        public ModelFormular3(Window window, UmfrageEntity umfrage) : base(window)
         {
             _umfrage = umfrage;
             OnSendResults = new RelayCommand(DoSendResults);

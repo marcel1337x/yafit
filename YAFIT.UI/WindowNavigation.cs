@@ -100,7 +100,7 @@ namespace YAFIT.UI
         public static void OpenFormular3(UmfrageEntity umfrage)
         {
             ViewFormular3 view = new ViewFormular3();
-            WindowFormFormular3Model model = new WindowFormFormular3Model(view, umfrage);
+            ModelFormular3 model = new ModelFormular3(view, umfrage);
             view.DataContext = model;
             view.Show();
         }

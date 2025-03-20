@@ -56,7 +56,7 @@
                 Width="120" 
                 Content="Schließen" 
                 HorizontalAlignment="Right"
-                Command="{Binding CloseView}"
+                Command="{Binding ClosingView}"
                 Margin="5"/>
     </Grid>
 </Window>
