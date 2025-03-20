@@ -38,7 +38,8 @@ namespace YAFIT.UI.ViewModels.Forms.Formular3
             form.Text0 = TextBoxQuestion[0];
             form.Text1 = TextBoxQuestion[1];
 
-            
+            form.Umfrage_Id = _umfrage.Id;
+
             // Speichern in der Datenbank
             Formular3Entity.GetFormular3Service().Insert(form);
 
