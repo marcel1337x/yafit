@@ -62,7 +62,7 @@
                     Width="120" 
                     Content="Abbrechen" 
                     HorizontalAlignment="Left"
-                    Command="{Binding CloseView}"
+                    Command="{Binding ClosingView}"
                     Margin="5"/>
     </Grid>
 </Window>
