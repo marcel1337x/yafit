@@ -1,5 +1,6 @@
 ﻿using FluentNHibernate.Utils;
 using System.Diagnostics;
+using System.Drawing;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
@@ -8,11 +9,34 @@ using YAFIT.Common.UI.ViewModel;
 using YAFIT.Databases.Entities;
 using YAFIT.UI.UserControls;
 using YAFIT.UI.Views.Forms.Formular2;
+using Color = System.Drawing.Color;
 
 namespace YAFIT.UI.ViewModels.Forms.Formular2
 {
     public class ModelFormular2Result : BaseViewModel
     {
+        public Color[] ColorReview
+        {
+            get
+            {
+                Color[] c = [
+                    ControlConstants.Formular1ColorGood(1), ControlConstants.Formular1ColorGood(2),
+                    ControlConstants.Formular1ColorBad(0), ControlConstants.Formular1ColorBad(1), ControlConstants.Formular1ColorBad(2),
+                ];
+                Console.WriteLine(string.Join(", ", c));
+                return c;
+            }
+        }
+        public string[] ColorReviewName
+        {
+            get
+            {
+                return [
+                    "sehr hoch","hoch","mittel","niedrig","sehr niedrig"
+                ];
+            }
+        }
+
         public ModelFormular2Result(Window window, UmfrageEntity umfrage) : base(window)
         {
 
@@ -77,7 +101,7 @@ namespace YAFIT.UI.ViewModels.Forms.Formular2
         {
             return new()
             {
-                Color = new Color { R = color.R, G = color.G, B = color.B, A = color.A }
+                Color = new System.Windows.Media.Color { R = color.R, G = color.G, B = color.B, A = color.A }
             };
         }
 
