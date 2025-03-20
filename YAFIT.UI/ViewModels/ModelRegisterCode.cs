@@ -54,9 +54,17 @@ namespace YAFIT.UI.ViewModels
                 Password = _loginData[1]
             };
 
-            _successful = userService.Insert(user);
+            if (UserEntity.GetUserService().GetEntity(x => x.Name == user.Name) != null)
+            {
+                MessageBox.Show("Benutzername existiert bereits!");
+                return;
+            }
 
-            registerService.Delete(register);
+            _successful = userService.Insert(user);
+            if (_successful)
+            {
+                registerService.Delete(register);    
+            }
             CancelView();
         }
 
