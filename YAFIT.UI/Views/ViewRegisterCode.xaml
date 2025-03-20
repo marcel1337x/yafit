@@ -5,6 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:YAFIT.UI.Views"
         mc:Ignorable="d"
+        ResizeMode="NoResize"
         SizeToContent="WidthAndHeight"
         Title="ViewRegisterCode" Height="126" Width="257">
     <Grid Margin="5">

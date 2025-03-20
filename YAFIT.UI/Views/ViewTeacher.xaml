@@ -6,6 +6,7 @@
         xmlns:local="clr-namespace:YAFIT.UI.Views"
         xmlns:converter="clr-namespace:YAFIT.UI.Converter"
         mc:Ignorable="d"
+        ResizeMode="NoResize"
         Title="{Binding WindowCaption}" Height="450" Width="800">
     <Window.Resources>
         <converter:FormTypeToStringConverter x:Key="FormTypeToString"/>
