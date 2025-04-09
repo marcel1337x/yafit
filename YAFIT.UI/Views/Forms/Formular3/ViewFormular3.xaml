@@ -78,6 +78,6 @@
         Width="120" 
         Content="Abbrechen" 
         HorizontalAlignment="Left"
-        Margin="5"/>
+        Margin="5" Command="{Binding OnCancel}"/>
     </Grid>
 </Window>

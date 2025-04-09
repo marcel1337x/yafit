@@ -100,7 +100,7 @@
                 Width="120" 
                 Content="Schließen" 
                 HorizontalAlignment="Right"
-                Command="{Binding ClosingView}"
+                Command="{Binding OnCancel}"
                 Margin="5"/>
         </StackPanel>
     </Grid>
