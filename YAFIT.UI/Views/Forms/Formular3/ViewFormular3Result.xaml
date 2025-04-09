@@ -86,7 +86,7 @@
         Content="Schließen" 
         HorizontalAlignment="Right"
         Margin="5"
-         Command="{Binding OnClose}"/>
+         Command="{Binding OnCancel}"/>
         
     </Grid>
 </Window>

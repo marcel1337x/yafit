@@ -207,7 +207,7 @@
             </Grid>
             <Button Width="120" 
                 Content="Schließen"
-                Command="{Binding OnClose}"/>
+                Command="{Binding OnCancel}"/>
         </StackPanel>
     </Grid>
 </Window>
